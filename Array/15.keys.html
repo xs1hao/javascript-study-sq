@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">keys()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				keys() 方法用于从数组创建一个包含数组键的可迭代对象。
+				如果对象是数组返回 true，否则返回 false。
+			</p>
+			<h4>语法</h4>
+			<p class="code">array.keys()</p>
+			<h4>参数</h4>
+			<p>没有</p>
+			<h4>返回值</h4>
+			<p>一个数组可迭代对象。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4, 5, 5, 2]
+			let fruit = ['Banana', 'Orange', 'Apple', 'Mango']
+			// 数据处理
+			let res = fruit.keys()
+			console.log('处理后的结果：', res) // 一个数组可迭代对象。
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr)
+			console.log('得到的结果类型：', type) //  Array Iterator
+
+			for (let item of res) {
+				console.log(item) // 0 1 2 3
+			}
+
+			for (let item in res) {
+				// 不能使用 for in
+				console.log(item)
+			}
+		}
+	</script>
+</html>

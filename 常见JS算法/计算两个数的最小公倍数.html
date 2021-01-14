@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>计算两个数的最小公倍数</title>
+	</head>
+	<body>
+        <h4>
+            （两个数）最小公倍数算法：
+        </h4>
+        <p>
+            (num1 * num2) / 最大公约数
+        </p>
+        <h4>
+            最大公约数算法：
+        </h4>
+        <p>
+            最大数取余最小数；<br> 
+            1）如果结果为0，那么返回 最小数；<br>
+            2) 如果结果不为0，则递归调用当前方法（最小数最为第一个参数，他们的取余结果作为第二个参数）；
+        </p>
+    </body>
+	<script>
+        /**
+         * 利用递归实现求最大公约数；
+         * **/
+        function counterMultiple(max, min) {
+            // return max%min === 0 ? min : counterMultiple(min, max%min); // max % min 最大数与最小数 取余； 
+            return max % min === 0 ? min : arguments.callee(min, max%min); // 另一种写法；
+        }
+
+        // 计算两个数的最大公约数；
+        function getMinMultiple(num1,num2) {
+            let max = Math.max(num1,num2);
+            let min = Math.min(num1,num2);
+            return counterMultiple(max,min); // 第一个参数是大的；
+        }
+        console.log(getMinMultiple(6,8)); // 2 求得 最大公约数；
+        console.log(getMinMultiple(6,9)); // 3 求得 最大公约数；
+
+        // 最小公倍数算法： (num1 * num2) / 最大公约数 ；
+        function getMinYueShu(num1,num2) {
+            return (num1 * num2) / getMinMultiple(num1,num2);
+        }
+
+        console.log(getMinYueShu(6,9)); // 18 最小公约数；
+	</script>
+</html>

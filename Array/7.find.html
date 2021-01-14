@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">find()</h3>
+		<div>
+            <h4>定义和用法</h4>
+            
+			<p>
+				find() 方法返回通过测试（函数内判断）的数组的第一个元素的值。
+				find() 方法为数组中的每个元素都调用一次函数执行：
+				当数组中的元素在测试条件时返回 true 时, find()
+				返回符合条件的元素，之后的值不会再调用执行函数。
+				如果没有符合条件的元素返回 undefined
+			</p>
+			<p class="notice">
+                注意: 
+                该方法，如果找到了满足条件的元素，则不会继续向后查找。
+                find() 对于空数组，函数是不会执行的。
+                find() 并没有改变数组的原始值。
+			</p>
+			<h4>语法</h4>
+			<p class="code">
+				array.find(function(currentValue, index, arr),thisValue)
+			</p>
+			<h4>返回值</h4>
+			<p>
+				返回符合测试条件的第一个数组元素值，如果没有符合条件的则返回
+				undefined。
+			</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4, 5, 5, 2]
+			// 数据处理
+			let res = arr.find((curValue,index,arr) => {
+                console.log(curValue); // 当前循环的 元素
+                console.log(index); // 当前循环元素的 下标
+                console.log(arr); // 当前元素属于的数组对象
+                return curValue > 2;
+            })
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr) // 原数组未发生改变；
+			console.log('处理后的结果：', res) // 3
+            console.log('得到的结果类型：', type)
+            
+            let arrs = [
+                {name: '哥哥',age: 12},
+                {name: '芳芳',age: 13},
+                {name: '强强',age: 14},
+                {name: '姐姐',age: 15}
+            ]
+
+            let res1 = arrs.find(item => {
+                return item.age === 13;
+            })
+            console.log(res1); // {name: "芳芳", age: 13}
+
+            let res2 = arrs.find(item => {
+                return item.age === 11;
+            })
+            console.log(res2); // undefined
+            let type2 = Object.prototype.toString.call(res2).slice(8, -1);
+            console.log(type2); // Undefined  
+
+		}
+	</script>
+</html>

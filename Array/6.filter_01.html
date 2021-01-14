@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<h3 class="red">filter()</h3>
+		<div>
+			<h4>定义和用法</h4>
+            <p>filter() 方法创建一个新的数组，新数组中的元素是 ===>>> 符合条件的 <<<=== 所有元素。</p>
+            <p>
+                注意： 
+                filter() 不会对空数组进行检测。
+                filter() 不会改变原始数组。
+            </p>
+			<h4>语法</h4>
+			<p class="code">array.filter(function(currentValue,index,arr), thisValue)</p>
+			<h4>参数</h4>
+			<p></p>
+			<h4>返回值</h4>
+			<p>返回数组，包含了符合条件的所有元素。如果没有符合条件的元素则返回空数组。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+            let arr = [1, 2, 3, 4, 5, 5, 2];
+			// 数据处理
+			let res = arr.filter((curValue,index,arr) => { // 会循环 arr.length 次
+                console.log(currentValue); // 当前循环的 元素
+                console.log(index); // 当前循环元素的 下标
+                console.log(arr); // 当前元素属于的数组对象
+                return curValue > 3;
+            })
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr); //原数组不变 [1, 2, 3, 4, 5, 5, 2];
+			console.log('处理后的结果：', res); // 返回的是满足条件的元素 [4,5,5]
+			console.log('得到的结果类型：', type)
+		}
+	</script>
+</html>

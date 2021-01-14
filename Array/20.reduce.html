@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">reduce()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				reduce()
+				方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
+				reduce() 可以作为一个高阶函数，用于函数的 compose。 注意:
+				reduce() 对于空数组是不会执行回调函数的。
+			</p>
+			<h4>语法</h4>
+			<p class="code">
+				array.reduce(function(total, currentValue, currentIndex, arr),
+				initialValue)
+			</p>
+			<h4>返回值</h4>
+			<p>返回计算结果</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4]
+            let fruit = ['Banana', 'Orange', 'Apple', 'Mango'];
+            let initialNum = 2;
+			// 数据处理
+			let res = arr.reduce((cunt,curValue,index,arr) => {
+                console.log(cunt); // 2 3 5 8
+                console.log(curValue); // 1 2 3 4
+                console.log(index); // 0 1 2 3
+                console.log(arr);
+                return cunt + curValue;
+            },initialNum)
+			console.log('处理后的结果：', res) // 12
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr)
+			console.log('得到的结果类型：', type) // Number
+		}
+	</script>
+</html>

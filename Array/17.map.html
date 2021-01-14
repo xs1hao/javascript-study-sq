@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">map()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				map()方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
+				map() 方法按照原始数组元素顺序依次处理元素。
+			</p>
+			<p>
+                注意： 
+                map() 不会对空数组进行检测。
+                map()不会改变原始数组
+			</p>
+			<h4>语法</h4>
+			<p class="code">array.map(function(currentValue,index,arr), thisValue)</p>
+			<h4>参数</h4>
+			<p></p>
+			<h4>返回值</h4>
+			<p>返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+            let members = [
+                {name: '明明', age: 12},
+                {name: '芳芳', age: 65},
+                {name: '强强', age: 53},
+                {name: '试试', age: 15},
+                {name: '翻翻', age: 45},
+                {name: '安安', age: 23}
+            ]
+			// 数据处理
+			let res = members.map((curValue,index,arr) => {
+                console.log(curValue); // 当前循环的 members[index] 对象；
+                console.log(index); // 当前循环元素的 下标；
+                console.log(arr); // 当前元素属于的数组对象；
+                return curValue.age;
+            })
+			console.log('处理后的结果：', res) // [12,65,53,15,45,23]
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', members)
+			console.log('得到的结果类型：', type) //Array
+		}
+	</script>
+</html>

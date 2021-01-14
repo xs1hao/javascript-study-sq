@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">pop()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>pop() 方法用于删除数组的最后一个元素并返回删除的元素。</p>
+			<p class="notice">注意：此方法改变原数组数组</p>
+			<h4>语法</h4>
+			<p class="code">array.pop()</p>
+			<h4>返回值</h4>
+			<p>返回删除的元素。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4, 5, 5, 2];
+			// 数据处理
+			let res = arr.pop()
+			console.log('处理后的结果：', res) // 2
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr) //[1, 2, 3, 4, 5, 5]
+			console.log('得到的结果类型：', type) // Number
+		}
+	</script>
+</html>

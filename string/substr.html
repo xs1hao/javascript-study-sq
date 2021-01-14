@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">substr</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+                <h5> 从指定位置，抽取指定数量的字符</h5>
+                substr() 方法可在字符串中抽取从 开始 下标开始的<span class="red">指定数目</span>的字符。
+                提示： substr() 的参数指定的是子串的开始位置和长度，因此它可以替代 substring() 和 slice() 来使用。                
+                注意： substr() 方法不会改变源字符串。</p>
+			<h4>语法</h4>
+			<p class="code">string.substr(start,length)</p>
+			<h4>参数</h4>
+			<p>
+                start	
+                必需。要抽取的子串的起始下标。必须是数值。包含当前下标元素。
+                如果是负数，那么该参数声明从字符串的尾部开始算起的位置。也就是说，-1 指字符串中最后一个字符，-2 指倒数第二个字符，以此类推。
+                length	
+                可选。<div class="notice">子串中的字符数。</div> 必须是数值。如果省略了该参数，那么返回从 stringObject 的开始位置到结尾的字串</p>
+			<h4>返回值</h4>
+			<p>String	A new string containing the extracted part of the text</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let str = 'hello world'
+			// 数据处理
+			let res1 = str.substr(2,5)
+			console.log('原字符串：', str) 
+			console.log('处理后（res1）的结果：', res1) // llo w
+			let type = Object.prototype.toString.call(res1).slice(8, -1)
+            console.log('res1的类型：', type)
+            
+            let res2 = str.substr(-5,3)
+			console.log('处理后（res2）的结果：', res2) // wor
+		}
+	</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">push()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				push() 方法可向数组的末尾添加一个或多个元素，并返回新的长度。
+		
+            </p>
+            <p class="notice">
+                push() 会改变原数组。
+            </p>
+			<h4>语法</h4>
+			<p class="code">array.push(item1, item2, ..., itemX)</p>
+			<h4>参数</h4>
+			<p></p>
+			<h4>返回值</h4>
+			<p></p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4, 5, 5, 2]
+			let fruit = ['Banana', 'Orange', 'Apple', 'Mango']
+			// 数据处理
+			// let res = arr.push('a','b'); // push 多个元素；
+			let res = arr.push(...['a','b']); //  另一种写法；
+			console.log('处理后的结果：', res) // 9
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr) //  [1, 2, 3, 4, 5, 5, 2, "a", "b"]
+			console.log('得到的结果类型：', type) // Number
+		}
+	</script>
+</html>

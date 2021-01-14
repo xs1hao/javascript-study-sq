@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">valueOf()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>valueOf() 方法可返回 String 对象的原始值。
+
+                注意： valueOf() 方法通常由 JavaScript 在后台自动进行调用，而不是显式地处于代码中。</p>
+			<h4>语法</h4>
+			<p class="code">string.valueOf()</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let str = 'hello world'
+			// 数据处理
+			let res1 = str.valueOf()
+			console.log('原字符串：', str)
+			console.log('处理后（res1）的结果：', res1) // hello world
+			let type = Object.prototype.toString.call(res1).slice(8, -1)
+			console.log('res1的类型：', type) // String
+		}
+	</script>
+</html>

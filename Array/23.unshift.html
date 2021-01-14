@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<h3 class="red">unshift()</h3>
+		<div>
+			<h4>定义和用法</h4>
+            <p>unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。</p>
+            <p class="notice">
+                unshift() 方法改变原数组。可以同时添加多个元素。
+            </p>
+			<h4>语法</h4>
+			<p class="code">array.unshift(item1,item2, ..., itemX)</p>
+			<h4>返回值</h4>
+			<p>数组新长度</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+            let fruit = ["Banana", "Orange", "Apple", "Mango"];
+			// 数据处理
+            let res = fruit.unshift('aaaa','bbbb');
+            // let res = fruit.unshift(...['sss','bbbb']); // 同样是效果，可以同时添加多个元素；
+			console.log('处理后的结果：', res); // 5 得到了新数组的长度；
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', fruit) // 原数组被改变；
+			console.log('得到的结果类型：', type) // Number
+		}
+	</script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<p>filter 方法过滤了不满足条件的东西</p>
+	</body>
+	<script>
+		window.onload = function () {
+			// 数组 filter
+			let arr = [1, 2, 3, 4, 5, 5, 2]
+			let data = [5, 2]
+			let res = arr.filter((item) => {
+				return data.includes(item)
+			})
+
+			console.log(res) // [2,5,5,2] 返会了满足条件的数据，也就是 过滤掉了不满足条件的 东西
+			console.log(arr) // [1,2,3,4,5,5,2]  原数组，没有发生变化
+		}
+	</script>
+</html>

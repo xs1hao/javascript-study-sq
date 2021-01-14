@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">split()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				<span class="red"
+					>split() 方法用于把一个字符串分割成字符串数组。</span
+				>
+				提示： 如果把空字符串 ("") 用作 separator，那么 stringObject
+				中的每个字符之间都会被分割。 注意：
+				split()方法不改变原始字符串。
+			</p>
+			<h4>语法</h4>
+			<p class="code">string.split(separator,limit)</p>
+			<h4>参数</h4>
+			<p>
+				separator 可选。 字符串或正则表达式，从该参数指定的地方分割
+				string Object。 limit 可选。
+				<span class="red">该参数可指定返回的数组的最大长度。</span>
+				如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。
+			</p>
+			<h4>返回值</h4>
+			<p>
+				Array 一个字符串数组。该数组是通过在 separator
+				指定的边界处将字符串 string Object
+				分割成子串创建的。返回的数组中的字串不包括 separator 自身。
+			</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let str = 'hello world'
+			// 数据处理
+			let res1 = str.split(" ")
+			console.log('原字符串：', str)
+			console.log('处理后（res1）的结果：', res1) // ['hello','world'];
+			let type = Object.prototype.toString.call(res1).slice(8, -1)
+            console.log('res1的类型：', type) // Array
+            
+            let str1 = "hello jame, what are you nong sha li";
+            let res2 = str1.split(' ', 3);
+			console.log('处理后（res2）的结果：', res2) // ["hello", "jame,", "what"];
+            
+		}
+	</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">replace()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
+			<h4>语法</h4>
+			<p class="code">
+                string.replace(searchvalue,newvalue)
+            </p>
+			<h4>参数</h4>
+			<p>
+                searchvalue	必须。规定子字符串或要替换的模式的 RegExp 对象。
+                请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。<br>
+                newvalue	必需。一个字符串值。规定了替换文本或生成替换文本的函数。</p>
+			<h4>返回值</h4>
+			<p>String	一个新的字符串，是用 replacement 替换了 regexp 的第一次匹配或所有匹配之后得到的。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let str = 'The rain in SPAIN stays mainly in the plain'
+			// 数据处理
+			let res1 = str.replace('in','sq')
+			console.log('原字符串：', str)
+			console.log('处理后（res1）的结果：', res1) // 只是改了 第一个 in , The rasq in SPAIN stays mainly in the plain
+			let type = Object.prototype.toString.call(res1).slice(8, -1)
+			console.log('res1的类型：', type) // String
+
+            let res2 = str.replace(/in/,'sq') // The rasq in SPAIN stays mainly in the plain
+            console.log('处理后（res2）的结果：', res2) 
+            
+            let res3 = str.replace(/in/g,'史') // 匹配了全部小写的 in 
+            console.log('处理后（res3）的结果：', res3)  // The ra史 史 SPAIN stays ma史ly 史 the pla史
+            
+            let res4 = str.replace(/in/gi,'强') // 匹配了全部小写的 in 和 大写的 IN ；正则中 i 执行对大小写不敏感的匹配。
+            console.log('处理后（res3）的结果：', res4) // The rasq sq SPAsq stays masqly sq the plasq
+		}
+	</script>
+</html>

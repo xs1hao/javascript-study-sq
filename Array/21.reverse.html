@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<h3 class="red">reverse()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>reverse() 方法用于颠倒数组中元素的顺序。</p>
+			<h4>语法</h4>
+			<p class="code">array.reverse()</p>
+			<h4>返回值</h4>
+			<p>颠倒顺序后的数组</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+            let arr = [1, 2, 3, 4];
+            let fruit = ["Banana", "Orange", "Apple", "Mango"];
+			// 数据处理
+            let res = arr.reverse();
+			console.log('处理后的结果：', res); // [4, 3, 2, 1]
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr) // [4, 3, 2, 1]
+            console.log('得到的结果类型：', type) // Array
+            console.log(res === arr); // 数组 reverse() 后，还和原来的数组相等，reverse() 不改变原数组；
+		}
+	</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">splice()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				splice() 方法用于 添加 或 删除数组中的元素。
+				注意：这种方法会改变原始数组。
+			</p>
+			<h4>语法</h4>
+			<p class="code">array.splice(index,howmany,item1,.....,itemX)</p>
+			<h4>参数</h4>
+			<p>
+				index 必需。规定从何处添加/删除元素。该参数是开始插入和（或）删除的数组元素的下标，必须是数字。
+				howmany 可选。规定应该删除多少元素。必须是数字，但可以是 "0"。
+                如果未规定此参数，则删除从 index 开始到原数组结尾的所有元素。
+				item1, ..., itemX 可选。要添加到数组的新元素
+			</p>
+			<h4>返回值</h4>
+			<p></p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4, 5, 5, 2]
+			let fruit = ['Banana', 'Orange', 'Apple', 'Mango']
+			// 数据处理
+			let res = fruit.splice(2,1,'aaaa','bbbb');
+			console.log('处理后的结果：', res) // ['Apple']
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', fruit) // ["Banana", "Orange", "aaaa", "bbbb", "Mango"]
+            console.log('得到的结果类型：', type) // Array
+            
+            let arr1 = ['111','222','333','444'];
+            Array.prototype.splice.apply(arr1,[2,1,'ddd','fff']); // 把 数组 arr1 中的 '333' 删除了，又添加了两个新的 'ddd','fff'
+            console.log(arr1); // ["111", "222", "ddd", "fff", "444"] 
+
+            let arr2 = ['AAA','DDD','SSS','WWW'];
+            Array.prototype.splice.call(arr2,2,1,'444','222'); // 这里 call 和 apply 的功能是一样的，不同的只是他们的参数不一样。
+            console.log(arr2); // ["AAA", "DDD", "444", "222", "WWW"]
+		}
+	</script>
+</html>

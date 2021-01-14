@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+
+	</body>
+	<script>
+		window.onload = function () {
+            /**
+             * 将一个数组转换成字符串的方式
+             * 1) [].toString();
+             * 2) [].join('')
+             * 3) [].toLocalString()  toLocalString()方法与 toString() 方法用法基本相同，主要区别在于 toLocalString() 方法能够使用用户所在地区特定的分隔符把生成的字符串连接起来，形成一个字符串。
+             * 4) String([])
+             * **/
+             let arr1 = [1,2,3];
+            console.log(arr1.toString()); // "1,2,3"
+            console.log(arr1.join(',')); // "1,2,3"
+            console.log(String(arr1)); // "1,2,3"
+            console.log(arr1); // 原数组不改变
+
+            /**
+             * 将一个字符串转换成数组；
+             * 1）string.split();
+             * 2)string.match();
+             * 
+             * **/
+
+            let str = '123';
+            console.log(str.split('')); // ["1", "2", "3"]
+            console.log(str.match(/\d/g)); // ["1", "2", "3"]
+		}
+	</script>
+</html>

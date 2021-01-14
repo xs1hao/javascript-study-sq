@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        定义和用法
+    </h3>
+    <p>
+        charAt() 方法可返回指定位置的字符。
+        <br>
+        也就是，对应下标的元素。如果对应下标没有对应元素，及下标已经超出了字符串的length，则会返回一个 “”， 其length 为 0；
+    </p>
+    <pre>
+
+    </pre>
+</body>
+<script>
+    window.onload = function(){
+        let str = 'hello world';
+        // 数据处理
+        let res = str.charAt(str.length - 2);
+        // let res = str.charAt(23); // 如果对应下标没有对应元素，及下标已经超出了字符串的length，则会返回一个 “”；其length 为 0；
+        let type = Object.prototype.toString.call(res).slice(8,-1);
+        console.log('原字符串：',str); // hello world
+        console.log('处理后的结果：',res); // l
+        console.log('得到的结果类型：',type);
+    }
+</script>
+</html>

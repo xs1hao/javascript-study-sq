@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<p>match : 可以将一个字符串转换成 一个数组</p>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4, 5, 5, 2]
+			let str = 'asd123das' // length 9;
+			let res = str.match(/[a-z0-9]/g)
+			console.log(res instanceof Array) // true;
+			console.log(res) // [a,s,d,1,2,3,d,a,s];
+			console.log(Array.isArray(res)) // true;
+			let type = Object.prototype.toString.call(res).slice(8, -1) // 万能方法 ==> 获取的一个 字符串类型 的 数据类型
+			console.log(typeof type) // string
+		}
+	</script>
+</html>

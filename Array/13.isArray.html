@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<h3 class="red">isArray()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>isArray() 方法用于判断一个对象是否为数组。
+
+                如果对象是数组返回 true，否则返回 false。</p>
+			<h4>语法</h4>
+			<p class="code">Array.isArray(obj)</p>
+			<h4>参数</h4>
+			<p>	必需，要判断的对象。</p>
+			<h4>返回值</h4>
+			<p>布尔值，如果对象是数组返回 true，否则返回 false。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+            let arr = [1, 2, 3, 4, 5, 5, 2];
+            let fruit = ["Banana", "Orange", "Apple", "Mango"];
+			// 数据处理
+            let res = Array.isArray(arr);
+			console.log('处理后的结果：', res); // 
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr)
+			console.log('得到的结果类型：', type)
+		}
+	</script>
+</html>

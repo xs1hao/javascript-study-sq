@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">trim() 去除字符串的头尾空格</h3>
+		<h3 class="red">toString() 方法返回一个表示 String 对象的值。</h3>
+		<h3 class="red">toLocalLowerCase() 根据本地主机的语言环境把字符串转换为小写.注意: toLocaleLowerCase() 方法没有改变原始字符串。</h3>
+		<h3 class="red">toLocalUperCase() 方法没有改变原始字符串。</h3>
+		<h3 class="red"></h3>
+	</body>
+	<script>
+		window.onload = function () {
+			let str = 'hello world'
+
+			// 数据处理
+			let res1 = str.trim();
+
+			// 使用正则替换字符串前后的空格
+			let replaceW = function (str) {
+				let reg = /^\s+|\s+$/gm
+				return str.replace(reg, '')
+			}
+
+			let wstr = ' add d '
+            console.log(replaceW(wstr)) // add d
+            
+            
+		}
+	</script>
+</html>

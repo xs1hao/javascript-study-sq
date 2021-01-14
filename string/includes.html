@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../commo/commo.css">
+</head>
+<body>
+
+    <h3 class="red">
+        includes()
+    </h3>
+
+    <div>
+        <h4>定义和用法</h4>
+        <p>
+            ncludes() 方法用于判断字符串是否包含指定的子字符串。<br>
+        如果找到匹配的字符串则返回 true，否则返回 false。
+        </p>
+        <h4>语法</h4>
+        <p>string.includes(searchvalue, start)</p>
+        <h4>参数</h4>
+        <p>searchvalue	必需，要查找的字符串。<br>
+            start	可选，设置从那个位置开始查找，默认为 0。</p>
+        <h4>返回值</h4>
+        <p>如果找到匹配的字符串返回 true，否则返回 false。</p>
+    </div>
+     
+    <div class="notice">
+        注意： includes() 方法区分大小写。
+    </div>
+    <pre style="font-size: 16px;"></pre>
+</body>
+<script>
+    window.onload = function(){
+        let str = 'hello world';
+        // 数据处理
+        let res1 = str.includes(" w");
+        console.log('处理后（res1）的结果：',res1); // true
+        console.log('原字符串：',str);
+        let type = Object.prototype.toString.call(res1).slice(8,-1);
+        console.log('res1的类型：',type); //Boolean
+
+
+        let res2 = str.includes(" W");
+        console.log('处理后（res2）的结果：',res2); // false
+
+        let res3 = str.includes("w",6);
+        console.log('处理后（res3）的结果：',res3); // true
+
+        let res4 = str.includes("w",7);
+        console.log('处理后（res4）的结果：',res4); // false
+    }
+</script>
+</html>

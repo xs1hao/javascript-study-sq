@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        substring 截取字符串片段，和 slice 一样不包含下标元素
+    </p>
+    <p>
+        和slice 不同的是 substring 第二个参数不支持 负数；
+    </p>
+</body>
+<script>
+    window.onload = function(){
+        let str = '123456789';
+        // 数据处理
+        // let res_substring = str.substring(3,7);
+        // let res_slice = str.slice(3,7);
+
+        // console.log('res_substring:',res_substring); // 4567
+        // console.log('res_slice:',res_slice); // 4567
+
+
+    /**
+     * 
+     * slice 和 substring 截取的结果相同；
+     * 截取的方式，都是不包含 end 下标元素;
+     * 
+     * 不同点：
+     * slice 第二个参数支持 负数；
+     * 
+     * **/
+    
+        let res_substring = str.substring(3,12);
+        let res_slice = str.slice(3,-1);
+
+        console.log('res_substring:',res_substring); // 456789
+        console.log('res_slice:',res_slice); // 45678
+    }
+</script>
+</html>

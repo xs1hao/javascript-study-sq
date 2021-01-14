@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">some()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				some() 方法用于检测数组中的元素是否满足指定条件（函数提供）。
+				some() 方法会依次执行数组的每个元素：
+                <span class="red">如果有一个元素满足条件，则表达式返回true ,剩余的元素不会再执行检测。</span> 
+                如果没有满足条件的元素，则返回false。
+            </p>
+            <p>
+                注意： 
+                some() 不会对空数组进行检测。 
+                some()不会改变原始数组。
+            </p>
+			<h4>语法</h4>
+			<p class="code">array.some(function(currentValue,index,arr),thisValue)</p>
+			<h4>参数</h4>
+			<p></p>
+			<h4>返回值</h4>
+			<p></p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [4, 12, 16, 20];
+			// 数据处理
+			let res = arr.some((currentValue,index,arr) => {
+                console.log(currentValue); // 当前循环的 元素
+                console.log(index); // 当前循环元素的 下标
+                console.log(arr); // 当前元素属于的数组对象
+                return currentValue > 15; // 当有一个元素 满足条件之后，就不会在去看后面的元素了；这个循环打印只会打印三次；
+            })
+			console.log('原数组：', arr); // [4, 12, 16, 20]
+			console.log('处理后的结果：', res) // true
+		}
+	</script>
+</html>

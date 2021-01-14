@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h3>定义和用法</h3>
+		<p>
+            charCodeAt() 方法可返回指定位置的字符的 Unicode 编码。
+        </p>
+        <p>
+            字符串中第一个字符的位置为 0， 第二个字符位置为 1，以此类推。
+        </p>
+        <p>
+            如果对应下标超出length长度，则会返回一个 NaN;
+        </p>
+        <div>
+            Unicode是一个编码方案，Unicode 是为了解决传统的字符编码方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。
+        </div>
+		<pre></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let str = 'hello world';
+			// 数据处理
+			let res = str.charCodeAt(5); // 空格的 ASCII 编码 为 32；
+			// let res = str.charCodeAt(25); // NaN
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原字符串：', str)
+			console.log('处理后的结果：', res) // 32
+			console.log('res的类型：', type) // Number
+		}
+	</script>
+</html>

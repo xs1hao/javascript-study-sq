@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<h3 class="red">fill()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>fill() 方法用于将一个固定值替换数组的元素。</p>
+			<h4>语法</h4>
+			<p class="code">array.fill(value, start, end)</p>
+			<h4>参数</h4>
+			<p>
+                value	必需。填充的值。
+                start	可选。开始填充位置。
+                end	可选。停止填充位置 (默认为 array.length)</p>
+			<h4>返回值</h4>
+			<p></p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+            let fruit = ["Banana", "Orange", "Apple", "Mango"];
+			// 数据处理
+			let res = fruit.fill("shiqiang", 2, 4);
+			let res1 = fruit.fill("shiqiang", 2, 6); // 同样是效果
+			let res2 = fruit.fill("shiqiang", 2); // 同样的效果
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', fruit)
+			console.log('处理后的结果：', res) // ["Banana", "Orange", "shiqiang", "shiqiang"]
+            console.log('得到的结果类型：', type)
+            
+            console.log(res === res2); // true
+            console.log(res1 === res2); // true
+
+            console.log([[1,2],3].flat()); // [1,2,3]
+		}
+	</script>
+</html>

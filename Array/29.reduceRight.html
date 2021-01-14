@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<h3 class="red">reduceRight()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>reduceRight() 方法的功能和 reduce() 功能是一样的，不同的是 reduceRight() 从数组的末尾向前将数组中的数组项做累加。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+            let arr = [1, 2, 3, 4]
+            let initialNum = 2;
+			// 数据处理
+			let res = arr.reduceRight((cunt,curValue,index,arr) => {
+                console.log(cunt); // 2 6 9 11
+                console.log(curValue); // 4 3 2 1 
+                console.log(index); // 3 2 1 0 计算时从后向前计算；
+                console.log(arr);
+                return cunt + curValue;
+            },initialNum)
+			console.log('处理后的结果：', res) // 12
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr)
+			console.log('得到的结果类型：', type) // Number
+		}
+	</script>
+</html>

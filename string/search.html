@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">search()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				search()
+				方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。<br />
+				如果没有找到任何匹配的子串，则返回 -1。
+			</p>
+			<h4>语法</h4>
+			<p class="code">string.search(searchvalue)</p>
+			<h4>参数</h4>
+			<p>	必须。查找的字符串或者正则表达式。</p>
+			<h4>返回值</h4>
+			<p>Number 与指定查找的字符串或者正则表达式相匹配的 String 对象起始位置。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let str = "Mr. Blue has a blue house";
+			// 数据处理
+			let res1 = str.search('blue');
+			console.log('原字符串：', str)
+			console.log('处理后（res1）的结果：', res1) // 15
+			let type = Object.prototype.toString.call(res1).slice(8, -1)
+            console.log('res1的类型：', type) // Number
+            
+            let res2 = str.search(/blue/i);
+			console.log('处理后（res2）的结果：', res2) // 4
+		}
+	</script>
+</html>

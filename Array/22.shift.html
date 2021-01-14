@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">shift()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				shift()
+				方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。
+			</p>
+			<p class="notice">shift() 方法改变原数组。</p>
+			<h4>语法</h4>
+			<p class="code">array.shift()</p>
+			<h4>返回值</h4>
+			<p>数组原来的第一个元素的值（移除的元素）。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let fruit = ['Banana', 'Orange', 'Apple', 'Mango']
+			// 数据处理
+			let res = fruit.shift();
+			console.log('处理后的结果：', res) // 'Banana'
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', fruit) // ["Orange", "Apple", "Mango"]
+			console.log('得到的结果类型：', type) // String
+		}
+	</script>
+</html>

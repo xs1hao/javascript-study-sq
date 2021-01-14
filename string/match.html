@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">match()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				match()
+				<br>方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。
+			</p>
+			<p>
+				注意： match() 方法将检索字符串 String Object，以找到一个或多个与 regexp匹配的文本。
+                <br>这个方法的行为在很大程度上有赖于 regexp 是否具有标志g。
+                <br>如果 regexp 没有标志 g，那么 match() 方法就只能在
+				<br>stringObject 中执行一次匹配。如果没有找到任何匹配的文本，match() 将返回null。
+				<br>否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息。
+			</p>
+			<h4>语法</h4>
+			<p>string.match(regexp)</p>
+			<h4>参数</h4>
+			<p>必需。规定要匹配的模式的 RegExp 对象。如果该参数不是 RegExp 对象，则需要首先把它传递给 RegExp 构造函数，将其转换为 RegExp 对象。</p>
+			<h4>返回值</h4>
+			<p>Array	存放匹配结果的数组。该数组的内容依赖于 regexp 是否具有全局标志 g。 如果没找到匹配结果返回 null 。</p>
+		</div>
+
+        <div class="notice">
+            match 匹配一个字符串的时候，会返回匹配到的包含第一个字符的类数组；我们可以通过解构的方式，拿到数组元素;
+        </div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let str = 'The rain in SPAIN stays mainly in the plain'
+			// 数据处理
+			let res1 = str.match('in');
+			console.log('原字符串：', str)
+			console.log('处理后（res1）的结果：', res1) // 得到一个类数组 ["in", index: 6, input: "The rain in SPAIN stays mainly in the plain", groups: undefined]
+			let type1 = Object.prototype.toString.call(res1).slice(8, -1)
+            console.log('res1的类型：', type1) // Array 
+            
+            let res2 = str.match('in');
+			console.log('处理后（res2）的结果：', ...res2) // 一个字符串 in
+			let type2 = Object.prototype.toString.call(...res2).slice(8, -1)
+            console.log('res2的类型：', type2) // string 
+            
+            let res3 = str.match(/in/);
+			console.log('处理后（res3）的结果：', res3) // 得到一个类数组 ["in", index: 6, input: "The rain in SPAIN stays mainly in the plain", groups: 
+			let type3 = Object.prototype.toString.call(res3).slice(8, -1)
+            console.log('res3的类型：', type3) // Array 
+
+
+            let res4 = str.match(/in/g);
+			console.log('处理后（res4）的结果：', res4) //  ["in", "in", "in", "in", "in"]
+			let type4 = Object.prototype.toString.call(res4).slice(8, -1)
+            console.log('res4的类型：', type4) // Array 
+
+            let res5 = str.match(/in/gi); // i 忽略小写；
+			console.log('处理后（res5）的结果：', res5) // 匹配到了大写的 IN  ["in", "in", "IN", "in", "in", "in"]
+			let type5 = Object.prototype.toString.call(res5).slice(8, -1)
+            console.log('res5的类型：', type5) // Array 
+
+		}
+	</script>
+</html>

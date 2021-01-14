@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+        <p>
+            slice 不会改变原来的字符串；返回了截取的字符串片段
+        </p>
+        <p>
+            
+            slice(start, end) 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
+
+            使用 start（包含） 和 end <strong style="color: red;">（不包含）</strong> 参数来指定字符串提取的部分。
+        </p>
+    </body>
+	<script>
+		window.onload = function () {
+			let handle = (str, arr) => {
+				if (str.length > 8) {
+					let s = str.slice(0, 8); // 1,2,3,4,5,6,7,8
+					arr.push(s)
+					handle(str.slice(8), arr);
+				} else {
+					let len = 8 - str.length
+					for (let i = 0; i < len; i++) {
+						str = str + '0'
+					}
+					arr.push(str)
+					return arr
+				}
+			}
+			let handleStr = (str) => {
+                let arr = []
+                let n = 0;
+				handle(str, arr)
+				arr.forEach((item) => {
+					console.log(item)
+				})
+			}
+            handleStr('12345678123456789');
+
+            let str = 'asdasd12asd';
+            let res = str.slice(2,5); // 截取下标为2 到下标为 5 之前的字符；
+            console.log(str); // str 未发生改变；
+            console.log(res); // das; 截取了 length 为 （5 - 2）的字符串；
+            
+		}
+	</script>
+</html>

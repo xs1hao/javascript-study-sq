@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">join()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				join() 方法用于把数组中的所有元素转换一个字符串。
+				元素是通过指定的分隔符进行分隔的。
+			</p>
+			<h4>语法</h4>
+			<p class="code">array.join(separator)</p>
+			<h4>参数</h4>
+			<p>
+				separator
+				可选。指定要使用的分隔符。如果省略该参数，则使用逗号作为分隔符。
+			</p>
+			<h4>返回值</h4>
+			<p>
+				String 返回一个字符串。该字符串是通过把 arrayObject
+				的每个元素转换为字符串，然后把这些字符串连接起来，在两个元素之间插入
+				separator 字符串而生成的。
+			</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4, 5, 5, 2]
+			let fruit = ['Banana', 'Orange', 'Apple', 'Mango']
+			// 数据处理
+			let res = arr.join('')
+			console.log('处理后的结果：', res) // '1234552'
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr)
+			console.log('得到的结果类型：', type) // String
+		}
+	</script>
+</html>

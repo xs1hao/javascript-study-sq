@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">concat()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>concat() 方法用于连接两个或多个数组。
+
+                该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。</p>
+			<h4>语法</h4>
+			<p class="code">array1.concat(array2,array3,...,arrayX)</p>
+			<h4>参数</h4>
+			<p></p>
+			<h4>返回值</h4>
+			<p></p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr1 = [1, 2, 3, 4, 5, 5, 2]
+			let arr2 = ['a', 's', 'd']
+			let arr3 = ['A', 'D', 'R']
+			// 数据处理
+			let res = arr1.concat(arr2,arr3)
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr1)
+			console.log('原数组：', arr2)
+			console.log('原数组：', arr3)
+			console.log('处理后的结果：', res) // [1, 2, 3, 4, 5, 5, 2, "a", "s", "d", "A", "D", "R"]
+			console.log('得到的结果类型：', type)
+		}
+	</script>
+</html>

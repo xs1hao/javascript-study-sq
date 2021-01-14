@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">startsWith()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				startsWith() 方法用于检测字符串是否以指定的子字符串 开始。
+				如果是以指定的子字符串开头返回 true，否则 false。 startsWith()
+				方法对大小写敏感。
+			</p>
+			<h4>语法</h4>
+			<p class="code">string.startsWith(searchvalue, start)</p>
+			<h4>参数</h4>
+			<p>
+				searchvalue 必需，要查找的字符串。 start
+				可选，查找的开始位置，默认为 0。
+			</p>
+			<h4>返回值</h4>
+			<p>
+				Boolean 如果字符串是以指定的子字符串开头返回 true，否则 false。
+			</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let str = 'hello world'
+			// 数据处理
+			let res1 = str.startsWith('lo')
+			console.log('原字符串：', str)
+			console.log('处理后（res1）的结果：', res1) // false
+			let type = Object.prototype.toString.call(res1).slice(8, -1)
+            console.log('res1的类型：', type) // Boolean
+            
+            let res2 = str.startsWith('or',9); 
+            console.log('处理后（res2）的结果：', res2) // false
+
+            let res4 = str.startsWith('or',7); 
+            console.log('处理后（res4）的结果：', res4) // true
+            
+            let res3 = str.endsWith('or',9); // endwith 第二个参数 也是从前 往后计算的；匹配的字符 是倒着看的；
+            console.log('处理后（res3）的结果：',res3); // true
+		}
+	</script>
+</html>

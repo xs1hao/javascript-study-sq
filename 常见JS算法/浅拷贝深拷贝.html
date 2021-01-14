@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+	</head>
+
+	<body>
+        <p>
+            拷贝，存在一种 基本类型的拷贝和引用类型的拷贝。
+        </p>
+        <p>
+            这两者的拷贝效果是不一样的。
+        </p>
+    </body>
+</html>
+<script>
+    
+    // 浅拷贝的实现方式
+	function simpleClone(initalObj) {
+		var obj = {}
+		for (var i in initalObj) {
+			obj[i] = initalObj[i]
+		}
+		return obj
+    }
+    
+    /**
+     * 
+     * 深拷贝就是能够实现真正意义上的数组和对象的拷贝。
+     * 递归调用"浅拷贝"。
+     * 深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。
+     * 
+     * **/
+	// 写法一 使用递归：
+	function deepClone(initalObj, finalObj) {
+		var obj = finalObj || {}
+		for (var i in initalObj) {
+			var prop = initalObj[i]
+
+			// 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+			if (prop === obj) {
+				continue
+			}
+
+			if (typeof prop === 'object') {
+				obj[i] = prop.constructor === Array ? [] : {}
+				arguments.callee(prop, obj[i])
+			} else {
+				obj[i] = prop
+			}
+		}
+		return obj
+	}
+
+	// 写法二：
+	function deepClone(initalObj, finalObj) {
+		var obj = finalObj || {}
+		for (var i in initalObj) {
+			var prop = initalObj[i]
+			// 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+			if (prop === obj) {
+				continue
+			}
+			if (typeof prop === 'object') {
+                // Object.create() 创建的对象  属性是在原型 __ptoto__ 下面；但是也可以通过 obj.××× 去访问；
+				obj[i] = prop.constructor === Array ? [] : Object.create(prop)
+			} else {
+				obj[i] = prop
+			}
+		}
+		return obj
+    }
+
+    
+    // 写法三   利用 JSON 的功能实现深拷贝；
+    let copyObj = JSON.stringify(initalObj);
+    let finalObj = JSON.parse(copyObj);
+</script>

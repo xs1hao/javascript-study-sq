@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">inclludes()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				includes() 方法用来判断一个数组是否包含一个指定的值，如果是返回
+				true，否则false。
+			</p>
+			<h4>语法</h4>
+			<p class="code">
+				arr.includes(searchElement) arr.includes(searchElement,
+				fromIndex)
+			</p>
+			<h4>参数</h4>
+			<p>
+                searchElement 必须。需要查找的元素值。 
+                fromIndex
+                可选。从该索引处开始查找 searchElement。
+                如果为负值，则按升序从 array.length + fromIndex 的索引开始搜索。默认为 0。
+			</p>
+			<h4>返回值</h4>
+			<p>布尔值。如果找到指定值返回 true，否则返回 false。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4, 5, 6, 2]
+			// 数据处理
+			let res = arr.includes(3)
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr)
+			console.log('处理后的结果：', res) // true
+			console.log('得到的结果类型：', type)
+
+			let res1 = arr.includes(3,4); // 从下标为 4 的元素（5）开始向后查找；
+            console.log('处理后的结果：', res1) // false
+            
+            let res2 = arr.includes(2,-2); 
+            // 如果为负值，则按升序从 array.length + fromIndex 的索引（7 - 2）的元素 （6）开始向后查找；
+            // 如果 fromIndex （7 - 100）为负值，计算出的索引将作为开始搜索searchElement的位置。如果计算出的索引小于 0，则整个数组都会被搜索。
+			console.log('处理后的结果：', res2) // true
+		}
+	</script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">indexOf()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				ndexOf() 方法可返回数组中某个指定的元素位置。
+				该方法将从头到尾地检索数组，看它是否含有对应的元素。开始检索的位置在数组
+				start 处或数组的开头（没有指定 start 参数时）。如果找到一个
+				item，则返回 item 的第一次出现的位置。开始位置的索引为 0。
+				如果在数组中没找到指定元素则返回 -1。
+			</p>
+			<h4>语法</h4>
+			<p class="code">array.indexOf(item,start)</p>
+			<h4>参数</h4>
+			<p>
+                item 必须。查找的元素。 
+                start 可选的整数参数。规定在数组中开始检索的位置。它的合法取值是 0 到
+				stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。
+			</p>
+			<h4>返回值</h4>
+			<p>元素在数组中的位置，如果没有搜索到则返回 -1。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let arr = [1, 2, 3, 4, 5, 5, 2]
+			// 数据处理
+            let res = arr.indexOf(3,1)
+			console.log('处理后的结果：', res) // 2
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr)
+            console.log('得到的结果类型：', type)
+            
+            let res1 = arr.indexOf(3,3)
+            console.log('处理后的结果：', res1) // -1
+            
+            let res2 = arr.indexOf(3,11)
+			console.log('处理后的结果：', res2) // -1
+		}
+	</script>
+</html>

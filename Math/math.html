@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    window.onload = function(){
+        /*
+        * math.abs()
+        * abs() 方法可返回一个数的绝对值。
+        */
+
+        console.log(Math.abs(7.25))
+        console.log(Math.abs(-7.25))
+        console.log(Math.abs(null))
+        console.log(Math.abs("Hello"))
+        console.log(Math.abs(2+3))
+
+        /*
+        * math.ceil()
+        * ceil() 方法可对一个数进行上舍入，向上取整。
+        */
+
+        console.log(Math.ceil(0.60));
+        console.log(Math.ceil(0.40));
+        console.log(Math.ceil(5));
+        console.log(Math.ceil(5.1));
+        console.log(Math.ceil(-5.1));
+        console.log(Math.ceil(-5.9));
+
+        /**
+         * math.floor();
+         * floor() 方法返回小于等于x的最大整数, 向下取整。
+         * **/
+         console.log('-------math.floor--------');
+        console.log(Math.floor(0.60)); // 0 
+        console.log(Math.floor(0.40)); // 0
+        console.log(Math.floor(5.9)); // 5
+        console.log(Math.floor(5.1)); // 5
+        console.log(Math.floor(-5.1)); // -6
+        console.log(Math.floor(-5.9)); // -6
+
+        /**
+         * math.max()
+         * max() 方法可返回两个指定的数中带有较大的值的那个数。
+         * **/
+        console.log('-------math.max--------');
+        console.log(Math.max(5,10)); // 10
+        console.log(Math.max(0,150,30,20,38)); // 150
+        console.log(Math.max(-5,10)); // 10 
+        console.log(Math.max(-5,-10,-2)); // -2
+        console.log(Math.max(1.5,2.5,2.4)); // 2.5
+
+        /**
+         * math.min()
+         * min() 方法可返回指定的数字中带有最小值的数字。
+         * **/
+         console.log('-------math.min--------');
+        console.log(Math.min(5,10)); // 5
+        console.log(Math.min(0,150,30,20,38)); // 0
+        console.log(Math.min(-5,10)); // -5
+        console.log(Math.min(-5,-10,-2)); // -10
+        console.log(Math.min(1.5,2.5,2.4)); // 1.5
+
+         /**
+         * math.pow()
+         * pow() 方法返回 x 的 y 次幂。
+         * **/
+         console.log('-------math.pow--------');
+        console.log(Math.pow(0,1));
+        console.log(Math.pow(1,1));
+        console.log(Math.pow(1,10));
+        console.log(Math.pow(3,3)); // 27
+        console.log(Math.pow(-3,3)); // -27
+        console.log(Math.pow(2,4)); // 16
+
+        /**
+         * math.random() 
+         * random() 方法可返回介于 0（包含） ~ 1（不包含） 之间的一个随机数.
+         * 
+         * 1)以下函数返回 min（包含）～ max（不包含）之间的数字：
+            function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min) ) + min;
+            }
+         * 
+         * 2)以下函数返回 min（包含）～ max（包含）之间的数字：
+            function getRndInteger(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) ) + min;
+            }
+         * **/  
+
+        /**
+         * math.round()
+         * round() 方法可把一个数字舍入为最接近的整数（四舍五入）。 
+         * **/
+         console.log('-------math.round--------');
+        console.log(Math.round(2.60)); // 3
+        console.log(Math.round(2.50)); // 3
+        console.log(Math.round(2.49)); // 2
+        console.log(Math.round(-2.60)); // -3
+        console.log(Math.round(-2.50)); // -2
+        console.log(Math.round(-2.49)); // -2
+
+        /**
+         * math.sqrt()
+         * sqrt() 方法可返回一个数的平方根。
+         * **/
+        console.log('-------math.sqrt--------');
+        console.log(Math.sqrt(0)); // 0
+        console.log(Math.sqrt(1)); // 1
+        console.log(Math.sqrt(9)); // 3
+        console.log(Math.sqrt(64)); // 8
+        console.log(Math.sqrt(-9)); // NaN
+
+    }
+</script>
+</html>

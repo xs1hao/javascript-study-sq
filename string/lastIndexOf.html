@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../commo/commo.css">
+</head>
+<body>
+    <h3>
+        <p style="color: red;">
+            lastIndexOf() 
+        </p>
+        定义和用法
+    </h3>
+    <p>
+        lastIndexOf() 方法可返回一个<pre class="notice">指定的字符串值最后出现的位置，(返回的是下标)</pre>
+        如果指定第二个参数 start，则在一个字符串中的指定位置从后向前搜索。
+        <br> 开始检索的位置在字符串的 start 处或字符串的结尾（没有指定 start 时）。
+        <br> 如果没有找到匹配字符串则返回 -1 。
+        <br> 可接受第二个可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的最后一个字符处开始检索。
+        
+    </p>
+    <div class="notice">
+        注意：lastIndexOf() 方法是区分大小写的！<br>
+    </div>
+    <div>
+        <br> 注意： 该方法将从后向前检索字符串，
+        <p class="notice inline">
+            但返回是从起始位置 (0) 开始计算子字符串最后出现的位置。
+        </p>
+        看它是否含有字符串。
+
+    </div>
+    <pre style="font-size: 16px;"></pre>
+</body>
+<script>
+    window.onload = function(){
+        let str = 'hello world';
+        // 数据处理
+        let res1 = str.lastIndexOf('wor');
+        console.log('原字符串：',str);
+        console.log('处理后（res1）的结果：',res1); // 6
+        let type = Object.prototype.toString.call(res1).slice(8,-1);
+        console.log('res1的类型：',type);
+
+        let res2 = str.lastIndexOf('Wor');
+        console.log('处理后（res2）的结果：',res2); // -1
+
+        let res3 = str.lastIndexOf('l');
+        console.log('处理后（res3）的结果：',res3); // 9
+
+        let res4 = str.lastIndexOf('l', 6); // 从下标为 6 的元素 w 开始往前找
+        console.log('处理后（res4）的结果：',res4); // 3
+
+    }
+</script>
+</html>

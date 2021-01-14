@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">every()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				every()
+				方法用于检测数组所有元素是否都符合指定条件（通过函数提供）。
+				every() 方法使用指定函数检测数组中的所有元素：
+				<span class="red">
+                    如果数组中检测到有一个元素不满足，则整个表达式返回 false，且剩余的元素不会再进行检测。
+                </span> 
+                如果所有元素都满足条件，则返回
+                true。 
+                <p>
+                    注意：
+                    every() 不会对空数组进行检测。 
+                    every() 不会改变原始数组。
+                </p> 
+			</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+			let ages = [32, 33, 12, 40];
+			// 数据处理
+			let res = ages.every((currentValue,index,arr) => {
+                console.log(currentValue); // 当前循环的 元素
+                console.log(index); // 当前循环元素的 下标
+                console.log(arr); // 当前元素属于的数组对象
+                return currentValue > 25; 
+                // 12小于25 不满足，所以后面就直接返回了；如果数组中检测到有一个元素不满足，则整个表达式返回 false，且剩余的元素不会再进行检测。
+            })
+
+            console.log('res:',res); // false;
+		}
+	</script>
+</html>

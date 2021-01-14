@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<h3 class="red">from()</h3>
+		<div>
+			<h4>定义和用法</h4>
+			<p>
+				from() 方法用于通过拥有 length属性的对象或可迭代的对象来返回一个数组。 如果对象是数组返回
+				true，否则返回 false。
+			</p>
+			<h4>语法</h4>
+			<p class="code">Array.from(object, mapFunction, thisValue)</p>
+			<h4>参数</h4>
+			<p>object	必需，要转换为数组的对象。
+                mapFunction	可选，数组中每个元素要调用的函数。
+                thisValue	可选，映射函数(mapFunction)中的 this 对象。</p>
+			<h4>返回值</h4>
+			<p>	数组对象。</p>
+		</div>
+		<pre style="font-size: 16px"></pre>
+	</body>
+	<script>
+		window.onload = function () {
+            let arr = [1, 2, 3, 4]
+            let arr1 = arr.entries();
+
+			// 数据处理
+			let res = Array.from(arr1);
+			let type = Object.prototype.toString.call(res).slice(8, -1)
+			console.log('原数组：', arr)
+			console.log('处理后的结果：', res); // [[0,1],[1,2],[2,3],[3,4]]
+            console.log('得到的结果类型：', type) // Aaary
+
+            let test = [...(new Set(res.flat()))]; // 拍平，去重，解构
+            console.log(test);
+            let type1 = Object.prototype.toString.call(test).slice(8, -1)
+            console.log(type1); // Array
+
+            let str = '1234';
+            let res1 = Array.from(str); // Array.from() 将一个字符串，转换成了数组；他和字符串的 splirt('')方法相同。
+            console.log(res1); //  ["1", "2", "3", "4"]
+
+            let res2 = str.split('');
+            console.log(res2); // ["1", "2", "3", "4"]
+
+            console.log(res1 === res2); // false
+
+		}
+	</script>
+</html>
