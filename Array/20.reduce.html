@@ -38,11 +38,24 @@
                 console.log(index); // 0 1 2 3
                 console.log(arr);
                 return cunt + curValue;
-            },initialNum)
+            },initialNum);
+
+            /**
+             * 在不设置初始值的情况下，默认初始第一个pre 值 和cur 值取的是 数组的前两个 值；
+             * 函数没有设置 初始值，第一次进入 reduce 时，pre 和 cur 取得是数组的前两个 值 1，2；
+             * 第二次进入reduce 时， pre 就有值了， 是上一次计算的结果；
+             * pre 的数据类型要和 cur 的数据类型一致。
+             * 
+             * **/
+            let res1 = arr.reduce((pre,cur) => { 
+                console.log('pre--cur:',pre,cur); // 1 2 ; 3 3; 6 4;
+                return pre + cur;
+            });
 			console.log('处理后的结果：', res) // 12
 			let type = Object.prototype.toString.call(res).slice(8, -1)
 			console.log('原数组：', arr)
 			console.log('得到的结果类型：', type) // Number
-		}
+        }
+        console.log('obj:',obj);
 	</script>
 </html>
