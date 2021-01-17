@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/consecutive-numbers-sum/" target="_blank">
+            连续整数求和
+        </a>
+        <p>
+            给定一个正整数 N，试求有多少组连续正整数满足所有数字之和为 N? 
+        </p>
+	</body>
+	<script>
+        /**
+         * 给定一个正整数 N，试求有多少组连续正整数满足所有数字之和为 N ?
+         * @param {number} N
+         * @return {number}
+         * 
+         * 一个正整数最多 有 Math.floor((Math.sqrt((8 * N + 1)) - 1) / 2) 个数连续相加 
+         * 奇数个数的连续 N / k 余数为 0;
+         * 偶数个数的连续 N / k 余数为 0.5;
+         */
+        var consecutiveNumbersSum = function(N) {
+            let total = 0;
+            // max 可组成的数据 可取的最大值；
+            let max = Math.floor((Math.sqrt((8 * N + 1)) - 1) / 2); 
+            console.log('max:',max); // 3
+            for (let i = 1; i <= max; i++) {
+                if (i % 2 === 0) {
+                    if (N % i === 0.5 * i) total++;
+                } else {
+                    if (N % i === 0) total++;
+                }
+            }
+            return total; // 算上了自身 N = N 的情况；
+        };
+        console.log(consecutiveNumbersSum(7)); // 2 这里他算了自身，所以有两种情况: [7],[3,4]
+	</script>
+</html>

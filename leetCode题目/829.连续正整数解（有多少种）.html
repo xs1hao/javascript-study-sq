@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="" target="_blank">
+            
+        </a>
+	</body>
+	<script>
+        // 先把数分解9=1+8=2+7=3+6=4+5,按这种，找到可能组成正确结果的数组，根据数的结构，易知结果可能存在[1,2,3,4,5]中，不难发现数组最后一个数,如果target是偶数就是target/2,如果是奇数就是target/2取整加一，即Math.floor(target/2)+1 或采用二进制取整(target/2 | 0) + 1,再对找到的数组采用滑动窗口模型，找出答案。
+        var findContinuousSequence = function (target) {
+        //   let index = target % 2 === 0 ? target / 2 : (target / 2 | 0) + 1;
+        let index = target % 2 === 0 ? target / 2 : Math.floor(target / 2) + 1;
+        let res = []
+        let temp = []
+        let sum = 0
+        /**
+         * 1) 从第一个数开始算起，即从 1 开始做加法计算；
+         * 2) 一直循环，当加和 等于 目前 target 时；保存 循环的 加和数组；
+         * 3）继续循环，sum 加加上 index 中剩余的数；当加和大于 target 时；将 temp 中第一个数字删掉，同时sum 减去第一个值；
+         * 4) 直到 sum 小于或者等于 target时，结束while 循环；如果此时加和sum 等于 target 则将结果保存，如果不等，则继续后面的循环；
+         * 
+         * **/
+        for (let i = 1; i <= index; i++) {
+            temp.push(i)
+            sum = sum + i
+            while (sum > target) { 
+                sum -= temp[0] // 加和 减去最前的（第一个）值；
+                temp.shift() // 删除前面（第一个）小的数；
+            }
+            if (sum === target) {  // 如果此时 加和 与 target 相等，那么当前的 temp 集合 就是一个满足 target 的组合；
+                temp.length >= 2 && res.push([...temp])
+            }
+        }
+            return res;
+        };
+        console.log(findContinuousSequence(7)); // [3,4]
+	</script>
+</html>

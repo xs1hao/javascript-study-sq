@@ -22,7 +22,8 @@
             // 1-n位数累加，和作为key存在map中
             for (var i = 1; i <= n; i++) {
                 var key = [...String(i)].reduce((prev, cur) => Number(prev) + Number(cur));
-                map.set(Number(key), map.has(key) ? map.get(key) + 1 : 1);
+                let data= map.has(key) ? map.get(key) + 1 : 1;
+                map.set(Number(key), data);
             }
             // 返回map值数组中位数最多的数组的个数；
             let res = [...map.values()].filter(item => {
