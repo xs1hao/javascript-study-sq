@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css" />
+        <script src="./js/utils.js"></script>
+        <style>
+            a{
+                color: #212222;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 16px;
+            }
+        </style>
+	</head>
+	<body>
+        <h3 class="red"></h3>
+        <input id="input" type="text" placeholder="输入你要搜索的内容...">
+        <div class="niukeSubject">
+            <ul id="outul"></ul>
+        </div>
+	</body>
+	<script>
+        // 获取input dom；
+        let inputEle = document.getElementById('input');
+        let str = '';
+        let niukeSubject = getInitialData();
+        function setLiDom(niuke) {
+            for (let item of niuke) {
+                str += `<li title="${item.title}"><a href="${item.address}">${item.title}</a></li>`
+            }
+            document.getElementById('outul').innerHTML = str;
+        }
+        setLiDom(niukeSubject);
+        // 设置回调函数
+        function filterInputValue() {
+            filter(niukeSubject,inputEle.value,'title');
+            str = '';
+            document.getElementById('outul').innerHTML = '';
+            let res = niukeSubject.filter(item => {return item.filter});
+            setLiDom(res);
+        }
+        // 给input 框添加 输入内容事件；
+        inputEle.onkeyup = function() {
+            if (inputEle.value === ''){ // 为空的时候全部展示；
+                str = '';
+                setLiDom(niukeSubject);
+            }
+            throttle(filterInputValue);
+        }
+	</script>
+</html>

@@ -20,9 +20,38 @@
 				注意：当数字是按字母顺序排列时"40"将排在"5"前面。
 				使用数字排序，你必须通过一个函数作为参数来调用。
 				函数指定数字是按照升序还是降序排列。
-			</p>
+            </p>
+            <p>
+                sort() 函数解读：
+                <br>
+                1）一个数组进行sort() 排序，a,b 如何取值？ <br> sort(a,b) 接收两个参数，a是从第1个，b 是从第 0 个开始取；
+                    sort() 函数怎么排序，每次读取的两个参数，是什么规则？ <br>
+                    <a style="text-decoration: underline;" href="https://blog.csdn.net/qq_41483673/article/details/103503178?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank">关于js数组sort方法的实现原理总结</a>
+                2）sort 工作原理:
+                <span class="notice">
+                    第一个值应该在第二个值之后的情况下，返回1，<br>
+                    而第一个值应该在第二个值的前面的情况返回 -1；不做位置更换，则返回0
+                </span>
+                    这里的意思是 <br> 
+                    1、如果 a < b  返回了 1 (第一个值应该在第二个值之后的情况下) ===>> 等价于，小的值，放在后面；也就是我们常说的降序排序；
+                    2、如果 a > b 返回了 1 (第一个值应该在第二个值之后的情况下) ===>> 等价于，大的值，放在后面，也就是成 升序排序；
+                    3、同理，当返回 -1 时，是相反的道理；a < b 返回 -1 表示，a 应该放在 b 的前面，降序；a > b 返回 -1， 大的值放在前面，降序；
+
+
+            </p>
 			<h4>语法</h4>
-			<p class="code"></p>
+			<p class="code">
+                function compare(a,b) { <br>
+                    &nbsp;&nbsp;if( a < b ){<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;return -1;<br>
+                        &nbsp;&nbsp;}else if( a > b ){<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;return 1;<br>
+                        &nbsp;&nbsp;}else {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+                    &nbsp;&nbsp;}<br>
+                }<br>
+                array.sort(compare);<br>
+            </p>
 			<h4>参数</h4>
 			<p></p>
 			<h4>返回值</h4>

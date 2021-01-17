@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/majority-element/" target="_blank">
+            多数元素
+        </a>
+	</body>
+	<script>
+        // var majorityElement = function(nums) {
+        //     let limit = nums.length/2;
+        //     let res = [...new Set(nums)]; // 得到一个没有重复值的数组；
+        //     let obj = {}; // eg: obj = {2: 3}
+        //     res.forEach(item => {
+        //         let data = 0;
+        //         nums.forEach(num => {
+        //             if (item === num) {
+        //                 data++;
+        //             }
+        //         })
+        //         obj[item] = data; 
+        //         obj[item] = obj[item] ? obj[item] + 1 : 1;
+        //         if (obj[item] > times) {
+        //             return item;
+        //         }
+        //     })
+        //     console.log(obj)
+        //     for (let item in obj) {
+        //         if (obj[item] > times) {
+        //             return item;
+        //         }
+        //     }
+        // };
+
+        // 优化
+        var majorityElement = function(nums) {
+            let limit = nums.length/2;
+            let obj = {}; // eg: obj = {2: 3}
+            for (let item of nums) {
+                obj[item] = obj[item] ? obj[item] + 1 : 1;
+                if (obj[item] > limit) {
+                    return item;
+                }
+            }
+        };
+        console.log(majorityElement([3,2,3]));
+	</script>
+</html>

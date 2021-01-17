@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="" target="_blank">
+            
+        </a>
+	</body>
+	<script>
+        var reverseBits = function(n) {
+            console.log('n:',n)
+            let reverseArr = n.toString().split('').reverse();
+            let res = reverseArr.join('');
+            // console.log('res:',res)
+            return parseInt(res);
+        };
+        let res = reverseBits(1234)
+        console.log(res);
+	</script>
+</html>

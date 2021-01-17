@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/count-largest-group/" target="_blank">
+            统计最大组的数目
+        </a>
+	</body>
+	<script>
+        /**
+         * 每一位上的数字 加和； eg: 12 ==>> res = 1 + 2 = 3;
+         * @param {number} n
+         * @return {number}
+         */
+        var countLargestGroup = function (n) {
+            var map = new Map();
+            // 1-n位数累加，和作为key存在map中
+            for (var i = 1; i <= n; i++) {
+                var key = [...String(i)].reduce((prev, cur) => Number(prev) + Number(cur));
+                map.set(Number(key), map.has(key) ? map.get(key) + 1 : 1);
+            }
+            // 返回map值数组中位数最多的数组的个数；
+            let res = [...map.values()].filter(item => {
+                            return item === Math.max(...map.values());
+                        })
+            return res.length;
+        };
+        console.log(countLargestGroup(13));
+	</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/uncommon-words-from-two-sentences/" target="_blank">
+            两句话中不常见的单词
+        </a>
+	</body>
+	<script>
+        var uncommonFromSentences = function(A, B) {
+            const arr = [...A.split(' '), ...B.split(' ')];
+            // return arr.reduce((acc, a) => {
+            //     if(arr.indexOf(a) === arr.lastIndexOf(a)) { // 判断如果两种查找下标的返回结果 一致，那么这个值，就只有一个；
+            //         acc.push(a);
+            //     };
+            //     return acc;
+            // }, [])
+            let res = [];
+            arr.forEach((item,index,arr) => {
+                if (arr.indexOf(item) === arr.lastIndexOf(item)) {
+                    res.push(item)
+                }
+            })
+            return res;
+        };
+        let A = "apple apple", B = "banana";
+        console.log(uncommonFromSentences(A,B));
+
+	</script>
+</html>

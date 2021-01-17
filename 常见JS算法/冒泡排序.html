@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://blog.csdn.net/YongxiaWu/article/details/90238595?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-3&spm=1001.2101.3001.4242" style="text-decoration: underline;">
+            js实现八大排序---冒泡排序
+        </a>
+	</body>
+	<script>
+        function bubbleSort(arr) {  
+            let len = arr.length;
+            //共需要n-1趟排序；最后一个数 不用排；eg: [3,2,1] ==》3和 2 都排好了，那么1 也就自然拍好了。
+
+            /**
+             * 写法 一：
+             * **/
+
+            // for(let i = 1; i < len; i++){ // 第一层循环，是走多少趟的意思；
+            //     for(let j = 0; j < len - i; j++){ // 内层循环，是从哪个数开始，循环多少次；
+            //         if(arr[j] > arr[j + 1]){
+            //             [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; //解构赋值进行交换
+            //         }
+            //     }
+            // }
+
+            /**
+            * 写法 二：
+             * **/
+
+            for(let i = 1; i < arr.length; i++){
+                for (let j = 0; j < arr.length - i; j++){
+                    if (arr[j] > arr[j+1]) {
+                        let pre = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = pre;
+                    }
+                }
+            }
+            return arr;
+        }
+        console.log(bubbleSort([7, 3, 4, 5, 10, 7, 8, 2,21]));
+        
+       
+	</script>
+</html>

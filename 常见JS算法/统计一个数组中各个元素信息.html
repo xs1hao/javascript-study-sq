@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<p>
+            1、统计出现的次数；
+            2、将同样的元素放到一起；
+        </p>
+	</body>
+	<script>
+        /**
+         * params arr 输入的需要处理的一维数组；
+         * 
+         * **/
+        let arrStatistics = function(arr) {
+            let obj = {}; // 利用 map 思想；
+            for (let item of arr) {
+                // 统计元素出现的次数
+                obj[item] = obj[item] ? obj[item] + 1 : 1;
+                // 将一样的放到一起
+                obj['key_'+item] ? obj['key_'+item].push(item) : obj['key_'+item] = [item];
+                // obj['key_'+item] = obj['key_'+item] ? obj['key_'+item].push(item) : [item]; // 不能这么写哦
+            }
+            return obj;
+        }
+        console.log(arrStatistics([1,1,2,2,5,2]));
+	</script>
+</html>

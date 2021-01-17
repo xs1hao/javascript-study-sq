@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+        <a href="https://leetcode-cn.com/problems/groups-of-special-equivalent-strings/" style="text-decoration: underline;">
+            特殊等价字符串组
+        </a>
+        <p>解读：</p>
+        <p>
+            将输入的数组字符串，挨个处理，先取了偶数为和奇数位的拼到了一起。然后利用set去重；
+            <br>
+            这里面用到的知识点 1）set 去重； 2)set 的add 方法。<br>
+            set 的属性方法：<br>
+            1）size; 2)add; 3)has(value); 4)delete(value); 5)clear(); <br>
+            map 的属性方法：<br>
+            1）size; 2)set(key,value); 3)get(key) 4）has(key); 5)delete(key); 6) clear()
+        </p>
+	</body>
+	<script>
+		var numSpecialEquivGroups = function (A) {
+			let set = new Set()
+			for (let i = 0; i < A.length; i++) {
+				let item = A[i]
+				let odd = []
+				let even = []
+				for (let k = 0; k < item.length; k++) {
+					if (k % 2 == 0) {
+						odd.push(item[k])
+					} else {
+						even.push(item[k])
+					}
+				}
+				let res = odd.sort().join('') + even.sort().join('')
+				// console.log(res)
+				set.add(res)
+			}
+			return set.size
+		}
+        // 输入的样例；
+        let testArr = ['abc','acb','bac','bca','cab','cba'];
+		// let res = numSpecialEquivGroups(["abcd","cdab","cbad","xyzz","zzxy","zzyx"]);//["abc","acb","bac","bca","cab","cba"]
+		let res = numSpecialEquivGroups(testArr);
+		console.log(res) // 3
+	</script>
+</html>

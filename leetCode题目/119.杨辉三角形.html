@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/pascals-triangle-ii/">
+			杨辉三角形
+		</a>
+	</body>
+	<script>
+		var getRow = function (rowIndex) {
+			// 先构造一个杨辉三角出来；obj = {0: [1], 1: [1,1], 2: [1,2,1]...}
+			let obj = { 0: [1] }
+			for (let i = 1; i <= rowIndex; i++) {
+				if (!obj[i]) {
+					obj[i] = [1]
+				}
+				for (let j = 1; j <= i; j++) {
+					let preRow = obj[i - 1] // 上一行的数据；[1]
+					let preRowNum = preRow[j - 1] ? preRow[j - 1] : 0
+					let nexNum = preRow[j] ? preRow[j] : 0 // 如果没有 则当做0处理；
+					let item = preRowNum + nexNum
+					obj[i].push(item)
+				}
+			}
+			return obj[rowIndex]
+		}
+	</script>
+</html>

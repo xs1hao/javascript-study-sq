@@ -21,3 +21,48 @@
     padding: 5px;
     margin: 0;
 }
+ul {
+    padding-left: 20px;
+    width: 250px;
+    height: 300px;
+    overflow-y: auto;
+}
+li {
+    list-style: none;
+    padding: 5px 0;
+    cursor: pointer;
+    color: #676a6c;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.text-underline{
+    text-decoration: underline;
+}
+
+::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width : 10px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius   : 10px;
+    background-color: #818789;
+}
+
+::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background   : #ededed;
+    border-radius: 10px;
+}
+#input{
+    width: 263px;
+    height: 25px;
+}
+#input:focus{
+    outline: none;
+}

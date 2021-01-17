@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/maximum-number-of-balloons/" target="_blank">
+            “气球” 的最大数量
+        </a>
+	</body>
+	<script>
+        /**
+         * @param {string} text
+         * @return {number}
+         */
+        var maxNumberOfBalloons = function(text) {
+            let str = 'balon'
+            let arr = [0,0,0,0,0];
+            // console.log(text.split('')); //["n", "l", "a", "e", "b", "o", "l", "k", "o"]
+            text.split('').map((item)=>{
+                let index = str.indexOf(item)
+                if(index !== -1){
+                    arr[index] = arr[index] + 1;
+                }
+            })
+            // console.log(arr);//[1, 1, 2, 2, 1]
+            let min = arr[0];
+            arr.map((item, index)=>{
+                if(index === 2 || index === 3){
+                    min = Math.min(min, Math.floor(item/2))
+                }else{
+                    min = Math.min(min, item)
+                }
+            })
+            return min
+        };
+        maxNumberOfBalloons("leetcode");
+	</script>
+</html>

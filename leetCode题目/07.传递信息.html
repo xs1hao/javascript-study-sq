@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<a
+			href="https://leetcode-cn.com/problems/chuan-di-xin-xi/"
+			style="text-decoration: underline"
+		>
+			传递信息
+		</a>
+	</body>
+	<script>
+        /**
+         * @param {number} n 玩家人数
+         * @param {number[][]} relation 组合关系；
+         * @param {number} k 经过 k 轮到 n-1 即最后那个玩家；
+         * @return {number}
+         */
+        var numWays = function(n, relation, k) {
+            let hmap = new Map();
+            relation.forEach(r=>{
+                if (hmap[r[0]]==undefined){
+                    hmap[r[0]]=new Array()
+                }
+                hmap[r[0]].push(r[1])
+            });
+            console.log(hmap);
+            return dfs(0,0,hmap,k,n);
+        };
+        var dfs = function(cur, steps, hmap, k, n) {
+            if (steps==k) {
+                if (cur==n-1) {
+                    return 1;
+                }
+                return 0;
+            }
+            let res=0;
+            let nexts=hmap[cur];
+            if(nexts==undefined||nexts.length<=0) {
+                return res;
+            }
+            for(let i=0;i<nexts.length;i++) {
+                res += dfs(nexts[i],steps+1,hmap,k,n);
+            }
+            return res;
+        }
+        let relation = [[0,2],[2,1],[3,4],[2,3],[1,4],[2,0],[0,4]]
+        let result = numWays(5,relation,3);
+        console.log(result);
+	</script>
+</html>
