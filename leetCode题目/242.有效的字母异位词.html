@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/valid-anagram/" target="_blank">有效的字母异位词 </a>
+	</body>
+	<script>
+        /**
+         * 这个题，可以理解为，比较两个字符串是不是全部包含；
+         * 2021年1月19日23:48:48
+         * **/
+		var isAnagram = function (s, t) {
+			const s1 = s.split('')
+			const t1 = t.split('')
+			return JSON.stringify(s1.sort()) === Json.stringify(t1.sort())
+			// if (s1.length !== t1.length) {
+			//     return false;
+			// }
+			// for (let i = 0; i < s1.length; i++) {
+			//     let item = s1[i];
+			//     let tIndex = t1.findIndex(val => {
+			//         return val === item;
+			//     })
+			//     if (tIndex === -1) {
+			//         return false
+			//     } else {
+			//         t1.splice(tIndex,1);
+			//     }
+			// }
+			// return true;
+        }
+        let s = 'nagaram';
+        let t = "anagram";
+        console.log(isAnagram(s,t));
+	</script>
+</html>

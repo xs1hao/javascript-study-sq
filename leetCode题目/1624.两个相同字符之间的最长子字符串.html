@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../commo/commo.css" />
+	</head>
+	<body>
+		<a
+			href="https://leetcode-cn.com/problems/largest-substring-between-two-equal-characters/"
+			target="_blank"
+		>
+			两个相同字符之间的最长子字符串
+		</a>
+	</body>
+	<script>
+        /**
+         * 2021年1月19日23:50:37
+         * **/
+		var maxLengthBetweenEqualCharacters = function (s) {
+			let map = {},
+				res = 0
+			for (let i = 0; i < s.length; i++) {
+				if (map[s[i]] !== undefined) {
+					res = Math.max(res, i - map[s[i]])
+				} else {
+					map[s[i]] = i
+				}
+			}
+            return res - 1
+            // 我的解法
+            // const res = s.split('');
+            // let num = -1;
+            // for (let item of res) {
+            //     let index = res.indexOf(item);
+            //     let lastIndex = res.lastIndexOf(item);
+            //     if (index !== lastIndex) {
+            //         let res = lastIndex - index -1;
+            //         if (res > num) {
+            //             num = res;
+            //         }
+            //     }
+            // } 
+            // return num;
+		}
+        let res = maxLengthBetweenEqualCharacters("mgntdygtxrvxjnwksqhxuxtrv");
+        console.log(res);
+	</script>
+</html>
