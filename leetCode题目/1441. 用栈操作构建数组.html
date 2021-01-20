@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/build-an-array-with-stack-operations/" target="_blank">
+            1441. 用栈操作构建数组
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+	</body>
+	<script>
+        var buildArray = function(target, n) {
+            let res = []; // 记录结果
+            let max = target[target.length -1]; // 题设给定的 targe是严格递增的，所以，最后一个数也就一定是最大的了；
+            let ps = 'Push';
+            let po = 'Pop';
+            for (let i = 1; i <= n; i++) {
+                if (i > max) {
+                    break;
+                }
+                res.push(ps);
+                if (!target.includes(i)) {
+                    res.push(po);
+                }
+            }
+            return res;
+        };
+        let target = [2,3,4,5,8,9,10];
+        let n = 10;
+        console.log(buildArray(target,n));
+	</script>
+</html>
