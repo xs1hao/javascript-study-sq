@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/maximum-product-of-three-numbers/" target="_blank">
+            628. 三个数的最大乘积
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+	</body>
+	<script>
+        /**
+         * @param {number[]} nums
+         * @return {number}
+         * 解题思路:
+         * 如果数组都是正数，那结果就是最大的三个数的乘积
+         * 如果有一个负数，那结果还是最大的三个数的乘积
+         * 如果有两个以上负数，那结果可能是最小的两个负数乘以最大的正数 或者 最大三个数的乘积
+         * 如果全是负数，那结果是最大的三个数的乘积
+         * 所以只要比较最大三个数的乘积 和 最小两个数和最大数的乘积 哪个大就行。
+         */
+        var maximumProduct = function(nums) {
+            nums.sort((a, b) => a - b)
+            let len = nums.length
+            let res1 = 1
+            let res2 = 1
+            for(let i = 1; i <= 3; i++) {
+                res1 *= nums[len - i]
+            }
+            res2 = nums[0] * nums[1] * nums[len - 1]
+            return Math.max(
+                res1, res2
+            )
+        };
+        let nums = [-18,-2,1,2,3,4];
+        console.log(maximumProduct(nums));
+	</script>
+</html>
