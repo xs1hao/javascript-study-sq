@@ -16,28 +16,32 @@
 	</head>
 	<body>
 		<h3 class="red">JavaScript 全局函数</h3>
-        <ul>
-            <li>parseInt() --- 函数可解析一个字符串，并返回一个整数。</li>
-            <li>isNaN() --- 检查某个值是否是非数字值</li>
-            <li> Number() --- 把对象的值转换为数字。</li> 
-            <li>parseFloat() --- 解析一个字符串并返回一个浮点数。</li> 
-            <li> String() --- 把对象的值转换为字符串。</li> 
-            <li style="color: #ccc;">这里暂时只统计了几个常用的...</li>
-        </ul>
+        <p>
+            parseInt() --- 函数可解析一个字符串，并返回一个整数。
+        </p>
+        <p>
+            parsrInt() 可以接受第二个参数，默认情况下，parseInt() 是将一个数转换成十进制数了；
+        </p>
+        <h5>
+            1、如何把一个二进制数转换成十进制？ 
+        </h5>
+        <p>
+            <pre> parseInt(101) ===>> 101 这里 101为十进制数</pre> 
+            <pre class="notice"> parseInt(101,2) ===>> 5  这里的 101 为二进制数</pre>
+        </p>
+        <h5>
+            2、如何实现一个二进制数 num 的位运算？ 先将二进制数转换成十进制，计算十进制的位运算；
+        </h5>
+        <p>
+            <pre> 1)、 let res = parseInt(num,2) 将二进制数转换成十进制； </pre>
+            <pre> 2)、 然后再去做res 的位运算；</pre>
+        </p>
 	</body>
 	<script>
-		window.onload = function () {
-			let str = 'hello world'
-			// 数据处理
-			let res1 = ''
-			console.log('原字符串：', str)
-			console.log('处理后（res1）的结果：', res1)
-			let type = Object.prototype.toString.call(res1).slice(8, -1)
-			console.log('res1的类型：', type)
-        }
-        // console.log(parseInt('101')); // 101
-        // console.log(parseInt('101',2)); // 5
-        // console.log(parseInt('101',10)); // 101；
+
+        console.log(parseInt('101')); // 101
+        console.log(parseInt('101',2)); // 5
+        console.log(parseInt('101',10)); // 101；
         // 将一个数转换成二进制，在执行 左移 << 操作；
         let num = 5;
         let erjinzhiNum = parseInt(Number(num).toString(2)); // 一个二进制数 ： 10111 

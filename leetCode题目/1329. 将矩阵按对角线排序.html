@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/sort-the-matrix-diagonally/" target="_blank">
+            1329. 将矩阵按对角线排序
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+	</body>
+	<script>
+        // 对角线 每个元素的下标 (i, j)的差 相同，用hash表 key = i-j 存储所有对角线元素， 排序后输出;
+        /**
+         * 矩阵：
+         * 他是由一个二维数组组成的数组；eg: mat = [[1,2,3,4],[1,2,3,4],[1,2,3,4]];
+         * 操作二维数组，也就是两层循环；第一层循环行，第二次循环列；
+         * 本题的巧妙之处在于，取的是对角线上的数据，拿到对角线上的数据后，在拿到对应数据后，在做排序，然后在放到对应的位置上去；
+         * **/
+        var diagonalSort = function(mat) {
+            let obj = {};
+            for(let i = 0; i < mat.length; i++){ // 二维数组的行
+                for(let j = 0; j < mat[i].length; j++){ // 一行中的列；
+                    // 对角线上的数据，他们的下标之差结果相等，所以用他们的差值作为 obj对象的 key，其value值为一个数组，存储相同key 的数据；
+                    if (obj[(i-j)]){ 
+                        obj[(i-j)].push(mat[i][j]);
+                    }else{
+                        obj[(i-j)] = [mat[i][j]];
+                    }
+                }
+            }
+            // console.log(obj);
+            for(var key in obj){
+                obj[key].sort((a,b) => {
+                    return a-b;
+                });
+            }
+            for(let i = 0; i < mat.length; i++){
+                for(let j = 0; j < mat[i].length; j++){
+                    mat[i][j] = obj[(i-j)].shift(); // 取对应位置上的第一个数字。 使用数据的shift 方法，同时原数组会被改变；
+                }
+            }
+            return mat;
+        };
+        let mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]];
+        console.log(diagonalSort(mat));
+	</script>
+</html>
