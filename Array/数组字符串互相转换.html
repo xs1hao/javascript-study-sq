@@ -28,11 +28,12 @@
              * 将一个字符串转换成数组；
              * 1）string.split();
              * 2)string.match();
-             * 
+             * 3）Array.from('str');
              * **/
 
             let str = '123';
             console.log(str.split('')); // ["1", "2", "3"]
+            console.log(Array.from(str)); // ["1", "2", "3"]
             console.log(str.match(/\d/g)); // ["1", "2", "3"]
 		}
 	</script>

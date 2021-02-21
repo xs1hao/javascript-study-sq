@@ -29,14 +29,13 @@
                     <a style="text-decoration: underline;" href="https://blog.csdn.net/qq_41483673/article/details/103503178?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank">关于js数组sort方法的实现原理总结</a>
                 2）sort 工作原理:
                 <span class="notice">
-                    第一个值应该在第二个值之后的情况下，返回1，<br>
-                    而第一个值应该在第二个值的前面的情况返回 -1；不做位置更换，则返回0
+                    第一个值应该在第二个值 之后 的情况下，返回1，<br>
+                    而第一个值应该在第二个值的 前面 的情况返回 -1；不做位置更换，则返回0
                 </span>
                     这里的意思是 <br> 
                     1、如果 a < b  返回了 1 (第一个值应该在第二个值之后的情况下) ===>> 等价于，小的值，放在后面；也就是我们常说的降序排序；
                     2、如果 a > b 返回了 1 (第一个值应该在第二个值之后的情况下) ===>> 等价于，大的值，放在后面，也就是成 升序排序；
-                    3、同理，当返回 -1 时，是相反的道理；a < b 返回 -1 表示，a 应该放在 b 的前面，降序；a > b 返回 -1， 大的值放在前面，降序；
-
+                    3、同理，当返回 -1 时，是相反的道理；a < b 返回 -1 表示，a 应该放在 b 的前面，升序；a > b 返回 -1， 大的值放在前面，降序；
 
             </p>
 			<h4>语法</h4>

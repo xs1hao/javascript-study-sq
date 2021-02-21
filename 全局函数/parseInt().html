@@ -35,6 +35,8 @@
         <p>
             <pre> 1)、 let res = parseInt(num,2) 将二进制数转换成十进制； </pre>
             <pre> 2)、 然后再去做res 的位运算；</pre>
+            小知识点：<br>
+            0x 开头表示十六进制的数；0xA 这个十六进制的数，十进制数是10；
         </p>
 	</body>
 	<script>
@@ -42,6 +44,8 @@
         console.log(parseInt('101')); // 101
         console.log(parseInt('101',2)); // 5
         console.log(parseInt('101',10)); // 101；
+        console.log(parseInt('0xA')); // 10；
+        console.log(parseInt('0xA',16)); // 10；
         // 将一个数转换成二进制，在执行 左移 << 操作；
         let num = 5;
         let erjinzhiNum = parseInt(Number(num).toString(2)); // 一个二进制数 ： 10111 
