@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/contains-duplicate-iii/" target="_blank">
+            220. 存在重复元素 III
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+	</body>
+	<script>
+        var containsNearbyAlmostDuplicate = function(nums, k, t) {
+            for (let i = 0; i < nums.length -1; i++) { // 0 1 2
+                // let arr = nums.slice(i+1); // 截取一个数组片段
+                for (let j = i + 1; j < nums.length; j++) {
+                    let s1 = Math.abs(i - j);
+                    let s2 = Math.abs(nums[i] - nums[j]);
+                    if (s1 <= k && s2 <= t) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        };
+        let arr = [1,5,9,1,5,9];
+        console.log(containsNearbyAlmostDuplicate(arr,2,3));
+	</script>
+</html>

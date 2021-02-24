@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/validate-ip-address/" target="_blank">
+            468. 验证IP地址
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+	</body>
+	<script>
+        // 主要通过正则 解答；
+        var validIPAddress = function(IP) {
+            const arr4 = IP.split("."); // 字符串转数组；
+            const arr6 = IP.split(":");
+            if (arr4.length === 4) {
+                if (arr4.every(part => (part.match(/^0$|^([1-9]\d{0,2})$/) && part < 256) )) {
+                    return "IPv4";
+                }
+            } else if (arr6.length === 8) {
+                if (arr6.every(part => part.match(/^[0-9a-fA-F]{1,4}$/))) {
+                    return "IPv6";
+                }
+            }
+            return "Neither";
+        };
+        let input = "2001:0db8:85a3:0:0:8A2E:0370:7334";
+        console.log(validIPAddress(input)); // IPv6
+	</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/toeplitz-matrix/" target="_blank">
+            766. 托普利茨矩阵
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+	</body>
+	<script>
+        var isToeplitzMatrix = function(matrix) {
+            const r = matrix.length; // 行数；3
+            const c = matrix[0].length; // 列数；4
+
+            for (let i = 0; i < r - 1; i++) { // i 取值0， 1；最后一行不循环
+                for (let j = 0; j < c - 1; j++) { // j 取值 0，1，2；最后一列不循环；
+                    if (matrix[i][j] != matrix[i+1][j+1]) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        };
+        let arr = [[1,2,3,4],[5,1,2,3],[9,5,1,2]];
+        console.log(isToeplitzMatrix(arr));
+	</script>
+</html>
