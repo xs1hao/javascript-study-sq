@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/range-sum-query-2d-immutable/" target="_blank">
+            304. 二维区域和检索 - 矩阵不可变
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+	</body>
+	<script>
+        /**
+        * @param {number[][]} matrix
+        */
+        var NumMatrix = function(matrix) {
+            this.arr = matrix;
+        };
+
+        /** 
+        * @param {number} row1 
+        * @param {number} col1 
+        * @param {number} row2 
+        * @param {number} col2
+        * @return {number}
+        */
+        NumMatrix.prototype.sumRegion = function(row1, col1, row2, col2) {
+            let num = 0;
+            for (let i = row1; i <= row2; i++) {
+                for (let j = col1; j <= col2; j++) {
+                    num += this.arr[i][j];
+                }
+            }
+            return num;
+        };
+
+        /**
+        * Your NumMatrix object will be instantiated and called as such:
+        * var obj = new NumMatrix(matrix)
+        * var param_1 = obj.sumRegion(row1,col1,row2,col2)
+        */
+        let matrix = [
+                [3, 0, 1, 4, 2],
+                [5, 6, 3, 2, 1],
+                [1, 2, 0, 1, 5],
+                [4, 1, 0, 1, 7],
+                [1, 0, 3, 0, 5]
+            ]
+        var obj = new NumMatrix(matrix)
+        var param_1 = obj.sumRegion(2,1,4,3) // 8
+        console.log(param_1); // 8
+	</script>
+</html>

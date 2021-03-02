@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/monotonic-array/" target="_blank">
+            896. 单调数列
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+	</body>
+	<script>
+        /**
+         * @param {number[]} A
+         * @return {boolean}
+         */
+        var isMonotonic = function(A) {
+            // 解法一：
+            //   先来一个去重,得到一个没有重复数字的数组；
+            // let res = [];
+            // A.reduce(function(data,cur){
+            //     if (data !== cur) {
+            //         res.push(cur)
+            //     }
+            //     return cur;
+            // },NaN)
+            // console.log(res)
+            // 如果数组的长度下雨等3 那么直接就是一个true
+            // if (res.length < 3) {
+            //     return true;
+            // }
+            // if (res[0] - res[1] < 0) {
+            //     for (let i = 0; i < res.length - 1; i++) {
+            //         for (let j = i + 1; j < res.length; j++) {
+            //             if (res[i] > res[j]) {
+            //                 return false
+            //             }
+            //         }
+            //     }
+            // } else {
+            //     for (let i = 0; i < res.length - 1; i++) {
+            //         for (let j = i + 1; j < res.length; j++) {
+            //             if (res[i] < res[j]) {
+            //                 return false
+            //             }
+            //         }
+            //     }
+            // }
+            // return true;
+
+            // 解法二：
+            let up = true, down = true
+            for(let i = 1; i < A.length; i++) {
+                if(A[i] < A[i-1]) {
+                    up = false
+                }
+                if(A[i] > A[i-1]) {
+                    down = false
+                }
+            }
+            return up || down;
+        };
+        let arr = [1,1,2];
+        console.log(isMonotonic(arr));
+
+        /**
+         * 题目总结：
+         * 1、解法二优于解法一；
+         * 2、数组的reduce 方法必须要有一个 return 这个return 返回的是reduce 的第一个参数；
+         * 3、 针对这种单层数组的，没有必要去使用 两层循环（两个for 循环）；
+         * **/
+	</script>
+</html>
