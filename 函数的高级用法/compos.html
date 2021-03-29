@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>compose</title>
+</head>
+<body>
+    <a href="https://blog.csdn.net/weixin_40073115/article/details/103842925?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control">js高级进阶之compose函数和pipe函数</a>
+    <p>
+        函数的高级写法1：compose
+    </p>
+    <p>
+        1、使用解构的形式，可以将函数的参数转换为一个数据；<br>
+        2、函数参数还可以利用 [].slice.call(arguments) 将其转换为数组；
+    </p>
+    <script>
+        let add = (a)=>{
+        return a+1;
+        }
+        let multiple = (b)=>{
+            return b*10;
+        }
+
+        // 写法一：
+        // const compose = (...args)=>x=>args.reduce((res,bc)=>bc(res),x);
+
+        // 写法二：
+        // const compose = (...args)=>{
+        //     return (x)=> {
+        //         return args.reduce((res,bc)=>{
+        //             return bc(res);
+        //         },x)
+        //     }
+        // };
+
+        // 写法三：
+        let compose = function(){
+            let args = [].slice.call(arguments);
+            return function (x){
+                return args.reduce(function(res,cb){
+                    return cb(res);
+                },x)
+            }
+        }
+        
+        let calculate = compose(multiple,add);
+        console.log(calculate(1));
+    </script>
+</body>
+</html>
