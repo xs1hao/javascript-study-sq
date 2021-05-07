@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script type="text/javascript">
+function myNew (fun, ...arg) {
+    // 创建一个新对象且将其隐式原型指向构造函数原型
+    let obj = {
+        __proto__: fun.prototype 
+    }
+    // 执行构造函数
+    fun.apply(obj, arg)
+    
+    // 返回该对象
+    return obj
+}
+
+function Person (name, age) {
+    this.name = name ;
+    this.age = age
+}
+
+let _person = myNew(Person, 'huang', '21')
+console.log(_person)
+
+</script>

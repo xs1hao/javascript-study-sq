@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例2</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    console.log('script start');
+
+    async function async1() {
+        console.log('async1 start');
+        await async2();
+        console.log('async1 end');
+    }
+
+    const P1 = new Promise((resolve, reject) => {
+        console.log('in P1');
+        resolve('promise 1')
+    })
+
+    const P2 = new Promise((resolve, reject) => {
+        console.log('in P2');
+        resolve('promise 2')
+    })
+
+    async function async2() {
+        console.log('async2');
+        await allPromise();
+    }
+
+    setTimeout(function () {
+        console.log('setTimeout');
+    }, 0)
+
+    async1();
+
+
+    async function allPromise() {
+        
+        // const result = await Promise.all([P1, P2]);
+        // console.log('--allPromise--', result);
+
+        // 这样写可以接收到error 保证了后续代码的执行；
+        await Promise.all([P1,P2]).then(
+            res => {
+                console.log('--res--',res);
+            },
+            err => {
+                console.log(err);
+            }
+        ).finally(() => {
+            console.log('allPromise end');
+        })
+    }
+
+    console.log('script end');
+
+    // 打印结果
+    // script start
+    // in P1
+    // in P2
+    // async1 start
+    // async2
+    // script end
+    // --allPromise-- (2) ["promise 1", "promise 2"]
+    // allPromise end
+    // async1 end
+    // setTimeout
+
+</script>
+
+</html>
