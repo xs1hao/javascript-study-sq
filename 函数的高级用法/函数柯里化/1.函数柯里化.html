@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</title>
+</head>
+
+<body>
+    <h4>柯里化：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</h4>
+    <p>
+        Js函数柯里化：
+    </p>
+    <p>
+        是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。
+    </p>
+</body>
+<script>
+    function curry(func) {
+        // ...args 将参数转为 数组 形式；如果没有... 则得到的是 第一个 实参；
+        return function curried(...args) {
+            // 关键知识点：function.length 用来获取函数的形参个数
+            // 补充：arguments.length 获取的是实参个数
+
+            // 形参出现在函数定义中，在整个函数体内都可以使用， 离开该函数则不能使用。
+            // 实参出现在主调函数中，进入被调函数后，实参变量也不能使用。 
+            if (args.length >= func.length) {
+                // 这里的this 指向的是 window
+                // return func.apply(this, args);
+
+                // 也可以这样写；
+                // const [a,b,c] = [...args]; // 知识点回顾之解构： a: 1; b: 2; c: 3;
+                return func(...args);
+            }
+            return function (...args2) {
+                // 这里是一个递归调用；如果参数和设计的不一样； 这里的 this 指向的是 window
+                // return curried.apply(this, args.concat(args2));
+
+                // 也可以这样写；
+                return curried(...args.concat(args2));
+            }
+        }
+    }
+
+    // 测试
+    function sum(a, b, c) {
+        return a + b + c;
+    }
+    const curriedSum = curry(sum)
+    console.log(curriedSum(1, 2, 3));
+    // console.log(curriedSum(1)(2, 3))
+    // console.log(curriedSum(1)(2)(3));
+    // console.log(curriedSum(1)(2)(3)(4)); // 报错: Uncaught TypeError: curriedSum(...)(...)(...) is not a function
+
+</script>
+
+</html>

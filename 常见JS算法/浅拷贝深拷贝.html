@@ -59,16 +59,16 @@
 	function deepClone(initalObj, finalObj) {
 		var obj = finalObj || {};
 		for (var i in initalObj) {
-			var prop = initalObj[i]
+			var prop = initalObj[i];
 			// 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
 			if (prop === obj) {
-				continue
+				continue;
 			}
 			if (typeof prop === 'object') {
                 // Object.create() 创建的对象  属性是在原型 __ptoto__ 下面；但是也可以通过 obj.××× 去访问；
-				obj[i] = prop.constructor === Array ? [] : Object.create(prop)
+				obj[i] = prop.constructor === Array ? [] : Object.create(prop);
 			} else {
-				obj[i] = prop
+				obj[i] = prop;
 			}
 		}
 		return obj

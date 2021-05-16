@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>es5 实现继承</title>
+</head>
+    <p>
+        使用es实现继承，利用function() {} 创建对象；
+    </p>
+<body>
+
+</body>
+<script>
+    function create(proto) {
+        function F() { }
+        F.prototype = proto;
+        const resF = new F();
+        console.log('resF:',resF);
+        return resF;
+    }
+
+    // Parent
+    function Parent(name) {
+        this.name = name
+    }
+
+    Parent.prototype.sayName = function () {
+        console.log(this.name)
+    };
+
+    // Child
+    function Child(age, name) {
+        Parent.call(this, name)
+        this.age = age
+    }
+    Child.prototype = creat.e(Parent.prototype);
+
+    if (Child.prototype.constructor === Child) { // false;
+        console.log('Child.prototype.constructor === Child');
+    }
+    if (Child.prototype.constructor === Parent) { // true
+        console.log('Child.prototype.constructor === Parent');
+    }
+
+    // 此时，Child的原型的构造函数，还是Parent; 将 Child 的原型的构造函数指向他本身；
+    Child.prototype.constructor = Child;
+
+    Child.prototype.sayAge = function () {
+        console.log(this.age)
+    }
+
+    // 测试;
+    const child = new Child(18, 'Jack')
+    child.sayName(); // Jack;
+    child.sayAge(); // 18;
+
+</script>
+
+</html>
