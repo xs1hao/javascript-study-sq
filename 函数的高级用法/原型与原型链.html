@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型和原型链概念</title>
+</head>
+<body>
+    <h4>
+        <a href="https://zhuanlan.zhihu.com/p/94596126" target="_blank" >原型和原型链概念（知乎）</a>
+    </h4>
+    <p>
+        1.每一个构造函数都有一个prototype属性，称之为显式原型；
+        <br>2.每一个引用类型都有一个__proto__属性，称之为隐式原型；
+        <br>3.每一个引用类型的__proto__指向他的构造函数的prototype；
+        <br>每一个构造函数也有自己的__proto__，因为函数本身就是一个引用类型，这个构造函数的__proto__又指向他自己构造函数的prototype，这样一级一级往上找就形成了原型链；
+    </p>
+</body>
+<script>
+    function Person(name){     // 1
+        this.name = name;
+    }
+
+    Person.prototype.sayName = function(welcome) {     // 5
+        console.log(welcome, this.name);
+    }
+
+    var person1 = new Person('Smiley');     // 9
+    person1.sayName('Hello');         // 10
+
+    // 每一个引用类型的__proto__指向 他的构造函数的prototype；
+    console.log(Person.__proto__ === Person.constructor.prototype); //  true
+
+    // 对象的prototype（原型对象）的构造函数和其自身相等；
+    console.log(Person === Person.prototype.constructor); // true
+    
+    // new 出来的实例的 __proto__ 属性与 对象的prototype 相等，即和原型对象相同；
+    console.log(person1.__proto__ === Person.prototype); // true
+</script>
+</html>
