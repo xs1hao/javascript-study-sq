@@ -34,7 +34,7 @@
         Parent.call(this, name)
         this.age = age
     }
-    Child.prototype = creat.e(Parent.prototype);
+    Child.prototype = create(Parent.prototype);
 
     if (Child.prototype.constructor === Child) { // false;
         console.log('Child.prototype.constructor === Child');
