@@ -22,9 +22,14 @@
         })
         return res
     }
+
     // 方案 2
     function reduceFlat(ary = []) {
-        return ary.reduce((res, item) => res.concat(Array.isArray(item) ? reduceFlat(item) : item), [])
+        return ary.reduce(
+            (pre, cur) => 
+            pre.concat(Array.isArray(cur) ? reduceFlat(cur) : cur),
+            // Array.isArray(cur) ? [...pre, ...reduceFlat(cur)] : [...pre, cur], // 也可以这样写
+        [])
     }
 
     // 测试
