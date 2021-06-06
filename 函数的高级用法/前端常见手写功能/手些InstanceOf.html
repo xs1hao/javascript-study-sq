@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 模拟instanceof
+    function myInstance(a, A) {
+        if (typeof a !== 'object') {
+            /**
+             *  instanceof 只能判断 非基本数据类型: ('' instanceof String === false)
+             * **/
+            return false;
+        }
+        // 取a 的隐式原型，A的原型
+        if (a.__proto__ === A.prototype) {
+            return true
+        }
+        while (true) { // 无限循环的写法（也可以使 for(;;) ）
+            if (a === null) { //找到最顶层
+                return false
+            }
+            if (a.__proto__ === A.prototype) { //严格相等
+                return true
+            }
+            a = a.__proto__ //没找到继续向上一层原型链查找
+        }
+    }
+
+    var a = {};
+    // console.log(myInstance(a, Array)); // false
+    // console.log(myInstance({}, Object)) // true
+    console.log(myInstance('', String)) // false
+
+</script>
+
+</html>
