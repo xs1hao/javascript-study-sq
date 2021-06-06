@@ -80,7 +80,7 @@
                             console.log('create button');
                             button = document.createElement('button');
                             button.addEventListener('click', () => {
-                                return methods.click.apply(observed);
+                                return methods.btnClick.apply(observed);
                             })
                             dom.appendChild(button)
                         }
@@ -141,7 +141,7 @@
                 }
             },
             methods: {
-                click() {
+                btnClick() {
                     this.message = this.message.split('').reverse().join('')
                 }
             }
