@@ -10,3 +10,5 @@
 5、[【Vue2.0源码系列】：响应式原理](https://github.com/sggmico/fe-happy-interview/issues/11)
 
 6、[最全的手写JS面试题](https://juejin.cn/post/6968713283884974088#heading-31)
+
+7、[vue相关的一些概念（ast、Diff、mastache、响应式..）](https://github.com/4xii/Small-knowledge-base)
