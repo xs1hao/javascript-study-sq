@@ -11,10 +11,15 @@
 <script type="text/javascript">
 function myNew (fun, ...arg) {
     // 创建一个新对象且将其隐式原型指向构造函数原型
+    /**
+     * (1) const obj = Object.create(null)  创建一个对象；
+     * (2) obj.__proto__ = fun.prototype  将新对象的隐式原型指向构造函数原型；
+     * 
+     * **/
     let obj = {
         __proto__: fun.prototype 
     }
-    // 执行构造函数
+    // 执行构造函数， 改变构造函数的 this指向；
     fun.apply(obj, arg)
     
     // 返回该对象
