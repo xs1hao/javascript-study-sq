@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{person.name}} --- {{person.fav}}</p>
+        <h3>{{person.fav}}</h3>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <h4 v-text='msg'></h4>
+        <div v-html='htmlStr'></div>
+        
+        <input type="text" v-model="msg" />
+        <button v-on:click="handleClick">点击on</button>
+        <button @click="handleClick">点击@</button>
+
+    </div>
+    <script src="./observer.js"></script>
+    <script src="./myvue.js"></script>
+    <script>
+        let vm = new MVue({
+            el: '#app',
+            data: {
+                person: {
+                    name: '小马哥',
+                    fav: '小姐姐'
+                },
+                htmlStr: '<strong>天天基金</strong>',
+                msg: '你是一个小学生',
+            },
+            methods: {
+                handleClick() {
+                    console.log(this);
+                    this.$data.person.name = '学习MVVM'
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
