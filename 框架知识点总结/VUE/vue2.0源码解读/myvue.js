@@ -183,7 +183,20 @@ class MVue {
 			// 1.实现一个数据观察者
             new Observer(this.$data);
 			// 2.实现一个指令解析器
-			new Compile(this.$el, this)
+			new Compile(this.$el, this);
+            this.proxyData(this.$data);
 		}
 	}
+    proxyData(data) {
+        for (const key in data) {
+            Object.defineProperty(this,key,{
+                get(){
+                    return data[key];
+                },
+                set(newVal){
+                    data[key] = newVal;
+                }
+            })
+        }
+    }
 }

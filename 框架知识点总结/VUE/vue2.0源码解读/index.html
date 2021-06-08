@@ -17,7 +17,7 @@
         </ul>
         <h4 v-text='msg'></h4>
         <div v-html='htmlStr'></div>
-        
+
         <input type="text" v-model="msg" />
         <button v-on:click="handleClick">点击on</button>
         <button @click="handleClick">点击@</button>
@@ -39,7 +39,9 @@
             methods: {
                 handleClick() {
                     console.log(this);
-                    this.$data.person.name = '学习MVVM'
+                    // this.$data.person.name = '学习MVVM';
+                    // 通过代理，就可以直接改变 对象的属性值；
+                    this.person.name = '学习MVVM'
                 }
             }
         })
