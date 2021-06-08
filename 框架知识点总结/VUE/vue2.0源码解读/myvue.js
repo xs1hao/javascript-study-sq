@@ -5,6 +5,11 @@ const compileUtil = {
 			return data[currentValue]
 		}, vm.$data)
 	},
+    setVal(expr, vm, inputVal) {
+        return expr.split('.').reduce((data, currentValue) => {
+			data[currentValue] = inputVal;
+		}, vm.$data)
+    },
     getContent(expr, vm) {
         return expr.replace(/\{\{(.+?)\}\}/g, (...args) => {
             return this.getVaule(args[1], vm);
@@ -39,8 +44,13 @@ const compileUtil = {
 	},
 	model(node, expr, vm) {
 		const value = this.getVaule(expr, vm);
+        // 绑定更新函数 数据 => 视图
         new watcher(vm,expr,(newVal) => {
             this.updater.modelUpdater(node, newVal);
+        })
+        // 视图 => 数据 => 视图
+        node.addEventListener('input', e => {
+            this.setVal(expr,vm,e.target.value);
         })
 		this.updater.modelUpdater(node, value);
 	},
