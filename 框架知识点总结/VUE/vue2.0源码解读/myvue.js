@@ -1,76 +1,76 @@
 const compileUtil = {
+
 	getVaule(expr, vm) {
 		// 处理 v-text="person.name" 这种情况；
 		return expr.split('.').reduce((data, currentValue) => {
-			return data[currentValue];
+			return data[currentValue]
 		}, vm.$data)
 	},
-    setVal(expr, vm, inputVal) {
-        return expr.split('.').reduce((data, currentValue) => {
-			data[currentValue] = inputVal;
+	setVal(expr, vm, inputVal) {
+		return expr.split('.').reduce((data, currentValue) => {
+			data[currentValue] = inputVal
 		}, vm.$data)
-    },
-    getContent(expr, vm) {
-        return expr.replace(/\{\{(.+?)\}\}/g, (...args) => {
-            return this.getVaule(args[1], vm);
-        })
-    },
+	},
+	getContent(expr, vm) {
+		return expr.replace(/\{\{(.+?)\}\}/g, (...args) => {
+			return this.getVaule(args[1], vm)
+		})
+	},
+
 	/**
 	 * expr: msg
 	 * **/
 	text(node, expr, vm) {
-		let value;
+		let value
 		if (expr.indexOf('{{') !== -1) {
 			value = expr.replace(/\{\{(.+?)\}\}/g, (...args) => {
-                new Watcher(vm,args[1], (newVal) => {
-                    this.updater.textUpdater(node, this.getContent(expr,vm));
-                })
-				return this.getVaule(args[1], vm);
+				new Watcher(vm, args[1], (newVal) => {
+					this.updater.textUpdater(node, this.getContent(expr, vm))
+				})
+				return this.getVaule(args[1], vm)
 			})
 		} else {
-            new Watcher(vm,expr,(newVal) => {
-                this.updater.textUpdater(node, newVal);
-            })
-            value = this.getVaule(expr, vm);
-        }
-		this.updater.textUpdater(node, value);
+			new Watcher(vm, expr, (newVal) => {
+				this.updater.textUpdater(node, newVal)
+			})
+			value = this.getVaule(expr, vm)
+		}
+		this.updater.textUpdater(node, value)
 	},
 	html(node, expr, vm) {
-		const value = this.getVaule(expr, vm);
-        new Watcher(vm,expr,(newVal) => {
-            this.updater.htmlUpdater(node, newVal);
-        })
-		this.updater.htmlUpdater(node, value);
+		const value = this.getVaule(expr, vm)
+		new Watcher(vm, expr, (newVal) => {
+			this.updater.htmlUpdater(node, newVal)
+		})
+		this.updater.htmlUpdater(node, value)
 	},
 	model(node, expr, vm) {
-		const value = this.getVaule(expr, vm);
-        // 绑定更新函数 数据 => 视图
-        new Watcher(vm,expr,(newVal) => {
-            this.updater.modelUpdater(node, newVal);
-        })
-        // 视图 => 数据 => 视图
-        node.addEventListener('input', e => {
-            this.setVal(expr,vm,e.target.value);
-        })
-		this.updater.modelUpdater(node, value);
+		const value = this.getVaule(expr, vm)
+		// 绑定更新函数 数据 => 视图
+		new Watcher(vm, expr, (newVal) => {
+			this.updater.modelUpdater(node, newVal)
+		})
+		// 视图 => 数据 => 视图
+		node.addEventListener('input', (e) => {
+			this.setVal(expr, vm, e.target.value)
+		})
+		this.updater.modelUpdater(node, value)
 	},
 	on(node, expr, vm, eventName) {
-        let fn = vm.$options.methods && vm.$options.methods[expr];
-        node.addEventListener(eventName,fn.bind(vm),false);
-    },
-    bind(node, expr, vm, attrName) {
-
-    },
+		let fn = vm.$options.methods && vm.$options.methods[expr]
+		node.addEventListener(eventName, fn.bind(vm), false)
+	},
+	bind(node, expr, vm, attrName) {},
 	// 更新的函数
 	updater: {
 		modelUpdater(node, value) {
-			node.value = value;
+			node.value = value
 		},
 		htmlUpdater(node, value) {
-			node.innerHtml = value;
+			node.innerHtml = value
 		},
 		textUpdater(node, value) {
-			node.textContent = value;
+			node.textContent = value
 		},
 	},
 }
@@ -92,8 +92,8 @@ class Compile {
 
 	compile(fragment) {
 		// 1. 获取子节点
-		const childNodes = fragment.childNodes;
-		[...childNodes].forEach((child) => {
+		const childNodes = fragment.childNodes
+		;[...childNodes].forEach((child) => {
 			if (this.isElementNode(child)) {
 				// 元素节点
 				this.compileElement(child)
@@ -112,8 +112,8 @@ class Compile {
 	 * 编译元素节点
 	 * **/
 	compileElement(node) {
-		const attributes = node.attributes; // 拿到每一个节点上的 attribute
-		[...attributes].forEach((attr) => {
+		const attributes = node.attributes // 拿到每一个节点上的 attribute
+		;[...attributes].forEach((attr) => {
 			const { name, value } = attr // v-text="msg"
 			if (this.isDirective(name)) {
 				// 是不是一个指令 v-text v-model v-on:click
@@ -123,10 +123,11 @@ class Compile {
 				compileUtil[dirName](node, value, this.vm, eventName)
 				// 删除有指令的标签上的属性；
 				node.removeAttribute('v-' + directive)
-			} else if (this.isEventName(name)) { // @click="handle"
-                let [,eventName] = name.split('@');
-                compileUtil['on'](node, value, this.vm, eventName)
-            }
+			} else if (this.isEventName(name)) {
+				// @click="handle"
+				let [, eventName] = name.split('@')
+				compileUtil['on'](node, value, this.vm, eventName)
+			}
 		})
 	}
 
@@ -134,11 +135,11 @@ class Compile {
 	 * 编译文本节点 即编译 {{}}
 	 * **/
 	compileText(node) {
-        const content = node.textContent;
-        if (/\{\{(.+?)\}\}/.test(content)) {
-            compileUtil['text'](node,content,this.vm);
-        }
-    }
+		const content = node.textContent
+		if (/\{\{(.+?)\}\}/.test(content)) {
+			compileUtil['text'](node, content, this.vm)
+		}
+	}
 
 	/**
 	 * @params el 根元素；
@@ -146,18 +147,18 @@ class Compile {
 	 * **/
 	node2Fragment(el) {
 		// 创建文档碎片
-		const f = document.createDocumentFragment();
-        let firstChild;
-        /**
-         * createDocumentFragment()用法总结 
-         * https://blog.csdn.net/qiao13633426513/article/details/80243058
-         * 
-         * **/
-        while(firstChild = el.firstChild) {
-            // 使用appendChid方法将原dom树中的节点添加到DocumentFragment中时，会删除原来的节点。
-            f.appendChild(firstChild)
-        }
-		return f;
+		const f = document.createDocumentFragment()
+		let firstChild
+		/**
+		 * createDocumentFragment()用法总结
+		 * https://blog.csdn.net/qiao13633426513/article/details/80243058
+		 *
+		 * **/
+		while ((firstChild = el.firstChild)) {
+			// 使用appendChid方法将原dom树中的节点添加到DocumentFragment中时，会删除原来的节点。
+			f.appendChild(firstChild)
+		}
+		return f
 	}
 
 	isElementNode(node) {
@@ -169,9 +170,9 @@ class Compile {
 		return attrName.startsWith('v-')
 	}
 
-    isEventName(attrName) {
-        return attrName.startsWith('@')
-    }
+	isEventName(attrName) {
+		return attrName.startsWith('@')
+	}
 }
 
 class MVue {
@@ -182,22 +183,22 @@ class MVue {
 
 		if (this.$el) {
 			// 1.实现一个数据观察者
-            new Observer(this.$data);
+			new Observer(this.$data);
 			// 2.实现一个指令解析器
 			new Compile(this.$el, this);
-            this.proxyData(this.$data);
+			this.proxyData(this.$data);
 		}
 	}
-    proxyData(data) {
-        for (const key in data) {
-            Object.defineProperty(this,key,{
-                get(){
-                    return data[key];
-                },
-                set(newVal){
-                    data[key] = newVal;
-                }
-            })
-        }
-    }
+	proxyData(data) {
+		for (const key in data) {
+			Object.defineProperty(this, key, {
+				get() {
+					return data[key]
+				},
+				set(newVal) {
+					data[key] = newVal
+				},
+			})
+		}
+	}
 }
