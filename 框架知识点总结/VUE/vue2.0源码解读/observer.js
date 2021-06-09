@@ -2,18 +2,10 @@ class Observer {
     constructor(data) {
         this.observer(data);
     }
-
+    /**
+     * data: new vue 时传进来的 data;
+     * **/
     observer(data) {
-        /**
-         * {
-         *  person: {
-         *      name: '',
-         *      addrees: {
-         *        }
-         *   }
-         * }
-         *
-         * **/
         if (data && typeof data === 'object') {
             Object.keys(data).forEach(key => {
                 this.defineReactive(data,key,data[key]);
@@ -59,7 +51,7 @@ class Dep {
     }
 }
 
-class watcher{
+class Watcher{
     // 看一下 新值和旧值是不是一样
     constructor(vm,expr,cb) {
         this.vm = vm;
@@ -75,6 +67,12 @@ class watcher{
     }
     getOldValue() {
         Dep.target = this; // 挂载；
+        /**
+         * compileUtil.getVaule
+         * 触发了 data对象中属性的 get 方法；
+         * 然后就将watcher 添加到收集器中；
+         * 
+         * **/
         const oldValue = compileUtil.getVaule(this.expr,this.vm);
         Dep.target = null; // 销毁；
         return oldValue;

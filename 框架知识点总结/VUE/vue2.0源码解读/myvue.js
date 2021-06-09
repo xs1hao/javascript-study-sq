@@ -2,7 +2,7 @@ const compileUtil = {
 	getVaule(expr, vm) {
 		// 处理 v-text="person.name" 这种情况；
 		return expr.split('.').reduce((data, currentValue) => {
-			return data[currentValue]
+			return data[currentValue];
 		}, vm.$data)
 	},
     setVal(expr, vm, inputVal) {
@@ -22,13 +22,13 @@ const compileUtil = {
 		let value;
 		if (expr.indexOf('{{') !== -1) {
 			value = expr.replace(/\{\{(.+?)\}\}/g, (...args) => {
-                new watcher(vm,args[1], (newVal) => {
+                new Watcher(vm,args[1], (newVal) => {
                     this.updater.textUpdater(node, this.getContent(expr,vm));
                 })
 				return this.getVaule(args[1], vm);
 			})
 		} else {
-            new watcher(vm,expr,(newVal) => {
+            new Watcher(vm,expr,(newVal) => {
                 this.updater.textUpdater(node, newVal);
             })
             value = this.getVaule(expr, vm);
@@ -37,7 +37,7 @@ const compileUtil = {
 	},
 	html(node, expr, vm) {
 		const value = this.getVaule(expr, vm);
-        new watcher(vm,expr,(newVal) => {
+        new Watcher(vm,expr,(newVal) => {
             this.updater.htmlUpdater(node, newVal);
         })
 		this.updater.htmlUpdater(node, value);
@@ -45,7 +45,7 @@ const compileUtil = {
 	model(node, expr, vm) {
 		const value = this.getVaule(expr, vm);
         // 绑定更新函数 数据 => 视图
-        new watcher(vm,expr,(newVal) => {
+        new Watcher(vm,expr,(newVal) => {
             this.updater.modelUpdater(node, newVal);
         })
         // 视图 => 数据 => 视图
@@ -147,13 +147,14 @@ class Compile {
 	node2Fragment(el) {
 		// 创建文档碎片
 		const f = document.createDocumentFragment();
-		// let firstChild = el.firstChild
-		// while (firstChild) {
-		// 	f.appendChild(firstChild);
-		// 	firstChild = firstChild.nextSibling
-		// }
         let firstChild;
+        /**
+         * createDocumentFragment()用法总结 
+         * https://blog.csdn.net/qiao13633426513/article/details/80243058
+         * 
+         * **/
         while(firstChild = el.firstChild) {
+            // 使用appendChid方法将原dom树中的节点添加到DocumentFragment中时，会删除原来的节点。
             f.appendChild(firstChild)
         }
 		return f;
