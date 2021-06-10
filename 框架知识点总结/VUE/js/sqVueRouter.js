@@ -1,3 +1,4 @@
+// https://www.bilibili.com/video/BV1ik4y1B7rm?from=search&seid=9977143695598969848
 let _Vue;
 class VueRouter {
     constructor() {
