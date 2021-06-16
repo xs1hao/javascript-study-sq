@@ -12,3 +12,5 @@
 6、[最全的手写JS面试题](https://juejin.cn/post/6968713283884974088#heading-31)
 
 7、[vue相关的一些概念（ast、Diff、mastache、响应式..）](https://github.com/4xii/Small-knowledge-base)
+
+8、[从输入URL到浏览器显示页面发生了什么](https://www.cnblogs.com/yuanzhiguo/p/8119470.html)
