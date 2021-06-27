@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webpack热更新原理</title>
+</head>
+<body>
+    <h4>
+        <a href="https://zhuanlan.zhihu.com/p/30669007">webpack热更新原理</a>
+    </h4>
+    <p>1、webpack 的 watch 监听到文件的变化，根据配置对模块重新打包编译，并将打包后的代码保存到内存中；</p>
+    <p>2、webpack的devserver通过与浏览器之间的websocket（一个长链接）将打包信息通知浏览器；</p>
+    <p>3、HMR runtime（客户端HMR的中枢）收到模块更新信息，向 server 端发送请求，获取最新模块代码并替换。</p>
+</body>
+<script>
+
+</script>
+</html>
