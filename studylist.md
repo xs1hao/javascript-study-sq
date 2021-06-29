@@ -14,3 +14,7 @@
 7、[vue相关的一些概念（ast、Diff、mastache、响应式..）](https://github.com/4xii/Small-knowledge-base)
 
 8、[从输入URL到浏览器显示页面发生了什么](https://www.cnblogs.com/yuanzhiguo/p/8119470.html)
+
+9、什么是运行时？polyfill？
+    运行时：用来连接模块化应用程序所需的所有代码；它包含在模块之间连接模块所需的加载和解析逻辑。
+    polyfill: 用来抹平浏览器之间对js实现的差异。
