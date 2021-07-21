@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JavaScript V8 模式下的输入方式；</title>
+	</head>
+	<body>
+		<a href="" target="_blank">
+            
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+	</body>
+	<script>
+        // 二、 JavaScript V8 模式下的输入方式；
+        const inputDatas = []; // 收集多行输入的数组，最后在处理；
+        while (line = readline()) {
+        //     print(Object.prototype.toString.call(line)); //  String
+        //     console.log(line);
+        inputDatas.push(line)
+        //     var lines = line.split(' ');
+        //     var a = parseInt(lines[0]);
+        //     var b = parseInt(lines[1]);
+        //     print(Object.prototype.toString.call(lines));
+        //     print(lines)
+        }
+        print(Object.prototype.toString.call(inputDatas)); // Array
+        print(inputDatas);
+	</script>
+</html>

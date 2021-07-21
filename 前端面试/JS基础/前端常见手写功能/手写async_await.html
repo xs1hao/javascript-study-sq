@@ -28,7 +28,7 @@
         return data
     }
 
-    // async函数会被编译成generator函数 (babel会编译成更本质的形态，这里我们直接用generator)
+    // async函数会被编译成 generator 函数 (babel会编译成更本质的形态，这里我们直接用 generator)
     function* testG() {
         // await被编译成了yield
         const data = yield getData()

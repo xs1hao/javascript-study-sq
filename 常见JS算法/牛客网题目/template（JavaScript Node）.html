@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>这是 JavaScript node 模式下的编辑方式：</title>
+</head>
+
+<body>
+    <a href="" target="_blank">
+
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+</body>
+<script>
+    // 模板 http://nodejs.cn/api/readline.html#readline_rl_line
+    // 一、 这是 JavaScript node 模式下的编辑方式：
+    var readline = require('readline'); // readline 为 node 模块 readline 逐行读取
+    var rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    })
+
+    var inputDatas = []; // 创建一个变量接收输入的数据；
+    // 创建一个执行函数，处理接收到的数据；
+    var logData = function (data) {
+        data.forEach(item => {
+            console.log('logData:', item);
+        })
+    }
+    rl.on('line', function (input) {
+        // console.log(Object.prototype.toString.call(input)); // string
+        inputDatas.push(input);
+    }).on('close', function () { // 一旦触发 'close' 事件，则 readline.Interface 实例就完成了。
+        // console.log(data)
+        logData(inputDatas);
+    })
+
+</script>
+
+</html>
