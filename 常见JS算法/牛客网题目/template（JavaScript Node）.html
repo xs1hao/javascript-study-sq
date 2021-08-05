@@ -31,6 +31,10 @@
             console.log('logData:', item);
         })
     }
+    var logType = (data) => {
+        var type = Object.prototype.toString.call(data);
+        console.log(type);
+    }
     rl.on('line', function (input) {
         // console.log(Object.prototype.toString.call(input)); // string
         inputDatas.push(input);

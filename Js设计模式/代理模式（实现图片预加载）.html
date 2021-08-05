@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var myImage = (function () {
+        var imgNode = document.createElement('img');
+        document.body.appendChild(imgNode);
+        return {
+            setSrc: function (src) {
+                imgNode.src = src;
+            }
+        }
+    })();
+    var proxyImage = (function () {
+        var img = new Image;
+        img.onload = function () { //图片下载完毕时异步调用callback函数。  
+            myImage.setSrc(this.src);
+        }
+        return {
+            setSrc: function (src) {
+                myImage.setSrc('../assets/img/20200603150845547.png');
+                img.src = src;
+            }
+        }
+    })();
+    proxyImage.setSrc('../assets/img/load1.jpg');
+</script>
+
+</html>
