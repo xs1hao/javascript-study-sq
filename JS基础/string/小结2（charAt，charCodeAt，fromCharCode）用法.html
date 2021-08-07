@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h4>charAt</h4>
+    <p>返回字符串指定位置的字符，如果没有则返回一个 '' </p>
+    <div>
+        <pre>'asd'.charAt(1) // 's'</pre>
+        <pre>'asd'.charAt(5) // ''</pre>
+        <pre>'asd'.charAt() // 'a'</pre>
+    </div>
+
+    
+    <h4>charCodeAt</h4>
+    <p>返回字符串指定位置字符的 ASCII 编码</p>
+    <div>
+        <pre>'d'.charCodeAt(2) // NaN</pre>
+        <pre>'d'.charCodeAt(0) // 100</pre>
+        <pre>'d'.charCodeAt() // 100</pre>
+    </div>
+
+    <h4>fromCharCode</h4>
+    <p>返回 ASCII 编码对应的字符</p>
+    <div>
+        <pre>String.fromCharCode(100) // 'd'</pre>
+        <pre>String.fromCharCode() // ''</pre>
+    </div>
+
+    <p>综合应用</p>
+    <pre>
+        String(2).charCodeAt() // 50
+        String.fromCharCode(50) // "2"
+        String(2).charAt() // "2"
+    </pre>
+</body>
+<script>
+
+</script>
+</html>

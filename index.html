@@ -12,6 +12,25 @@
     </h4>
 </body>
 <script>
-
+    var res = 0;
+    function handle(num) {
+        const val = parseInt(num / 3);
+        res = Number(res) + Number(val);
+        const yu = num % 3;
+        const result = Number(val) + Number(yu)
+        if (result == 1 || result === 0) {
+            return;
+        }
+        if (result == 2) {
+            res += 1;
+            return;
+        }
+        if (result >= 3) {
+            handle(result)
+        }
+    }
+    handle(10);
+    console.log(res)
 </script>
+
 </html>

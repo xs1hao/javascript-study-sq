@@ -1,22 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JavaScript V8 模式下的输入方式；</title>
-	</head>
-	<body>
-		<a href="" target="_blank">
-            
-        </a>
-        <p class="notice">
-            <br>
-        </p>
-	</body>
-	<script>
-        // 二、 JavaScript V8 模式下的输入方式；
-        const inputDatas = []; // 收集多行输入的数组，最后在处理；
-        while (line = readline()) {
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript V8 模式下的输入方式；</title>
+</head>
+
+<body>
+    <a href="https://blog.csdn.net/weixin_42307756/article/details/82503025"
+        target="_blank">牛客网JavaScript（V8）输入输出操作指南</a>
+    <h5>牛客网Javascript V8编辑模式：</h5>
+    <pre>
+        readline() 方法可以读取单行输入内容；<br>
+        一般的，第一行为输入的基础说明信息（eg: 总的钱数，总的行数）；<br>
+        第二行开始：才是需要我们去计算的数据；<br>
+        对于Javascript V8 我们一般使用 while() {} 函数来计算结果；<br>
+    </pre>
+    <div class="notice">
+        例如1：
+        <pre>
+                while(num = parseInt(readline())){
+                    let arr =[];
+                    for(let i = 0;i<num;i++){
+                        let temp = parseInt(readline());
+                           arr[temp] = 1;
+                    }
+                    arr.forEach((val,index)=>{
+                        if(val===1){
+                            console.log(index)
+                        }
+                    })
+                }
+            </pre>
+    </div>
+
+    <div>
+        例如2：
+        <pre>
+            while (str1 = readline()) {
+                <strong>
+                    这里第一个行读取了相关的参数信息（总的钱数和行数）
+                </strong>
+                var arr = str1.split(' ');
+                //总钱数
+                var m = parseInt(arr[0])/10;
+                //希望购买物品的件数
+                var n = parseInt(arr[1]);
+                var goods = [], count=1;
+                // 第j行数据表示编号j-1的物品的基本数据 价格 重要度 主附件（0 主件 >0 附件值为其所属主件的编号）
+                while (count<=n) {
+                    <strong>
+                        在这里读剩下的行数据---即需要我们去处理的数据。
+                    </strong>
+                    var item = readline().split(' ').map(val => parseInt(val));
+                    console.log('item',item) 
+                    // 是主件
+                    if (item[2] == 0) {
+                        goods[count] = [{v:item[0]/10, w:item[0]/10*item[1]}];
+                    // 是附件， 同时必须购买相应的主件
+                    } else {
+                        var add = goods[item[2]].map(val => {
+                            return {
+                                v: item[0]/10 + val.v,
+                                w: item[0]/10*item[1] +val.w
+                            }
+                        });
+                        goods[item[2]] = [...goods[item[2]], ...add];
+                    }
+                    count++;
+                }
+                console.log(choose(goods));
+            }
+            function choose(goods) {
+                var res = Array(m+1).fill(0);
+                for (var i=0;i<goods.length;i++) {
+                    for (var j=m;j>=0;j--) {
+                        if (goods[i]) {
+                            goods[i].forEach(val => {
+                                if (val.v <= j) {
+                                    // 买权重较高的物品
+                                    res[j] = Math.max(res[j], res[j-val.v]+val.w);
+                                }
+                            })
+                        }
+                    }
+                }
+                return res[m] * 10;
+            }
+        </pre>
+    </div>
+</body>
+<script>
+    // 二、 JavaScript V8 模式下的输入方式；
+    const inputDatas = []; // 收集多行输入的数组，最后在处理；
+    while (line = readline()) {
         //     print(Object.prototype.toString.call(line)); //  String
         //     console.log(line);
         inputDatas.push(line)
@@ -25,8 +103,9 @@
         //     var b = parseInt(lines[1]);
         //     print(Object.prototype.toString.call(lines));
         //     print(lines)
-        }
-        print(Object.prototype.toString.call(inputDatas)); // Array
-        print(inputDatas);
-	</script>
+    }
+    print(Object.prototype.toString.call(inputDatas)); // Array
+    print(inputDatas);
+</script>
+
 </html>
