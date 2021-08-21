@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/" target="_blank">
+        3. 无重复字符的最长子串
+    </a>
+    <p class="notice">
+        <br>
+        给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+
+    </p>
+</body>
+<script>
+    /**
+     * 力扣上的测试用例 还差一个跑过 ~ 
+     * 986 / 987 个通过测试用例
+     * https://leetcode-cn.com/submissions/detail/208529722/
+     * 看样子是 不符合 人家的 复杂度和内存占用限制；（发现是使用了数组存储数据，导致占用内存过大）
+     * 然后采用基数的办法，全部通过，不过占比都很低。
+     * 
+     * 专业的解法是 滑动窗口：
+     * 
+     * **/
+
+    var lengthOfLongestSubstring1 = function (s) {
+        if (s == '') {
+            return 0
+        }
+        var arr = s.split('');
+        var res = '';
+        var result = 1; // 记录子串集合；
+        var tem = 1;
+        for (var i = 0; i < arr.length; i++) {
+            tem = 1;
+            res = arr[i];
+            if (arr[i] === arr[i + 1]) {
+                continue;
+            }
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[j - 1] === arr[j] || res.includes(arr[j])) {
+                    break;
+                }
+                res += arr[j];
+                tem += 1;
+            }
+            result = Math.max(result, tem);
+        }
+        return result;
+    };
+
+    // 采用滑动窗口求解；
+    var lengthOfLongestSubstring2 = function (s) {
+        const n = s.length
+        if (n <= 1) return n
+
+        let left = 0, right = 0
+        const set = new Set()
+        let maxLen = 0
+        while (right < n) {
+            if (!set.has(s[right])) {
+                maxLen = Math.max(maxLen, right - left + 1)
+                set.add(s[right])
+                right++
+            } else {
+                set.delete(s[left]) // 删除指定元素
+                left++
+            }
+        }
+        return maxLen
+    }
+
+    var lengthOfLongestSubstring3 = function (s) {
+        // 子串开始位置
+        let minIndex = 0
+        // 记录最大长度
+        let max = 0
+        // 每次从子串开始位置进行查找有没有重复字符串，也就是当前窗口位置控制在minIndex到i之间
+        for (let i = 0; i < s.length; i++) {
+            // 如果当前窗口有重复的字符，子串开始位置变成重复字符的下一个位置
+            if (s.indexOf(s[i], minIndex) < i) {
+                minIndex = s.indexOf(s[i], minIndex) + 1
+            } else {
+                // 如果没有重复，长度出现更新
+                max = Math.max(max, i - minIndex + 1)
+            }
+        }
+        return max
+    };
+
+    var lengthOfLongestSubstring4 = function (s) {
+        // 滑动窗口
+        if (s == '') {
+            return 0
+        }
+        var left = 0;
+        var len = s.length;
+        var arr = s.split('');
+        var res = [];
+        var maxLen = 1;
+        for (var right = 0; right < len; right++) {
+            if (!res.includes(arr[right])) {
+                res.push(arr[right]);
+                maxLen = Math.max(maxLen, res.length);
+            } else {
+                var index = res.indexOf(arr[right]);
+                res.splice(0, index + 1);
+                res.push(arr[right]);
+            }
+        }
+        return maxLen;
+    };
+    console.log(lengthOfLongestSubstring1('abcabcbb'));
+    console.log(lengthOfLongestSubstring4("aabaab!bb"));
+</script>
+
+</html>

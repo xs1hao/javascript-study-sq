@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/beautiful-arrangement/" target="_blank">
+        526. 优美的排列
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+    <pre class="code">
+    <span class="strong">
+        思路和算法
+    </span>
+        <span class="f-16">
+            我们可以使用回溯法解决本题，从左向右依次向目标排列中放入数即可。
+        具体地，我们定义函数 backtrack(index,n)，
+        表示尝试向位置 index 放入数。其中 n 表示排列的长度。在当前函数中，
+        我们首先找到一个符合条件的未被使用过的数，然后递归地执行 backtrack(index+1,n)，
+        当该函数执行完毕，回溯到当前层，我们再尝试下一个符合条件的未被使用过的数即可。
+        回溯过程中，我们可以用 vis 数组标记哪些数被使用过，每次我们选中一个数 xx，我们就将 
+        vis[x] 标记为 true，回溯完成后，我们再将其置为 false。
+        特别地，为了优化回溯效率，我们可以预处理每个位置的符合条件的数有哪些，用二维数组 match 保存。
+        当我们尝试向位置 index 放入数时，我们只需要遍历 match[index] 即可。
+        </span>
+    </pre>
+</body>
+<script>
+    var countArrangement = function (n) {
+
+        // 一个临时数组，用于记录数字的使用情况；
+        const vis = new Array(n + 1).fill(0);
+
+        /**
+         * 
+         * 用于记录每个位置上可以使用的数字的集合
+         * 他的最后结果处理成一个二维数组，二维数组的 --下标-- 即为 “优美排列” 中对应位置；
+         * 而下标上的每一个集合，即为 “优美排列” 上可用的数字；
+         * 
+         * **/
+        const match = new Array(n + 1).fill(0);
+
+        // num用于记录满足条件的结果；
+        let num = 0;
+
+        /**
+         * 拿到每个位置上可用的数字，最后生成一个二维数组；
+         * 这里从 1 开始
+         * 
+         * **/
+        for (let i = 1; i <= n; i++) {
+            match[i] = [];
+            for (let j = 1; j <= n; j++) {
+                if (i % j === 0 || j % i === 0) {
+                    match[i].push(j);
+                }
+            }
+        }
+        console.log(match);
+
+        const backtrack = (index, n) => {
+            if (index === n + 1) {
+                num++;
+                return;
+            }
+            for (const x of match[index]) {
+                if (!vis[x]) {
+                    vis[x] = true;
+                    backtrack(index + 1, n);
+                    vis[x] = false;
+                }
+            }
+        }
+
+        backtrack(1, n);
+        return num;
+
+        // 解法二：
+        // const set = new Set();
+        // let cnt = 0;
+        // const dfs = (l) => {
+        //     if (l > n) {
+        //         cnt++;
+        //         return;
+        //     }
+        //     for (let x = 1; x <= n; x++) {
+        //         if (!set.has(x) && (x % l === 0 || l % x === 0)) {
+        //             set.add(x);
+        //             dfs(l + 1);
+        //             set.delete(x);
+        //         }
+        //     }
+        // }
+        // dfs(1);
+        // return cnt;
+    };
+    console.log(countArrangement(7));
+</script>
+
+</html>

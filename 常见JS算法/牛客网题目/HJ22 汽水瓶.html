@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HJ22 汽水瓶</title>
+</head>
+
+<body>
+    <a href="https://www.nowcoder.com/practice/fe298c55694f4ed39e256170ff2c205f?tpId=37&&tqId=21245&rp=1&ru=/ta/huawei&qru=/ta/huawei/question-ranking"
+        target="_blank">HJ22 汽水瓶</a>
+</body>
+<script>
+    var res = 0;
+    function handle(num) {
+        const val = parseInt(num / 3);
+        res = Number(res) + Number(val);
+        const yu = num % 3;
+        const result = Number(val) + Number(yu)
+        if (result == 1 || result === 0) {
+            return;
+        }
+        if (result == 2) {
+            res += 1;
+            return;
+        }
+        if (result >= 3) {
+            handle(result)
+        }
+    }
+    handle(10);
+    console.log(res)
+</script>
+
+</html>

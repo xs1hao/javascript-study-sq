@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/valid-parentheses/" target="_blank">
+        20. 有效的括号
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+</body>
+<script>
+    var isValid = function (s) {
+        const n = s.length;
+        if (n % 2 === 1) {
+            return false;
+        }
+        const pairs = new Map([
+            [')', '('],
+            [']', '['],
+            ['}', '{']
+        ]);
+        const stk = [];
+        for (let ch of s) {
+            if (pairs.has(ch)) {
+                if (!stk.length || stk[stk.length - 1] !== pairs.get(ch)) {
+                    return false;
+                }
+                stk.pop();
+            }
+            else {
+                stk.push(ch);
+            }
+        };
+        return !stk.length;
+    };
+
+    var isValid2 = function (s) {
+        const stack = [];
+        for (let val of s) {
+            if (val === '(') stack.push(')');
+            else if (val === '[') stack.push(']');
+            else if (val === '{') stack.push('}');
+            else if (stack.length === 0 || val !== stack.pop()) return false;
+        }
+        return stack.length === 0;
+    };
+    console.log(isValid2('([]{})'));
+</script>
+
+</html>

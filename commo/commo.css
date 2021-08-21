@@ -21,6 +21,9 @@
     padding: 5px;
     margin: 0;
 }
+.f-16{
+    font-size: 16px;
+}
 ul {
     padding-left: 20px;
     width: 250px;
@@ -38,6 +41,10 @@ li {
 }
 .text-underline{
     text-decoration: underline;
+}
+
+.line-h-14{
+    line-height: 14px;
 }
 
 ::-webkit-scrollbar {

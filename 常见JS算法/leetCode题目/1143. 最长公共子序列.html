@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/longest-common-subsequence/" target="_blank">
+        1143. 最长公共子序列
+    </a>
+    <p class="notice">
+        https://alchemist-al.com/algorithms/longest-common-subsequence
+
+        <br>
+        视频讲解地址：
+        https://leetcode-cn.com/problems/longest-common-subsequence/solution/shi-pin-jiang-jie-shi-yong-dong-tai-gui-hua-qiu-ji/
+    </p>
+</body>
+<script>
+    var longestCommonSubsequence = function (text1, text2) {
+        var m = text1.length, n = text2.length;
+        var dp = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(0));
+        for (var i = 1; i <= m; i++) {
+            const c1 = text1[i-1]
+            for (var j = 1; j <= n; j++) {
+                const c2 = text2[j-1]
+                if (c1 === c2) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1])
+                }
+            }
+        }
+        return dp[m][n]
+    };
+    var res = longestCommonSubsequence('abc', 'def');
+    console.log(res);
+</script>
+
+</html>

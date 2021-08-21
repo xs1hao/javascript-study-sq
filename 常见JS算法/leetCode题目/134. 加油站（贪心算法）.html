@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>134. 加油站</title>
+    <link rel="stylesheet" href="../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/gas-station/" target="_blank">
+        134. 加油站
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+</body>
+<script>
+    var canCompleteCircuit = function (gas, cost) {
+        let left = 0, start = 0, totalGas = 0, totalCost = 0;
+        for (let i = 0; i < gas.length; i++) {
+            totalGas += gas[i];
+            totalCost += cost[i];
+            left += gas[i] - cost[i];
+            if (left < 0) {
+                start = i + 1;
+                left = 0;
+            }
+        }
+        if (totalGas < totalCost) {
+            return -1;
+        }
+        return start;
+    };
+    var gas = [1, 2, 3, 4, 5, 6]
+    var cost =[3, 6, 4, 5, 1, 2]
+    var res = canCompleteCircuit(gas,cost);
+    console.log(res);
+</script>
+
+</html>
