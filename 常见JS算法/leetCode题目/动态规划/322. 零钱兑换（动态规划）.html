@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>322. 零钱兑换</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/coin-change/" target="_blank">
+        322. 零钱兑换
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+
+    var coinChange = function (coins, amount) {
+
+        // 创建一个数组，用于记录 0 -- amount上可以用硬组成的最小值；
+        // 同时给数组中充填上最大值 Infinity;
+        let arr = new Array(amount + 1).fill(Infinity);
+
+        arr[0] = 0; // amount 为0块钱，则置为 0 意思是只能有 0 个硬币满足条件；
+        for (let i = 0; i < coins.length; i++) {
+            
+            // 从给定的 第 1 个硬币开始计算；
+            var curCoins = coins[i];
+
+            for (let j = coins[i]; j <= amount; j++) {
+                /**
+                 * arr[j - coins[i]] 
+                 * 表示：当前的 amount 可以使用的硬币组成的 可能 = 比他小的钱数组成的可能 再加  1枚硬币的 可能之和；
+                 * 
+                 * Math.min(arr[j], arr[j - coins[i]] + 1)
+                 * 表示：
+                 * 取比他小的钱数组成的可能数 + 1 之后的可能 和 他自己本身组成的可能 的最小值；
+                 * **/
+                arr[j] = Math.min(arr[j], arr[j - coins[i]] + 1)
+            }
+
+            console.log(arr);
+        }
+
+        console.log(arr);
+        return arr[amount] === Infinity ? -1 : arr[amount]
+
+    };
+    var res = coinChange([2,6], 7);
+    console.log(res);
+</script>
+
+</html>

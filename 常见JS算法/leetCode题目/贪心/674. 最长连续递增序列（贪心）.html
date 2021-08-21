@@ -72,11 +72,12 @@
             }
             return Math.max(nums.length - start, result);// 因为result 是存储的上一次的连续最大长度，最后数组部分可能也是一个连续递增的序列；
         }
-        // 第三种解法：
+        // 第三种解法：（贪心算法： 为了得到最长连续递增序列，可以使用贪心的策略得到尽可能长的连续递增序列。）
         let anotherMethod = function(nums) {
             if(!nums.length) return 0
             let count = 1
-            let temp = 1
+            // 这里还可以记录 用下标来记录，一个递增片段结束，就更新下标记录的值；
+            let temp = 1; // 记录每一个递增片段的长度；等到不递增的时候，比较之前递增片段和本次片段长度，取较大的；
             for(let i = 0;i < nums.length - 1;  i ++) {
                 if(nums[i + 1] > nums[i]){
                     temp ++

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>443. 压缩字符串</title>
+    <link rel="stylesheet" href="../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/string-compression/" target="_blank">
+        443. 压缩字符串
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var compress1 = function (chars) {
+        if (chars.length < 2) {
+            return chars.length;
+        }
+        var arr = [];
+        var curCha = chars[0];
+        arr.push(curCha);
+        var left = 0;
+        for (var i = 1; i < chars.length; i++) {
+            if (chars[i] !== curCha) {
+                if (i - left > 1) {
+                    arr = arr.concat(String(i - left).split(''));
+                }
+                arr.push(chars[i])
+                curCha = chars[i];
+                left = i;
+            } else {
+                if (i === (chars.length - 1)) {
+                    arr = arr.concat(String(i - left + 1).split(''));
+                }
+            }
+        }
+        console.log(arr);
+        return arr.length;
+    };
+
+
+    var compress = function (chars) {
+        const n = chars.length;
+        let write = 0, left = 0;
+        for (let read = 0; read < n; read++) {
+            if (read === n - 1 || chars[read] !== chars[read + 1]) {
+                chars[write++] = chars[read];
+                let num = read - left + 1;
+                if (num > 1) {
+                    const anchor = write;
+                    while (num > 0) {
+                        chars[write++] = '' + num % 10;
+                        num = Math.floor(num / 10);
+                    }
+                    reverse(chars, anchor, write - 1);
+                }
+                left = read + 1;
+            }
+        }
+        return write;
+    };
+
+    const reverse = (chars, left, right) => {
+        while (left < right) {
+            const temp = chars[left];
+            chars[left] = chars[right];
+            chars[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    // var chars = ["a","b","b","b","b","b","b","b","b","b","b","b","b"]
+    var chars = ["a", "a", "b", "b", "c", "c", "c"]
+    // var chars = ["a"]
+    
+    // var res1 = compress1(chars);
+    // console.log(res1);
+
+    var res = compress(chars);
+    console.log(res);
+</script>
+
+</html>

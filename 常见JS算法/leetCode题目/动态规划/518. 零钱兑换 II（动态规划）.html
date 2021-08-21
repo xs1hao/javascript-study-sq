@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>518. 零钱兑换 II</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/coin-change-2/" target="_blank">
+            518. 零钱兑换 II
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+
+        <pre class="code">
+
+        </pre>
+	</body>
+	<script>
+        // 本题采用动态规划求解；
+        /**
+         * 
+         * 要计算 amount 在 coins 中可以使用的 数字 组成的最多的可能；
+         * 即： 在coins 中的数字有多少种可能可以组成 amount；
+         * 
+         * 假设：
+         * 
+         * **/
+        var change = function(amount, coins) {
+            var arr = new Array(amount + 1).fill(0);
+            arr[0] = 1; // 0 块钱，也有一种什么都不选的方法
+            /**
+             * 为什么第一次循环要从 coins 开始？
+             * **/
+            for (var coin of coins) {
+                for (var i = coin; i <= amount; i++) {
+                    arr[i] += arr[i - coin]
+                }
+            }
+            return arr[amount]
+        };
+        var amount = 5, coins = [1, 2, 5];
+        var res = change(amount, coins);
+        console.log(res);
+	</script>
+</html>
