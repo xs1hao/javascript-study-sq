@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>541. 反转字符串 II</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/reverse-string-ii/" target="_blank">
+        541. 反转字符串 II
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var reverseStr = function (s, k) {
+        var res = '';
+        var arr = s.split('');
+
+        while (arr.length >= k) {
+            var str1 = arr.splice(0, 2 * k);
+            if (str1.length < k) {
+                str1.reverse();
+                res += str1.join('')
+            }
+            if (str1.length >= k && str1.length <= 2 * k) {
+                var str2 = str1.splice(0, k).reverse();
+                res += str2.join('');
+                res += str1.join('')
+            }
+        }
+        if (arr.length > 0) {
+            res += arr.reverse().join('')
+        }
+        return res;
+    }
+    var s = "abcdefg", k = 2
+    var res = reverseStr(s, k);
+    console.log(res);
+</script>
+
+</html>

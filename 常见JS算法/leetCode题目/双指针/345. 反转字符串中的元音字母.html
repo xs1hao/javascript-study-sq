@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>345. 反转字符串中的元音字母</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/reverse-vowels-of-a-string/" target="_blank">
+        345. 反转字符串中的元音字母
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var reverseVowels = function (s) {
+        var set = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']);
+        var right = s.length - 1;
+        var left = 0;
+        var arr = s.split('');
+
+        while (left < right) {
+            while (left < right && /[^aeiou]/i.test(arr[left])) {
+                left++;
+            }
+
+            while (left < right && /[^aeiou]/i.test(arr[right])) {
+                right--;
+            }
+
+            if (/[aeiou]/i.test(arr[left]) && /[aeiou]/i.test(arr[right])) {
+                var tem = arr[left];
+                arr[left] = arr[right];
+                arr[right] = tem;
+            }
+            left++;
+            right--;
+        }
+        return arr.join('');
+    };
+    // 性能较好的另一种写法；
+    var reverseVowels1 = function (s) {
+        var right = s.length - 1;
+        var left = 0;
+        var arr = s.split('');
+        var set = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']);
+        while (left < right) {
+            if (set.has(arr[left])) {
+                if (set.has(arr[right])) {
+                    var tem = arr[left];
+                    arr[left] = arr[right];
+                    arr[right] = tem;
+                    left++;
+                }
+                right--;
+            } else {
+                left++;
+            }
+        }
+        return arr.join('');
+    };
+    var s = "hello"
+    var res = reverseVowels(s);
+    console.log(res);
+</script>
+
+</html>

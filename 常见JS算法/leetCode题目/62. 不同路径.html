@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>62. 不同路径</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/unique-paths/" target="_blank">
+            62. 不同路径
+        </a>
+        <p class="notice">
+            <br>
+            求的是路径方案<br>
+            即：有多少种走到目标格子的方案。
+        </p>
+
+        <pre class="code">
+
+        </pre>
+	</body>
+	<script>
+        var uniquePaths = function(m, n) {
+            // 得到一个 二维数组 m x n 的二维数组；
+            var arr = new Array(m).fill(0).map(() => new Array(n).fill(0))
+            for (let i = 0; i < m; i++) {
+                arr[i][0] = 1;
+            }
+            for (let j = 0; j < n; j++) {
+                arr[0][j] = 1;
+            }
+            for (var i = 1; i < m; i++) { 
+                for (var j = 1; j < n; j++) {
+                    arr[i][j] = arr[i][j-1] + arr[i-1][j]; 
+                }
+            }  
+            return arr[m-1][n-1] 
+        };
+        var m = 3, n = 7
+        var res = uniquePaths(m,n);
+        console.log(res);
+	</script>
+</html>
