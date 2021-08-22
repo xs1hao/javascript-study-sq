@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>455. 分发饼干</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/assign-cookies/" target="_blank">
+            455. 分发饼干
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+
+        <pre class="code">
+
+        </pre>
+	</body>
+	<script>
+        /**
+         * 
+         * g:孩子胃口满足的最小尺寸；
+         * s:饼干的尺寸；
+         * 
+         * **/
+        var findContentChildren = function(g, s) {
+            // 都从最小的开始
+            g.sort((a,b)=> a-b);
+            s.sort((a,b)=> a-b);
+            var res = 0;
+            for (var i = 0; i < s.length; i++) {
+                for (var j = 0; j < g.length; j++) {
+                    var binggna = s[i];
+                    if (binggna >= g[j]) {
+                        res++; // 一个孩子已经得到了饼干；
+                        g.splice(j,1); // 这个孩子下次分饼干的时候不能在来领了
+                        break;
+                    }
+                }
+            }
+            return res;
+        };
+
+        var findContentChildren1 = function(g, s) {
+
+            /**
+             * 
+             * 都从最小的开始，最小的满足度拿最小的饼干，这样大的饼干才可能满足更多的人；
+             * 如果最小的满足度拿了大的饼干，那么后面可能 大的满足的人就没有合适的饼干了；
+             * 最佳分配：最合适的饼干，分给最合适的人；
+             * 
+             * **/
+            g.sort((a,b)=> a-b);
+            s.sort((a,b)=> a-b);
+            let i = 0;
+            
+            s.forEach(e => {
+                if (e >= g[i]) i++
+            })
+            return i;
+        };
+
+
+        var  g = [1,2], s = [1,2,3]
+        var res = findContentChildren(g,s);
+        console.log(res);
+	</script>
+</html>
