@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>881. 救生艇</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/boats-to-save-people/" target="_blank">
+        881. 救生艇
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var numRescueBoats = function (people, limit) {
+        var res = 0;
+        people.sort((a, b) => {
+            return a - b;
+        })
+        var left = 0, right = people.length - 1;
+        while (left <= right) {
+            if (people[left] + people[right] <= limit) {
+                left++
+            }
+            res++;
+            right--;
+        }
+        return res;
+    };
+    var people = [5,5,5,2], limit = 5;
+    var res = numRescueBoats(people, limit);
+    console.log(res);
+</script>
+
+</html>
