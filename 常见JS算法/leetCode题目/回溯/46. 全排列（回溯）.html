@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>46. 全排列</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/permutations/" target="_blank">
+            46. 全排列
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+
+        <pre class="code">
+
+        </pre>
+	</body>
+	<script>
+        /**
+         * 
+         * 全排列 (一个没有重重复数字的数组)；
+         * 
+         * **/
+        var permute = function(nums) {
+            var res = [];
+            function handle(path) {
+                if (path.length === nums.length) {
+                    res.push(path);
+                    return;
+                }
+                for (var j = 0; j < nums.length; j++) {
+                    if (!path.includes(nums[j])) {
+                        path.push(nums[j]);
+                        handle([...path]);
+                        path.pop();
+                    }
+                }
+            }
+            handle([]);
+            return res;
+        };
+        var nums = [1,2,3]
+        var res = permute(nums);
+        console.log(res);
+	</script>
+</html>

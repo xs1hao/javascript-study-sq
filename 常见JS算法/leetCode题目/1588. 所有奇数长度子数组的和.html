@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1588. 所有奇数长度子数组的和</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/sum-of-all-odd-length-subarrays/" target="_blank">
+        1588. 所有奇数长度子数组的和
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    /**
+     * 有两点要注意：
+     * 
+     * 连续递增的子序列；
+     * 长度为奇数个；
+     * **/
+    var sumOddLengthSubarrays = function (arr) {
+        var res = 0;
+        function handle(arr, nums) {
+            for (var i = 0; i < arr.length; i++) {
+                var a = arr.slice(i, nums + i);
+                if (a.length < nums) {
+                    break;
+
+                }
+                res += a.reduce((a1, b1) => {
+                    return a1 + b1
+                })
+            }
+        }
+        for (var nums = 1; nums <= arr.length; nums += 2) {
+            handle(arr, nums);
+        }
+        return res;
+    };
+    var arr = [1, 4, 2, 5, 3];
+    var res = sumOddLengthSubarrays(arr);
+    console.log(res);
+</script>
+
+</html>
