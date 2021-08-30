@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>15. 三数之和</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/3sum/" target="_blank">
+        15. 三数之和
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+
+    var threeSum = function (nums) {
+        var set = new Set();
+        var res = [];
+        nums.sort((a,b) => a-b);
+        function handle(path, start, total) {
+            if (total === 0 && path.length === 3) {
+                if (!set.has([...path].sort().join(''))) {
+                    set.add([...path].sort().join(''))
+                    res.push(path);
+                }
+                return;
+            }
+            if (path.length >= 3 || start >= nums.length) {
+                return;
+            }
+            for (var j = start; j < nums.length; j++) {
+                total += nums[j];
+                path.push(nums[j]);
+                handle([...path], j + 1, total);
+                path.pop();
+                total -= nums[j];
+            }
+        }
+        for (var i = 0; i < nums.length; i++) {
+            handle([nums[i]], i+1, nums[i]);
+        }
+        return res;
+    };
+    var nums = [3,0,-2,-1,1,2];
+    var res = threeSum(nums);
+    console.log(res);
+</script>
+
+</html>
