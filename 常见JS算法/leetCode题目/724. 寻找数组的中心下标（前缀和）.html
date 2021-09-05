@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>724. 寻找数组的中心下标</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/find-pivot-index/" target="_blank">
+        724. 寻找数组的中心下标
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+
+    /**
+     * 解法一
+     * 
+     * 中心下标即： 左边 + 右边 + 中心下标 = total;
+     * 左边 === 右边;
+     * 左边 * 2 + 中心下标 = total;
+     * 
+     * **/
+    var pivotIndex = function (nums) {
+        var total = nums.reduce((a, b) => {
+            return a + b;
+        }, 0);
+        var sum = 0;
+        for (var i = 0; i < nums.length; i++) {
+            if (2 * sum + nums[i] === total) {
+                return i;
+            }
+            sum += nums[i]
+        }
+        return -1;
+    };
+
+    /**
+     * 解法二
+     * 使用了一个数组记录了每个节点的加和；
+     * 
+     * **/
+    var pivotIndex1 = function (nums) {
+        var s = new Array(nums.length + 1).fill(0);
+        for (var i = 1; i <= nums.length; i++) {
+            s[i] = s[i - 1] + nums[i - 1];
+        }
+        
+        for (var j = 0; j < nums.length; j++) {
+            var sl = s[j];
+            var sr = s[nums.length] - s[j + 1];
+            if (sl === sr) {
+                return j;
+            }
+        }
+        return -1;
+    };
+
+    var nums = [1, 7, 3, 6, 5, 6];
+    var res = pivotIndex(nums);
+    console.log(res); // 3
+
+    var res1 = pivotIndex1(nums);
+    console.log(res1); // 3
+</script>
+
+</html>

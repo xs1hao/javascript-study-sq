@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>304. 二维区域和检索 - 矩阵不可变</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/range-sum-query-2d-immutable/" target="_blank">
+        304. 二维区域和检索 - 矩阵不可变
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    /**
+* @param {number[][]} matrix
+*/
+    var NumMatrix = function (matrix) {
+
+        var rowNum = matrix.length; // 行数；
+        var colNum = matrix[0].length; // 列数
+
+        // 构造一个二维数组记录各个位置的和
+
+        this.arr = new Array(rowNum + 1).fill(0).map(() => {
+            return new Array(colNum + 1).fill(0)
+        });
+
+        /**
+         * 计算每一列对应的下标和；
+         * 当前列的结果 等于 前一列 加上 当前位置的值。
+         * **/
+        for (var i = 1; i <= rowNum; i++) {
+            for (j = 1; j <= colNum; j++) {
+                this.arr[i][j] = this.arr[i][j - 1] + matrix[i-1][j-1];
+            }
+        }
+
+        /**
+         * 
+         * 计算每一行对应的下标和；
+         * 当前行的结果 为当前值 加 上一行的结果。
+         * 
+         * **/
+        for (var j = 1; j <= colNum; j++) { // 列
+            for (i = 1; i <= rowNum; i++) { // 行
+                this.arr[i][j] = this.arr[i][j] + this.arr[i-1][j];
+            }
+        }
+
+        /**
+         * 动态规划：
+         * 以上两个循环可以合并为一个循环， 降低复杂度。
+         * 一个二维矩阵的所有矩阵元素和 为 矩阵内所有元素之和；
+         * dp 方程为:
+         * dp[i][j] = dp[i - 1][j] + dp[j][i - 1] - dp[i -1][j - 1] + arr[i][j];
+         * 
+         * **/
+        for (var i = 1; i <= rowNum; i++) {
+            for (j = 1; j <= colNum; j++) {
+                this.arr[i][j] = this.arr[i - 1][j] + this.arr[i][j - 1] - this.arr[i -1][j - 1]  + matrix[i-1][j-1];
+            }
+        }
+
+    };
+
+    NumMatrix.prototype.sumRegion = function (row1, col1, row2, col2) {
+        row1++;
+        col1++;
+        row2++;
+        col2++;
+        return this.arr[row2][col2] - this.arr[row1 - 1][col2] - this.arr[row2][col1 - 1] + this.arr[row1 - 1][col1 - 1]
+    };
+
+    var arr = [
+        [3, 0, 1, 4, 2],
+        [5, 6, 3, 2, 1],
+        [1, 2, 0, 1, 5],
+        [4, 1, 0, 1, 7],
+        [1, 0, 3, 0, 5]
+    ]
+    var obj = new NumMatrix(arr)
+    var param_1 = obj.sumRegion(2, 1, 4, 3);
+
+    console.log(param_1);
+</script>
+
+</html>

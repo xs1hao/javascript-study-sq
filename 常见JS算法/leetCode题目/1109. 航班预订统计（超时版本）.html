@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1109. 航班预订统计</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/corporate-flight-bookings/" target="_blank">
+        1109. 航班预订统计
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var corpFlightBookings = function (bookings, n) {
+        var map = new Map();
+        function handle(arr) {
+            for (var i = arr[0]; i <= arr[1]; i++) {
+                if (map.has(i)) {
+                    var cur = map.get(i);
+                    map.set(i,arr[2]+cur);
+                } else {
+                    map.set(i,arr[2])
+                }
+            }
+        }
+        for (var i = 0; i < bookings.length; i++) {
+            handle(bookings[i])
+        }
+        var res = [];
+        for (var j = 1; j <= n; j++) {
+            const d = map.get(j) ? map.get(j) : 0;
+            res.push(d);
+        }
+        return res;
+    };
+    var bookings = [[2,2,30],[2,2,45]], n = 2;
+    var res = corpFlightBookings(bookings, n);
+    console.log(res);
+</script>
+
+</html>

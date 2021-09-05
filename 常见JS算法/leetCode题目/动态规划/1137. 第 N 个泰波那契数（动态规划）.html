@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1137. 第 N 个泰波那契数</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/n-th-tribonacci-number/" target="_blank">
+        1137. 第 N 个泰波那契数
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var tribonacci = function (n) {
+        if (n === 0) {
+            return 0
+        }
+        if (n === 1 || n === 2) {
+            return 1;
+        }
+
+        var p = 0, q = 0, r = 1, s = 1;
+        for (var i = 3; i <= n; i++) {
+            p = q;
+            q = r;
+            r = s;
+            s = p + q + r;
+        }
+        return s;
+    };
+    var argumentsForFun = '';
+    var res = someFun();
+    console.log(res);
+</script>
+
+</html>

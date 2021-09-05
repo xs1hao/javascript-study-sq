@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>509. 斐波那契数</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/fibonacci-number/" target="_blank">
+            509. 斐波那契数
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+
+        <pre class="code">
+
+        </pre>
+	</body>
+	<script>
+        /**
+         * 动态规划 实现 斐波那契数
+         * **/
+        var fib = function(n) {
+            if (n <= 1) return n;
+            var p = 0, q = 0, r = 1;
+            for (var i = 2; i <= n; i++) {
+                p = q;
+                q = r;
+                r = p + q;
+            }
+            return r;
+        };
+        var res = fib(8);
+        console.log(res);
+	</script>
+</html>
