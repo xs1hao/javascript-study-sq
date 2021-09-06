@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>704. 二分查找</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/binary-search/" target="_blank">
+        704. 二分查找
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var search = function (nums, target) {
+        var left = 0, right = nums.length - 1;
+        while (left <= right) {
+            var inner = Math.floor((right - left) / 2) + left;
+            if (target === nums[inner]) {
+                return inner;
+            } else if (target < nums[inner]) {
+                right = inner - 1;
+            } else {
+                left = inner + 1;
+            }
+        }
+        return -1;
+    };
+    var nums = [-1,0,3,5,9,12], target = 2;
+    var res = search();
+    console.log(res);
+</script>
+
+</html>
