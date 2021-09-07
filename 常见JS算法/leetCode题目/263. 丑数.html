@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>263. 丑数</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/ugly-number/" target="_blank">
+        263. 丑数
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var isUgly = function (n) {
+        if (n <= 0) {
+            return false;
+        }
+        const factors = [2, 3, 5];
+        for (const factor of factors) {
+            while (n % factor === 0) {
+                n /= factor;
+            }
+        }
+        return n == 1;
+    };
+    var argumentsForFun = '';
+    var res = someFun();
+    console.log(res);
+</script>
+
+</html>

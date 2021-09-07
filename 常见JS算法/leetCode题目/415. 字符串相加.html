@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>415. 字符串相加</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="" target="_blank">
+        415. 字符串相加
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var addStrings1 = function (num1, num2) {
+        var i = num1.length - 1, j = num2.length - 1;
+        var add = 0;
+        var result = [];
+        while (i >= 0 || j >= 0 || add != 0) {
+            var x = i >= 0 ? num1.charAt(i) - 0 : 0;
+            var y = j >= 0 ? num2.charAt(j) - 0 : 0;
+            var res = x + y + add;
+            result.unshift(res % 10);
+            add = Math.floor(res / 10);
+            i--;
+            j--;
+        }
+        return result.join('');
+    };
+
+    var res = addStrings1('11', '123');
+    console.log(res);
+</script>
+
+</html>

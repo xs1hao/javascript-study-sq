@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>1221. 分割平衡字符串</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/split-a-string-in-balanced-strings/" target="_blank">
+            1221. 分割平衡字符串
+        </a>
+        <p class="notice">
+            <br>
+        </p>
+
+        <pre class="code">
+
+        </pre>
+	</body>
+	<script>
+        /**
+        * 最大数量，那就取最小平衡即：R 与 L 刚好一样多就好；
+        */
+        var balancedStringSplit = function(s) {
+            var arr = s.split('');
+            var right = 0;
+            var res = 0;
+            var obj = {
+                R: 0,
+                L: 0,
+            }
+            while (right < arr.length) {
+         
+                arr[right] === 'R' ? obj.R++ : obj.L++;
+                if (obj.R === obj.L && obj.R !== 0) {
+                    res++;
+                    obj.R = 0;
+                    obj.L = 0;
+                }
+                right++
+
+            }
+            return res;
+        };
+        var res = balancedStringSplit("RLRRLLRLRL");
+        console.log(res);
+	</script>
+</html>
