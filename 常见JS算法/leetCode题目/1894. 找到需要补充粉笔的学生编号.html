@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1894. 找到需要补充粉笔的学生编号</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/find-the-student-that-will-replace-the-chalk/" target="_blank">
+        1894. 找到需要补充粉笔的学生编号
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var chalkReplacer = function (chalk, k) {
+        var left = 0;
+        while (left < chalk.length) {
+            if (k < chalk[left]) {
+                return left;
+            }
+            k -= chalk[left];
+            left++;
+            if (left === chalk.length) {
+                left = 0;
+            }
+        }
+    };
+
+    /**
+     * 
+     * Leetcode推荐的方法；
+     * 
+     * **/
+    var chalkReplacer2 = function (chalk, k) {
+        const n = chalk.length;
+        let total = 0;
+        for (const num of chalk) {
+            total += num;
+        }
+        k = k % total; // 5;
+        let res = -1;
+        for (let i = 0; i < n; ++i) {
+            if (chalk[i] > k) {
+                res = i;
+                break;
+            }
+            k -= chalk[i];
+        }
+        return res;
+    }
+    var chalk = [3, 4, 1, 2], k = 25
+    var res = chalkReplacer2(chalk, k);
+    console.log(res);
+</script>
+
+</html>

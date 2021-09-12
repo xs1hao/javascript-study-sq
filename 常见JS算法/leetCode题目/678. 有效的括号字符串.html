@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>678. 有效的括号字符串</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/valid-parenthesis-string/" target="_blank">
+        678. 有效的括号字符串
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    /**
+     * 题解动画地址： https://leetcode-cn.com/problems/valid-parenthesis-string/solution/you-xiao-de-gua-hao-zi-fu-chuan-xian-jian-ce-you-g/ 
+     * 
+     * **/
+    var checkValidString = function (s) {
+        let stack = [], star = [];
+        for (let i = 0; i < s.length; i++) { // 一遍遍历， 对每一个s[i]，判断是入栈还是抵消
+            if (s[i] == '(') {
+                stack.push(i);
+            } else if (s[i] == '*') {
+                star.push(i);
+            } else { // 是个 ")", 两个栈都不收，不仅不收，还要‘抵消’， 处理如下👇
+                if (stack.length) {
+                    stack.pop();
+                } else if (star.length) {
+                    star.pop();
+                } else { // 没得抵消了， 只能返回false
+                    return false;
+                }
+            }
+        }
+
+        if (stack.length > star.length) { //对两个栈 处理
+            return false; 
+        }
+        while (stack.length && star.length) {
+            if (stack.pop() > star.pop()) { // **((, 类似这样，虽个数合适，但顺序（下标）不可
+                return false; 
+            }
+        }
+        return true;
+    };
+    var s = "*(**";
+    var res = checkValidString(s);
+    console.log(res);
+</script>
+
+</html>
