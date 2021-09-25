@@ -105,14 +105,14 @@
         var arr = s.split('');
         var res = [];
         var maxLen = 1;
-        for (var right = 0; right < len; right++) {
-            if (!res.includes(arr[right])) {
-                res.push(arr[right]);
+        for (var i = 0; i < len; i++) {
+            if (!res.includes(arr[i])) {
+                res.push(arr[i]);
                 maxLen = Math.max(maxLen, res.length);
             } else {
-                var index = res.indexOf(arr[right]);
+                var index = res.indexOf(arr[i]);
                 res.splice(0, index + 1);
-                res.push(arr[right]);
+                res.push(arr[i]);
             }
         }
         return maxLen;
