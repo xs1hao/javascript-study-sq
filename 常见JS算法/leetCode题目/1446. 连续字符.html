@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1446. 连续字符
+    </title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/consecutive-characters/" target="_blank">
+        1446. 连续字符
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+            给你一个字符串 s ，字符串的「能量」定义为：只包含一种字符的最长非空子字符串的长度。
+            输入：s = "abbcccddddeeeeedcba"
+            输出：5
+            解释：子字符串 "eeeee" 长度为 5 ，只包含字符 'e' 。
+        </pre>
+</body>
+<script>
+    var build = function (s) {
+        var arr = s.split('');
+        var res = 1;
+        var cur = arr[0];
+        var left = 0;
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] !== cur) {
+                res = Math.max(res, i - left);
+                cur = arr[i];
+                left = i;
+            }
+            if (i === arr.length - 1) { // 最后一个元素；
+                res = Math.max(res, i - left + 1)
+            }
+        }
+        return res;
+    }
+
+    // 网络解法
+    var build1 = function (s) {
+        var count = 0, cur = s[0], res = 1;
+        var arr = s.split('');
+
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] !== cur) {
+                count = 1;
+                cur = arr[i];
+            } else {
+                count++;
+            }
+            res = Math.max(res, count);
+        }
+        return res;
+    }
+
+    var argumentsForFun = 'ayzzzzzzzz';
+    var res = build1(argumentsForFun);
+    console.log(res);
+</script>
+
+</html>

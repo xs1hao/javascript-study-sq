@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/delete-operation-for-two-strings/" target="_blank">
+        583. 两个字符串的删除操作
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+        给定两个单词 word1 和 word2，找到使得 word1 和 word2 相同所需的最小步数，每步可以删除任意一个字符串中的一个字符。
+    </pre>
+</body>
+<script>
+    /**
+     * 
+     * 这个题和 1143 题一样，只是多了最后一步，计算最小步数；
+     * 1143题，计算最长公共子序列，拿到最长子序列后，看各自与最长子序列的差异；
+     * 将两个字符与最长子序列之间的差异（改变字符至最长公共子序列需要的步数）相加，即得到结果。
+     * 
+     * **/
+    var minDistance = function (text1, text2) {
+        var m = text1.length, n = text2.length;
+        var dp = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(0));
+        for (var i = 1; i <= m; i++) {
+            const c1 = text1[i - 1]
+            for (var j = 1; j <= n; j++) {
+                const c2 = text2[j - 1]
+                if (c1 === c2) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1])
+                }
+            }
+        }
+        var lcs = dp[m][n];
+        return m - lcs + n - lcs;
+    };
+    var res = minDistance("sea", "eat");
+    console.log(res);
+</script>
+
+</html>
