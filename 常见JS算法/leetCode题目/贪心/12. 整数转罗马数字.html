@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>12. 整数转罗马数字</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/integer-to-roman/" target="_blank">
+            12. 整数转罗马数字
+        </a>
+
+	</body>
+	<script>
+        var numMap = {
+            1: 'I',
+            2: 'II',
+            3: 'III',
+            4: 'IV',
+            5: 'V',
+            6: 'VI',
+            7: 'VII',
+            8: 'VIII',
+            9: 'IX',
+            10: 'X',
+            20: 'XX',
+            30: 'XXX',
+            40: 'XL',
+            50: 'L',
+            60: 'LX',
+            70: 'LXX',
+            80: 'LXXX',
+            90: 'XC',
+            100: 'C',
+            200: 'CC',
+            300: 'CCC',
+            400: 'CD',
+            500: 'D',
+            600: 'DC',
+            700: 'DCC',
+            800: 'DCCC',
+            900: 'CM',
+            1000: 'M',
+            2000: 'MM',
+            3000: 'MMM',
+        }
+        var intToRoman = function(num) {
+            var str = String(num);
+            var res = '';
+            for (var i = 0; i < str.length; i++) {
+                var item = Number(str.charAt(i)) * Math.pow(10,str.length - i - 1); // 得到 i 位置处的数字 是多大 （20 || 200 || 2）；
+                if (item == 0) {
+                    continue;
+                }
+                res += numMap[String(item)];
+            }
+            return res;
+        };
+        var res = intToRoman(101);
+        console.log(res);
+
+        /**
+         * 贪心解法：
+         * leetcode 网站高级解法；
+         */
+        var intToRoman1 = function(num) {
+            var romanArr = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']
+            var arr = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+            var str = ''
+
+            for (var i = 0; i < arr.lenght;) {
+                if (num >= arr[i]) {
+                    num -= arr[i]
+                    str += romanArr[i]
+                } else {
+                    i++
+                }
+            }
+            return str
+        };
+
+        var res1 = intToRoman1(1994);
+        console.log(res1);
+	</script>
+</html>
