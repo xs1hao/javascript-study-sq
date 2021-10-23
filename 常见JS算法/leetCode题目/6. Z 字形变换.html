@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>6. Z 字形变换</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/zigzag-conversion/" target="_blank">
+            6. Z 字形变换
+        </a>
+	</body>
+	<script>
+        /**
+         * 
+         * @len: 字符串总长度；
+         * @row: 行数；
+         * 
+         * **/
+        var getCols = function(s,row) {
+            var sLength = s.length; // 字符串长度；
+            for (var i = 0; i < s.length; i++) {
+                if (i === 0 || i % (row - 1) === 0) { // 这些列可以满；
+                    sLength -= row;
+                } else {
+                    sLength -= 1; // 其他列都排 1 个；
+                }
+                if (sLength <= 0) { // 已经拍完了
+                    return i + 1;
+                }
+            }
+        }
+        var convert = function(s, numRows) {
+            var sArr = s.split('');
+            if (numRows === 1) { // 如果是一行，那么原路返回；
+                return s;
+            }
+            // 最后输出一个类似二维数组；二维数组行确定，需要计算列 cols；有多少列可以将给的字符串排完？
+            var cols = getCols(s,numRows);
+            var dp = new Array(numRows).fill(0).map(() => new Array(cols).fill(''));
+            // 二维数组是纵向填充的；
+            for (var col = 0; col < cols; col++) { // 循环列
+                for (var row = 0; row < numRows; row++) {
+                    if (col === 0 || col % (numRows - 1) === 0) {
+                        dp[row][col] = sArr.shift() || '';
+                    } else {
+                        if (row === (numRows -1) - col % (numRows -1) ) {
+                            dp[row][col] = sArr.shift() || '';
+                        }
+                    }
+                }
+            }
+            var result = '';
+            dp.forEach(row => {
+                row.forEach(str => {
+                    result += str;
+                })
+            })
+            return result;
+        };
+        var s = "AB", numRows = 1;
+        var res = convert(s,numRows);
+        console.log(res);
+	</script>
+</html>
