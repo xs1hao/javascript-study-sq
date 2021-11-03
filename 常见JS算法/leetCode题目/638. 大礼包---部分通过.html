@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>638. 大礼包</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/shopping-offers/" target="_blank">
+        638. 大礼包
+    </a>
+
+</body>
+<script>
+    var shoppingOffers = function (price, special, needs) {
+
+        var specialArr = new Array(special.length).fill(Infinity); // 针对每一个大礼包需要的价格初始化一个数组，数组内容先填充 Infinity
+        // 循环每一个礼包，看是否礼包可用，如果可用，计算使用该礼包买 needs 数量的商品需要的价钱，更新到 specialArr 中；
+        var getSpecialNum = function(num, spePrice, needs) {
+            var residual = []; // 使用礼包收，needs 中剩余的量；
+            // 判断 spePrice 是否可用 ？ （spePrice 中的数量对应needs 中的数量 必须 小于等于，大于的话 直接不可用）
+            spePrice.forEach((val,index) => {
+                if (needs[index] - val <= 0) { // 使用礼包，可以买够 needs 中的量，则不适用礼包了；
+                    return;
+                }
+                residual.push(needs[index] - val); // 记录当前除去 礼包 还需要的数量集合；
+            })
+            num++;
+            var isitemValid = spePrice.every((val,index) => {
+                return val <= residual[index];
+            })
+            if (isitemValid) {
+                num = getSpecialNum(num,spePrice, residual);
+            }
+            return num;
+        }
+
+        special.forEach((item,index) => {
+            var spePrice = item.slice(0,item.length - 1); // 购买needs 商品需要的价格
+            // 判断 spePrice 是否可用 ？ （spePrice 中的数量对应needs 中的数量 必须 小于等于，大于的话 直接不可用）
+            var isitemValid = spePrice.every((val,index) => {
+                return val <= needs[index];
+            })
+            if (isitemValid) { // 礼包可用, 计算用礼包花费的钱；
+
+                // 可用，可以用几个？
+                var num = 0;
+                var validSpecialNum = getSpecialNum(num,spePrice,needs); // 得到可用数量；
+
+                var specialCost = validSpecialNum * item[item.length - 1];
+                spePrice.forEach((val,index) => {
+                    if (price[index] === 0) { // 剩下的 买不了了；
+                        specialCost = 0;
+                        return;
+                    }
+                    var difference = (needs[index] - val*validSpecialNum) * price[index]; // 使用礼包后，还需要的花费；
+               
+                    specialCost += difference;
+                })
+                specialArr[index] = specialCost;
+            }
+        });
+
+        // 直接买的价格
+
+        var cost = 0;
+        needs.forEach((val,index) => {
+            if (price[index] === 0 && val !== 0 ) { // 买不了了；
+                cost = Infinity;
+                return;
+            }
+            cost += val * price[index];
+        })
+
+        specialArr.push(cost);
+        specialArr.sort((a,b) => a - b);
+        return specialArr[0] === Infinity ? 0 : specialArr[0];
+    };
+
+    var price = [2,3], special = [[1,0,1],[0,1,2]], needs = [1,1]
+    var res = shoppingOffers(price, special, needs);
+    console.log(res);
+</script>
+
+</html>

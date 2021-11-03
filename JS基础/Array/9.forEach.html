@@ -13,6 +13,7 @@
 			<p>
 				forEach() 方法用于调用数组的每个元素，并将元素传递给回调函数。
 				注意: forEach() 对于空数组是不会执行回调函数的。
+                不支持 break continue 都不支持
 			</p>
 			<h4>语法</h4>
 			<p class="code">
@@ -40,6 +41,22 @@
 			console.log('原数组：', fruit)
 			console.log('处理后的结果：', res); // undefined
 			console.log('得到的结果类型：', type)
+
+            /**
+             * forEach 可以跳出循环吗？？ ---- 不可以；
+             * **/
+            fruit.forEach(item => {
+
+                if (item === 'Apple') {
+                    return; // 可以；
+                }
+
+                // if (item === Apple) {
+                //     // break; // Uncaught SyntaxError: Illegal break statement （语法错误）
+                //     continue; // Uncaught SyntaxError: Illegal continue statement: no surrounding iteration statement （语法错误）
+                // }
+                console.log(item);
+            })
 		}
 	</script>
 </html>
