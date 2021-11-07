@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>18. 四数之和</title>
+    <link rel="stylesheet" href="../../../commo/commo.css" />
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/4sum/" target="_blank">
+        18. 四数之和
+    </a>
+    <p class="notice">
+        给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b], nums[c],
+        nums[d]] （若两个四元组元素一一对应，则认为两个四元组重复）：
+
+        0 <= a, b, c, d < n a、b、c 和 d 互不相同 nums[a] + nums[b] + nums[c] + nums[d]==target 你可以按 任意顺序 返回答案 </p>
+
+            <pre class="code">
+        输入：nums = [1,0,-1,0,-2,2], target = 0
+输出：[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+    </pre>
+</body>
+<script>
+
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[][]}
+     */
+    var fourSum = function (nums, target) {
+        nums.sort((a, b) => a - b)
+        const result = []
+        // 第一轮遍历，以当前元素为基准点
+        for (let i = 0; i < nums.length - 3; i++) {
+            if (i > 0 && nums[i] === nums[i - 1]) continue
+            if (nums[i] + nums[i + 1] + nums[i + 2] + nums[3] > target) break
+            // 遍历当前元素后面的数组，判断4数之和
+            for (j = i + 1; j < nums.length - 2; j++) {
+                if (j > i + 1 && nums[j] === nums[j - 1]) continue
+                // 首尾双指针查找
+                let left = j + 1, right = nums.length - 1
+                while (left < right) {
+                    const sum = nums[i] + nums[j] + nums[left] + nums[right]
+                    if (sum == target) {
+                        result.push([nums[i], nums[j], nums[left], nums[right]])
+                    }
+                    if (sum <= target) {
+                        // 如果头部指针等于后一个元素，则left一直往后移
+                        while (nums[left] === nums[++left]);
+                    } else {
+                        // 如果尾部指针等于前一个元素，则right一直往前移
+                        while (nums[right] === nums[--right]);
+                    }
+                }
+            }
+        }
+        return result
+    };
+
+    var nums = [1, 0, -1, 0, -2, 2], target = 0;
+    var res = fourSum(nums, target)
+    console.log(res);
+</script>
+
+</html>

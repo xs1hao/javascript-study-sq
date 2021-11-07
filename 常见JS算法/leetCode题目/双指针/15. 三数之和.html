@@ -69,7 +69,8 @@
             // 去重
             if (i > 0 && nums[i] == nums[i - 1]) continue
 
-            const target = -nums[i]
+            // 求三数和的结果为 0 ；
+            const target = 0 - nums[i];
             let left = i + 1,
                 right = nums.length - 1
             while (left < right) {

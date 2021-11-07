@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>18. 四数之和</title>
+    <link rel="stylesheet" href="../../../commo/commo.css" />
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/4sum/" target="_blank">
+        18. 四数之和
+    </a>
+    <p class="notice">
+        给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b], nums[c],
+        nums[d]] （若两个四元组元素一一对应，则认为两个四元组重复）：
+
+        0 <= a, b, c, d < n a、b、c 和 d 互不相同 nums[a] + nums[b] + nums[c] + nums[d]==target 你可以按 任意顺序 返回答案 </p>
+
+            <pre class="code">
+        输入：nums = [1,0,-1,0,-2,2], target = 0
+        输出：[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+    </pre>
+</body>
+<script>
+
+    /**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[][]}
+ */
+    var fourSum = function (nums, target) {
+        let res = []
+        let path = []
+        nums.sort();
+        let backtrace = (start) => {
+            if ((path.length == 4)) {
+                if (path[0] + path[1] + path[2] + path[3] == target) {
+                    res.push([...path])
+                }
+                return;
+            }
+            for (let i = start; i < nums.length; i++) {
+                if (nums[i] == nums[i - 1] && i > start) {
+                    continue;
+                }
+                path.push(nums[i])
+                backtrace(i + 1);
+                path.pop();
+            }
+        }
+        backtrace(0)
+        return res;
+    };
+    var nums = [1, 0, -1, 0, -2, 2], target = 0;
+    var res = fourSum(nums, target)
+    console.log(res);
+</script>
+
+</html>
