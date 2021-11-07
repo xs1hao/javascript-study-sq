@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/range-addition-ii/" target="_blank">
+        598. 范围求和 II
+    </a>
+    <p class="notice">
+        给定一个初始元素全部为 0，大小为 m*n 的矩阵 M 以及在 M 上的一系列更新操作。
+
+        操作用二维数组表示，其中的每个操作用一个含有两个正整数 a 和 b 的数组表示，含义是将所有符合 0 <= i < a 以及 0 <=j < b 的元素 M[i][j] 的值都增加 1。
+            在执行给定的一系列操作后，你需要返回矩阵中含有最大整数的元素个数。 
+    </p>
+
+    <pre class="code">
+        输入: 
+            m = 3, n = 3
+            operations = [[2,2],[3,3]]
+            输出: 4
+            解释: 
+            初始状态, M = 
+            [[0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]]
+
+            执行完操作 [2,2] 后, M = 
+            [[1, 1, 0],
+            [1, 1, 0],
+            [0, 0, 0]]
+
+            执行完操作 [3,3] 后, M = 
+            [[2, 2, 1],
+            [2, 2, 1],
+            [1, 1, 1]]
+
+            M 中最大的整数是 2, 而且 M 中有4个值为2的元素。因此返回 4。
+    </pre>
+
+    <p class="notice">
+        注意:<br>
+        m 和 n 的范围是 [1,40000]。<br>
+        a 的范围是 [1,m]，b 的范围是 [1,n]。<br>
+        操作数目不超过 10000。
+    </p>
+</body>
+<script>
+    var maxCount = function (m, n, ops) {
+        const row = [], col = []; // 收集行列
+        ops.forEach(item => {
+            row.push(item[0]);
+            col.push(item[1]);
+        });
+        row.sort((a, b) => a - b);
+        col.sort((a, b) => a - b);
+        const r = row[0] <= m ? row[0] : m;
+        const c = col[0] <= n ? col[0] : n;
+
+        // 如果题设条件 包含 0 ，则需要做如下判断；
+        if (r === 0 && c === 0) {
+            return 1;
+        }
+        if (r === 0 || c === 0) {
+            return r + c
+        }
+        return r * c;
+
+    };
+    var maxCount1 = function (m, n, ops) {
+        let min_c = Infinity, min_r = Infinity;
+        for (let [a, b] of ops) {
+            min_r = Math.min(min_r, a);
+            min_c = Math.min(min_c, b);
+        }
+        let r = min_c * min_r;
+        return r === Infinity ? m * n : r;
+    };
+
+    var m = 3, n = 3, operations = [[2, 2], [3, 3], [3, 0]]
+    var res = maxCount1(m, n, operations);
+    console.log(res);
+</script>
+
+</html>
