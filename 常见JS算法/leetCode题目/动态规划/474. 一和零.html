@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/ones-and-zeroes/" target="_blank">
+        474. 一和零
+    </a>
+
+    <h5>
+        求： 最多的集合；
+        同时集合元素的所有0 和 1 的总数不大于给定的对应的 m 和 n;
+    </h5>
+
+    <p>
+        给你一个二进制字符串数组 strs 和两个整数 m 和 n 。
+        请你找出并返回 strs 的最大子集的长度，该子集中 最多 有 m 个 0 和 n 个 1 。
+        如果 x 的所有元素也是 y 的元素，集合 x 是集合 y 的 子集 。
+    </p>
+
+    <p class="notice">
+        算的集合的元素所有的 0 <= m; 1 <= n;
+        即：
+        元素最多有m 个0，n 个1；
+    </p>
+
+    <pre class="code">
+        输入：strs = ["10", "0001", "111001", "1", "0"], m = 5, n = 3
+        输出：4
+        解释：最多有 5 个 0 和 3 个 1 的最大子集是 {"10","0001","1","0"} ，因此答案是 4 。
+        其他满足题意但较小的子集包括 {"0001","1"} 和 {"10","1","0"} 。{"111001"} 不满足题意，因为它含 4 个 1 ，大于 n 的值 3 。
+    </pre>
+</body>
+<script>
+    const findMaxForm = (strs, m, n) => {
+        const dp = Array.from(Array(m + 1), () => Array(n + 1).fill(0));
+        let numOfZeros, numOfOnes;
+
+        for (let str of strs) {
+            numOfZeros = 0; // 单个字符串 所有 0 的总和；
+            numOfOnes = 0; // 单个字符串所有 1 的总和；
+
+            for (let c of str) {
+                if (c === '0') {
+                    numOfZeros++;
+                } else {
+                    numOfOnes++;
+                }
+            }
+            
+            /**
+             * str内所有 1 能够满足 m 的以及 m-- 的可能； eg:str = '0001' numOfZeros = 3; m = 5； 第一层 循环会去看 5 4 3 行的情况；
+             * 即： 我有 numOfZeros = 3 个 '0'； 我可以满足 5 4 3 个 '0' 类型的组合情况；
+             * 即： 3个 ‘0’ 可以满足 5 4 3 三种条件；
+             * **/
+            for (let i = m; i >= numOfZeros; i--) { 
+                /**
+                 * eg:str = '0001' numOfOnes = 1; m = 3； 第二层 循环会去看 3 2 1 列 的情况；
+                 * 即： 我有 1 个 '1', 我可以满足 3 2 1 个 '1'类型 情况；
+                 * 即： 1个 ‘1’ 可以满足 3 2 1  三种条件；
+                 * **/
+                for (let j = n; j >= numOfOnes; j--) {
+                    dp[i][j] = Math.max(dp[i][j], dp[i - numOfZeros][j - numOfOnes] + 1);
+                }
+            }
+            // 一个 str 循环完毕，表示 这个 str 能够满足的 所有列的可能；
+        }
+
+        return dp[m][n];
+    };
+
+    var strs = ["10", "0001", "111001", "1", "0"], m = 5, n = 3
+    var res = findMaxForm(strs, m, n);
+    console.log(res);
+</script>
+
+</html>

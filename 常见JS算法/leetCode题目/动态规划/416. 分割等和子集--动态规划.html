@@ -19,7 +19,7 @@
 
         <pre class="code">
             示例 1：
-
+            
             输入：nums = [1,5,11,5]
             输出：true
             解释：数组可以分割成 [1, 5, 5] 和 [11] 。
@@ -35,24 +35,37 @@
             var sum = nums.reduce((cur,num) => {
                 return cur + num;
             },0);
-            if (sum % 2 !== 0) {
+            if (sum % 2 !== 0) { // 数组可以分成两份相等的，那么集合的加和结果必然是一个偶数；
                 return false;
             }
             var target = sum / 2, len = nums.length;
             var dp = new Array(len).fill(0).map(() => {
                 return new Array(target+1).fill(false)
             });
-            // 先填表格第 0 行，第 1 个数只能让容积为它自己的背包恰好装满
+            // 先填表格第 0 行，第 1 个数只能让容积为它自己的背包恰好装满;
             if (nums[0] <= target) {
                 dp[0][nums[0]] = true;
             }
-            for (var i = 1; i < len; i++) {
+            for (var i = 1; i < len; i++) { // 4
 
-                for (var j = 0; j <= target; j++) {
+                for (var j = 0; j <= target; j++) { // 11
                     if (nums[i] === j) {
                         dp[i][j] = true;
                     }
                     if (nums[i] < j) {
+                        /**
+                         * 当前元素 nums[i]
+                         * 
+                         * dp[i - 1][j] 不考虑当前元素，上一行是否可以填充成功；
+                         * 
+                         * dp[i - 1][j - nums[i]] 考虑当前元素 
+                         * j - nums[i]表示 j - nums[i] = k; 
+                         * 
+                         * k 列可以元素的和能够满足背包，那么 j 列也可以满足；
+                         * 1 + 5 = 6；
+                         * 在 6 的位置，是否可以用 5 去填满，取决于 1 是否有；
+                         * 
+                         * **/
                         dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
                     }
                     if (nums[i] > j) {
