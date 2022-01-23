@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2034. 股票价格波动</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/stock-price-fluctuation/" target="_blank">
+        2034. 股票价格波动
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var StockPrice = function () {
+        this.time = 0;
+        this.price = 0;
+        this.timePrice = new Map();
+    };
+
+    /** 
+     * @param {number} timestamp 
+     * @param {number} price
+     * @return {void}
+     */
+    StockPrice.prototype.update = function (timestamp, price) {
+        this.timePrice.set(timestamp, price);
+        if (this.time <= timestamp) {
+            this.time = timestamp;
+            this.price = price;
+        }
+    }
+
+
+    /**
+     * @return {number}
+     */
+    StockPrice.prototype.current = function () {
+        return this.price;
+    };
+
+    /**
+     * @return {number}
+     */
+    StockPrice.prototype.maximum = function () {
+        // 使用数组排序会运算超时；
+        // const data = [...this.timePrice.values()].sort(a,b => a -b);
+        let max = 0;
+        for (const price of this.timePrice.values()) {
+            if (max < price) max = price;
+        }
+        return max;
+    };
+
+    /**
+     * @return {number}
+     */
+    StockPrice.prototype.minimum = function () {
+        let min = Infinity;
+        for (const price of this.timePrice.values()) {
+            if (min > price) min = price;
+        }
+        return min;
+    };
+
+</script>
+
+</html>

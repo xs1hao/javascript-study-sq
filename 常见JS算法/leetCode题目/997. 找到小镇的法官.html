@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/find-the-town-judge/" target="_blank">
+        997. 找到小镇的法官
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var findJudge = function (n, trust) {
+        const trustMap = new Map();
+        for (var i = 0; i < trust.length; i++) {
+            if (trustMap.has(trust[i][1])) {
+                let value = trustMap.get(trust[i][1]);
+                trustMap.set(trust[i][1], ++value);
+            } else {
+                trustMap.set(trust[i][1], 1);
+            }
+        }
+
+        for (var key of trustMap.keys()) {
+            if (trustMap.get(key) >= n - 1) {
+                return key;
+            }
+        }
+        return -1;
+    };
+    var n = 2, trust = [[1, 2]];
+    var res = findJudge(n, trust);
+    console.log(res);
+</script>
+
+</html>
