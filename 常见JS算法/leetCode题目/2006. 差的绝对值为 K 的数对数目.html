@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/count-number-of-pairs-with-absolute-difference-k/" target="_blank">
+        2006. 差的绝对值为 K 的数对数目
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var nums = [3,2,1,5,4], k = 2;
+    // 暴力解法1
+    var countKDifference1 = function (nums, k) {
+        var res = 0;
+        for (var i = 0; i < nums.length - 1; i++) {
+            for (var j = i + 1; j < nums.length; j++) {
+                const he = Math.abs(nums[i] - nums[j])
+                if (he === k) {
+                    res++;
+                }
+            }
+        }
+        return res;
+    };
+
+    // 利用hashmap解答；
+    var countKDifference2 = function (nums, k) {
+        var res = 0;
+        var ant = new Map();
+        for (var i = 0; i < nums.length; i++) {
+            
+            // if (ant.has(nums[i] - k)) {
+            //     res += ant.get(nums[i] - k);
+            // }
+            // if (ant.has(nums[i] + k)) {
+            //     res += ant.get(nums[i] + k);
+            // }
+
+            // 上面注释的代码，可以写成一行
+            res += (cnt.get(nums[j] - k) || 0) + (cnt.get(nums[j] + k) || 0);
+            ant.set(nums[i], (ant.get(nums[i]) || 0) + 1);
+        }
+        return res;
+    }
+
+    var data = countKDifference2(nums, k)
+    console.log('data:',data);
+
+</script>
+
+</html>

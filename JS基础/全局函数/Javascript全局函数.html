@@ -36,11 +36,11 @@
 			console.log('res1的类型：', type)
         }
         // console.log(parseInt('101')); // 101
-        // console.log(parseInt('101',2)); // 5
+        // console.log(parseInt('101',2)); // 5， 二进制数转换成十进制；
         // console.log(parseInt('101',10)); // 101；
         // 将一个数转换成二进制，在执行 左移 << 操作；
         let num = 5;
-        let erjinzhiNum = parseInt(Number(num).toString(2)); // 一个二进制数 ： 10111 
+        let erjinzhiNum = parseInt(Number(num).toString(2)); // 将一个数转换成一个二进制数 ： 10111 
         // 要在js中实现 一个数的 左移或者右移，要先将他装换为 十进制数； 然后在 使用 位运算符；
         //  左移和右移的区分方法； 括号的尖 向那边 ，就向那边移；
         /**

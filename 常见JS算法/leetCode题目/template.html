@@ -24,19 +24,20 @@
         </pre>
 	</body>
 	<script>
-        var arrangeCoins = function(n) {
-            var num = n;
-            for (var i = 1; i <= n; i++) { // 1 2 3 4 5
-                num = num - i; // 4 
-                if (num === 0) {
-                    return i;
-                } else if (num < 0) {
-                    return i - 1
+        var numberOfMatches = function(n) {
+            var nums = 0;
+            while(n !== 1) {
+                if (n%2 === 0) {
+                    nums += n / 2;
+                    n = n / 2;
+                } else {
+                    nums = nums + (n-1) / 2 + 1;
+                    n = (n -1 )/2;
                 }
             }
+            return nums;
         };
-        var argumentsForFun = '';
-        var res = arrangeCoins(5);
-        console.log(res);
+        var res = numberOfMatches(14);
+        console.log(res)
 	</script>
 </html>
