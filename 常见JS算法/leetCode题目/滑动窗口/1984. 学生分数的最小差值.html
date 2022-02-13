@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/" target="_blank">
+            1984. 学生分数的最小差值
+        </a>
+
+        <h5>
+
+        </h5>
+        
+        <p class="notice">
+            <br>
+        </p>
+
+        <pre class="code">
+
+        </pre>
+	</body>
+	<script>
+        var minimumDifference = function(nums, k) {
+            const n = nums.length;
+            nums.sort((a, b) => a - b);
+            let ans = Number.MAX_SAFE_INTEGER;
+            for (let i = 0; i < n - k + 1; i++) {
+                ans = Math.min(ans, nums[i + k - 1] - nums[i]);
+            }
+            console.log(ans);
+        }
+
+        minimumDifference([9,4,5,7],3)
+
+	</script>
+</html>

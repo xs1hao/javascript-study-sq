@@ -54,8 +54,8 @@
             //     res += ant.get(nums[i] + k);
             // }
 
-            // 上面注释的代码，可以写成一行
-            res += (cnt.get(nums[j] - k) || 0) + (cnt.get(nums[j] + k) || 0);
+            // （另一种写法）上面注释的代码，可以写成一行；
+            res += (cnt.get(nums[i] - k) || 0) + (cnt.get(nums[i] + k) || 0);
             ant.set(nums[i], (ant.get(nums[i]) || 0) + 1);
         }
         return res;

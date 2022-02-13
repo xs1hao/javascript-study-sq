@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/number-of-enclaves/" target="_blank">
+        1020. 飞地的数量
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+
+    // 【深度优先搜索】:
+
+    /**
+     * 就是我们把四周，边缘为飞地的开始往里查找，并且修改为 0。
+     * 然后遍历整个grid统计为1的数量即可
+     * 根据飞地的定义，如果从一个陆地单元格出发无法移动到网格边界，则这个陆地单元格是飞地。
+     * 因此可以将所有陆地单元格分成两类：
+     *    第一类陆地单元格和网格边界相连，这些陆地单元格不是飞地；
+     *    第二类陆地单元格不和网格边界相连，这些陆地单元格是飞地。
+     * 我们可以从网格边界上的每个陆地单元格开始深度优先搜索，遍历完边界之后，所有和网格边界相连的陆地单元格就都被访问过了。
+     * 然后遍历整个网格，如果网格中的一个陆地单元格没有被访问过，则该陆地单元格不和网格的边界相连，是飞地。
+     * 
+     * **/
+    var grid = [[0, 0, 0, 0], [1, 0, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]];
+
+    var numEnclaves = function (grid) {
+        let m = grid.length, n = grid[0].length;
+        for (let i = 0; i < m; i++) {
+            dfs(grid, i, 0); // 从每一行的第一列开始；i: 0 1 2 3...
+            dfs(grid, i, n - 1); // 从每一行的最后一列开始；i: 0 1 2 3...
+        }
+        for (let j = 0; j < n; j++) {
+            dfs(grid, 0, j); // 从第一行的，每一列开始； j: 0 1 2 3...
+            dfs(grid, m - 1, j); // 从最后一行的，每一列开始；j: 0 1 2 3...
+        }
+
+        let enclaves = 0;
+        // 由于网格边界上的单元格一定不是飞地，因此遍历网格统计飞地的数量时只需要遍历不在网格边界上的单元格
+        for (let i = 1; i < m - 1; i++) {
+            for (let j = 1; j < n - 1; j++) {
+                if (grid[i][j] === 1 && !visited[i][j]) {
+                    enclaves++;
+                }
+            }
+        }
+        return enclaves;
+    };
+    
+    var dfs = function (grid, x, y) {
+        if (x < 0 || y < 0 || x >= grid.length || y >= grid[0].length || grid[x][y] === 0) {
+            return;
+        }
+        grid[x][y] = 0;
+        dfs(grid, x + 1, y);
+        dfs(grid, x - 1, y);
+        dfs(grid, x, y + 1);
+        dfs(grid, x, y - 1);
+    }
+    var data = numEnclaves(grid);
+    console.log(data);
+</script>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/number-of-enclaves/" target="_blank">
+        1020. 飞地的数量
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+
+    /**
+     * 广度优先搜索：
+     * 也可以通过广度优先搜索，判断每个陆地单元格（单元格值为1）是否和网格边界相连。
+     * 首先从网格边界上的每个陆地单元格开始广度优先搜索；
+     * 访问所有和网格边界相连的陆地单元格，然后遍历整个网格，统计飞地的数量。
+     * 
+     * 这里的两个广度优先搜索1和2的差别，在于 1 使用了辅助数组，改变的是辅助数组单元格的值（默认为false），如果判断
+     * **/
+
+    var grid = [[0, 0, 0, 0], [1, 0, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]];
+
+    var numEnclaves = function (grid) {
+        const m = grid.length, n = grid[0].length;
+        // 辅助数组；
+        const visited = new Array(m).fill(0).map(() => new Array(n).fill(false));
+        const queue = [];
+        for (let i = 0; i < m; i++) {
+            if (grid[i][0] === 1) {
+                visited[i][0] = true;
+                queue.push([i, 0]);
+            }
+            if (grid[i][n - 1] === 1) {
+                visited[i][n - 1] = true;
+                queue.push([i, n - 1]);
+            }
+        }
+        for (let j = 1; j < n - 1; j++) {
+            if (grid[0][j] === 1) {
+                visited[0][j] = true;
+                queue.push([0, j]);
+            }
+            if (grid[m - 1][j] === 1) {
+                visited[m - 1][j] = true;
+                queue.push([m - 1, j]);
+            }
+        }
+
+        const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+
+        while (queue.length) {
+            const cell = queue.shift();
+            const currRow = cell[0], currCol = cell[1];
+            for (const dir of dirs) {
+                const nextRow = currRow + dir[0], nextCol = currCol + dir[1];
+                // 这里和 算法2 相比 他计算了边界上的单元格；因为辅助数组默认都是false, 所以他必须考虑每一个单元格；
+                if (
+                    nextRow >= 0 && 
+                    nextRow < m && 
+                    nextCol >= 0 && 
+                    nextCol < n && 
+                    grid[nextRow][nextCol] == 1 && 
+                    !visited[nextRow][nextCol]
+                ) {
+                    visited[nextRow][nextCol] = true;
+                    queue.push([nextRow, nextCol]);
+                }
+            }
+        }
+        let enclaves = 0;
+        for (let i = 1; i < m - 1; i++) {
+            for (let j = 1; j < n - 1; j++) {
+                if (grid[i][j] === 1 && !visited[i][j]) {
+                    enclaves++;
+                }
+            }
+        }
+        return enclaves;
+    };
+
+    const data = numEnclaves(grid);
+    console.log(data);
+</script>
+
+</html>

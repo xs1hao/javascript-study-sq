@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>岛屿数量</title>
+	<link rel="stylesheet" href="../../commo/commo.css">
+</head>
+
+<body>
+	<a href="https://leetcode-cn.com/problems/number-of-islands/" target="_blank">
+		200. 岛屿数量
+	</a>
+	<p class="notice">
+		<br>
+	</p>
+</body>
+<script>
+
+	/**
+	 * 广度优先算法：
+	 * @param {character[][]} grid
+	 * @return {number}
+	 */
+	var numIslands = function (grid) {
+		let rows = grid.length,
+			cols = grid[0].length;
+		// 方向数组---用于判断 arr[i][j] 上下左右 (四个方向) 的情况；
+		let directions = [[0, 1], [0, -1], [-1, 0], [1, 0]];
+		let count = 0;
+		for (let i = 0; i < rows; i++) {
+			for (let j = 0; j < cols; j++) {
+				// 如果是陆地，则可以作为广度优先搜索的入口点
+				if (grid[i][j] == 1) {
+					count++;
+					let queue = [[i, j]];
+					grid[i][j] = 0;
+					while (queue.length) {
+						let size = queue.length;
+						for (let k = 0; k < size; k++) {
+							// 队首元素出队列
+							let [curI, curJ] = queue.shift();
+							// 超出边界 或者本身就已经是海水了
+							if (curI < 0 || curJ < 0 || curI >= rows || curJ >= cols || grid[curI][curJ] == 0) {
+								continue;
+							}
+							// 淹没它
+							grid[curI][curJ] = 0;
+							for (let dir of directions)
+								queue.push([curI + dir[0], curJ + dir[1]]);
+						}
+					}
+				}
+			}
+		}
+		return count;
+	};
+
+	var grid = [
+		["1", "1", "0", "0", "0"],
+		["1", "1", "0", "0", "0"],
+		["0", "0", "1", "0", "0"],
+		["0", "0", "0", "1", "1"]
+	]
+
+	var res = numIslands(grid);
+	console.log(res);
+
+</script>
+
+</html>

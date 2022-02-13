@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../../../commo/commo.css">
+	</head>
+	<body>
+		<a href="https://leetcode-cn.com/problems/simplified-fractions/" target="_blank">
+            1447. 最简分数
+        </a>
+
+        <h5>
+
+        </h5>
+        
+        <p class="notice">
+            <br>
+        </p>
+
+        <pre class="code">
+            给你一个整数 n ，请你返回所有 0 到 1 之间（不包括 0 和 1）满足分母小于等于  n 的 最简 分数 。分数可以以 任意 顺序返回。
+        </pre>
+	</body>
+	<script>
+
+        function counterMultiple(max, min) {
+            return max % min === 0 ? min : arguments.callee(min, max % min); // 另一种写法；
+        }
+        var simplifiedFractions = function(n) {
+            var res = [];
+            for (var i = 1; i < n; i++) {
+                for (j = i+1; j <= n; j++) {
+                    if (i == 1) {
+                        res.push(`${i}/${j}`);
+                    } else {
+                        const data = counterMultiple(j, i);
+                        if (data == 1) { // 最大公约数是1；i/j 是最简整数比；
+                            res.push(`${i}/${j}`);
+                        }
+                    }
+                }
+            }
+            return res;
+        };
+
+        var data = simplifiedFractions(6);
+        console.log(data);
+        
+	</script>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/number-of-enclaves/" target="_blank">
+        1020. 飞地的数量
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+
+    /**
+     * 广度优先搜索：
+     * **/  
+
+    var grid = [[0, 0, 0, 0], [1, 0, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]];
+
+    var numEnclaves = function (grid) {
+        let board = grid;
+        let m = grid.length, n = grid[0].length;
+  
+        /**
+         * 将第一行和最后一行内单元格为 1 的下标添加到 queue 内，同时将单元格的值改为 2（只要不是 1 都可以）；
+         * 然后从 queue 出发，这个单元格相连的 1 都不是飞地（不能作为飞地则将其值改为 2）；
+         * 
+         * 最后看整个 grid 内还有几个 1；
+         * **/
+        for (let j = 0; j < n; j++) { // n 表示列的数量；
+            if (board[0][j] === 1) { // 从第一行的第一列开始； j: 0 1 2 3...
+                queue.push([0, j]);
+                board[0][j] = 2;
+            }
+            if (board[m - 1][j] === 1) { // 从最后一行的第一列开始； j: 0 1 2 3...
+                queue.push([m - 1, j]);
+                board[m - 1][j] = 2;
+            }
+        }
+        for (let i = 1; i < m - 1; i++) { // m 表示行；
+            if (board[i][0] === 1) { // 从每一行的第一列开始；i: 0 1 2 3...
+                queue.push([i, 0]);
+                board[i][0] = 2;
+            }
+            if (board[i][n - 1] === 1) {
+                queue.push([i, n - 1]); // 从每一行的最后一列开始；i: 0 1 2 3...
+                board[i][n - 1] = 2;
+            }
+        }
+
+        /**
+         * 通过边界向内部查找：
+         * queue搜集了所有为 为 1 的不能作为飞地的单元格下标 [[i, j]...]
+         * 从这些单元格出发，那些与之相连的为 1 的单元格，都不能作为飞地，将其值改为 2；
+         * **/
+        let dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+        let queue = [];
+        while (queue.length) {
+            let qLength = queue.length;
+            for (let i = 0; i < qLength; i++) {
+                let [x, y] = queue.shift();
+                for (const dir of dirs) {
+                    let nx = x + dir[0], ny = y + dir[1];
+                    if (
+                        nx >= 1 && 
+                        nx < m - 1 && 
+                        ny >= 1 && 
+                        ny < n - 1 && 
+                        board[nx][ny] === 1
+                        ) {
+                        queue.push([nx, ny]);
+                        board[nx][ny] = 2;
+                    }
+                }
+            }
+        }
+
+        let cnt = 0;
+        for (let i = 0; i < m; i++) {
+            for (let j = 0; j < n; j++) {
+                if (board[i][j] === 1) {
+                    cnt++;
+                }
+            }
+        }
+        return cnt;
+    };
+    
+    const data = numEnclaves(grid);
+    console.log(data);
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>岛屿数量</title>
+	<link rel="stylesheet" href="../../commo/commo.css">
+</head>
+
+<body>
+	<a href="https://leetcode-cn.com/problems/number-of-islands/" target="_blank">
+		200. 岛屿数量
+	</a>
+	<p class="notice">
+		<br>
+	</p>
+</body>
+<script>
+
+	/**
+	 * 深度优先算法;
+	 * **/ 
+	var numIslands = function (grid) {
+		var result = 0;
+		if (!grid || grid.length === 0) {
+			return result;
+		}
+		var rNum = grid.length; // 行数量；
+		var lNum = grid[0].length; // 列数量；
+		// 方向数组---用于判断 arr[i][j] 上下左右 (四个方向) 的情况；
+		let directions = [[0, 1], [0, -1], [-1, 0], [1, 0]];
+
+		var dfs = function (r, l) {
+			if (r < 0 || l < 0 || r >= rNum || l >= lNum || grid[r][l] === '0') {
+				return;
+			}
+			grid[r][l] = '0';
+			for (let dir of directions) {
+				dfs(dir[0] + i, dir[1] + j);
+			}
+			// 上线的循环等价于 下面四行代码；
+			// dfs(r + 1, l);
+			// dfs(r - 1, l);
+			// dfs(r, l + 1);
+			// dfs(r, l - 1);
+		}
+
+		for (var i = 0; i < rNum; i++) {
+			for (var j = 0; j < lNum; j++) {
+				if (grid[i][j] === '1') {
+					result++;
+					// 将 ‘1’ 附近的1都置为 ‘0’
+					dfs(i, j);
+				}
+			}
+		}
+		return result;
+	};
+	var grid = [
+		["1", "1", "0", "0", "0"],
+		["1", "1", "0", "0", "0"],
+		["0", "0", "1", "0", "0"],
+		["0", "0", "0", "1", "1"]
+	]
+
+	var res = numIslands(grid);
+	console.log(res);
+
+</script>
+
+</html>

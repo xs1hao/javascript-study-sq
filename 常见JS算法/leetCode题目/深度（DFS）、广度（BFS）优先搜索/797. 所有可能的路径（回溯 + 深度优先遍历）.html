@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>797. 所有可能的路径</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/all-paths-from-source-to-target/" target="_blank">
+        797. 所有可能的路径
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+        给你一个有 n 个节点的 有向无环图（DAG），请你找出所有从节点 0 到节点 n-1 的路径并输出（不要求按特定顺序）
+
+         graph[i] 是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点 graph[i][j]存在一条有向边）。
+    </pre>
+</body>
+<script>
+    /**
+     * 
+     * 深度优先遍历；
+     * 
+     * **/
+    var allPathsSourceTarget = function (graph) {
+        var n = graph.length - 1, res = [];
+
+        var dfs = function (node, path) {
+            if (node === n) {
+                res.push([...path, node])
+                return;
+            }
+            for (var i of graph[node]) {
+                if (i === n) {
+                    res.push([...path, i])
+                } else {
+                    dfs(i, [...path, i])
+                }
+            }
+        }
+        dfs(0, [0]);
+        return res;
+    }
+    
+    /**
+     * 
+     * 回溯解法--注重节点减支
+     * 
+     * **/
+    var allPathsSourceTarget1 = function(graph) {
+        var n = graph.length, res = [];
+        var set = new Set();
+        var trackBack = function(node, path) {
+            if (node === n - 1) {
+                res.push([...path]);
+                return;
+            }
+            for (var item of graph[node]) {
+                if (!set.has(item)) {
+                    set.add(item);
+                    trackBack(item,[...path,item]);
+                    set.delete(item)
+                }
+            }
+        }
+        trackBack(0,[0]);
+        return res;
+    }
+    var graph = [[1, 2], [3], [3], []]
+    var res = allPathsSourceTarget1(graph);
+    console.log(res);
+</script>
+
+</html>
