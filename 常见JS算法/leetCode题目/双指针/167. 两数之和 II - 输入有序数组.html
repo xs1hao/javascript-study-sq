@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank">
+        167. 两数之和 II - 输入有序数组
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+        输入：numbers = [2,7,11,15], target = 9
+        输出：[1,2]
+        解释：2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。返回 [1, 2] 。
+    </pre>
+</body>
+<script>
+
+    // 适用双指针，他的特点是这个数组是一个 有序的递增数组；
+
+    var twoSum = function (numbers, target) {
+        var left = 0, right = numbers.length - 1;
+        while (left < right) {
+            if (numbers[left] + numbers[right] === target) {
+                return [left + 1, right + 1];
+            } else if (numbers[left] + numbers[right] > target) {
+                right--;
+            } else {
+                left++;
+            }
+        }
+    };
+
+</script>
+
+</html>

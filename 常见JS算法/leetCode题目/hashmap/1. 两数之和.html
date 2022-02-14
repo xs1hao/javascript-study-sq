@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/two-sum/" target="_blank">
+        1. 两数之和
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+
+    // 不适用双指针，他是一个无序数组；
+
+    var twoSum = function (nums, target) {
+        var map = new Map();
+        for (var i = 0; i < nums.length; i++) {
+            const num = target - nums[i];
+            if (map.has(num)) {
+                return [map.get(num), i]
+            }
+            map.set(nums[i], i)
+        }
+    };
+</script>
+
+</html>

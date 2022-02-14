@@ -12,7 +12,9 @@
     <a href="https://leetcode-cn.com/problems/generate-parentheses/" target="_blank">
         22. 括号生成
     </a>
+    <br>
 
+    <img src="./img/22. 括号生成 （回溯）.png" alt="22. 括号生成" width="600px" height="500px">
     <h5>
         数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
     </h5>
@@ -46,7 +48,7 @@
         dfs(n, n, ""); // 递归的入口，剩余数量都是n，初始字符串是空串
         return res;
     };
-    var res = generateParenthesis(3);
+    var res = generateParenthesis(2);
     console.log(res)
 </script>
 
