@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/flood-fill/" target="_blank">
+        733. 图像渲染
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+        输入: 
+        image = [[1,1,1],[1,1,0],[1,0,1]]
+        sr = 1, sc = 1, newColor = 2
+        输出: [[2,2,2],[2,2,0],[2,0,1]]
+
+    </pre>
+</body>
+<script>
+
+    var floodFill = function (image, sr, sc, newColor) {
+
+        var r = image.length, l = image[0].length;
+        var def = image[sr][sc];
+        if (def === image[i][j]) {
+            return;
+        }
+        var dfs = function (i, j) {
+            if (i < 0 || i >= r || j < 0 || j >= l || image[i][j] !== def) {
+                return;
+            }
+            image[i][j] = newColor;
+            dfs(i + 1, j);
+            dfs(i - 1, j);
+            dfs(i, j + 1);
+            dfs(i, j - 1);
+        }
+        dfs(sr, sc);
+        return image;
+    };
+    var image = [[0, 0, 0], [0, 1, 0]], sr = 1, sc = 0, newColor = 2;
+
+    var res = floodFill(image, sr, sc, newColor);
+    console.log(res);
+</script>
+
+</html>

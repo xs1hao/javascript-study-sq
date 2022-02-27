@@ -5,7 +5,6 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>岛屿数量</title>
-	<link rel="stylesheet" href="../../commo/commo.css">
 </head>
 
 <body>
@@ -22,6 +21,7 @@
 	 * 广度优先算法：
 	 * @param {character[][]} grid
 	 * @return {number}
+     * 计算岛屿数量，二维数组中，相邻的 1 被算作是同一片陆地，0 算作是水，
 	 */
 	var numIslands = function (grid) {
 		let rows = grid.length,

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/permutation-in-string/" target="_blank">
+        567. 字符串的排列567. 字符串的排列567. 字符串的排列
+    </a>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+        给你两个字符串 s1 和 s2 ，写一个函数来判断 s2 是否包含 s1 的排列。如果是，返回 true ；否则，返回 false 。
+
+        换句话说，s1 的排列之一是 s2 的 子串 。
+        
+        示例 1：
+        
+        输入：s1 = "ab" s2 = "eidbaooo"
+        输出：true
+        解释：s2 包含 s1 的排列之一 ("ba").
+    </pre>
+</body>
+<script>
+
+    /**
+     * 利用滑动窗口解决此题：
+     * 
+     * s2 内包含无序的s1， s1 可能有多重排列组合；
+     * 
+     * 关键点：
+     * 1）利用map 先记录s1 内部所有的字符串及其出现的次数； {str1: num1, str2: num2};
+     * 2）在改变map 内对应字符的value 时，要先对其value ++运算， 等价于 ++value; 如果是 value++, 则不会改变他的value；
+     * 这里利用 对象 obj = {}; 更好操作一点；
+     * **/
+    var checkInclusion = function (s1, s2) {
+        var hashMap = new Map();
+        for (var str of s1) {
+            if (hashMap.has(str)) {
+                var values = hashMap.get(str);
+                hashMap.set(str, ++values); // set value 时，要 ++values；
+            } else {
+                hashMap.set(str, 1);
+            }
+        };
+        var left = 0;
+        var s1Len = s1.length;
+        for (var i = 0; i < s2.length; i++) {
+            var curNode = s2[i];
+            // map 内有这个值，则对响应的value减 1；
+            if (hashMap.has(curNode)) {
+                var values = hashMap.get(curNode);
+                hashMap.set(curNode, --values); // values 可能会小于 0；
+                // values 大于等于 0，values 减 1 后，大于等于 0 ；相应的s1Len 减1；  
+                if (values >= 0) {
+                    // values = 0， 即原来有一个，现在 减 1 ，成了 0；
+                    s1Len--;
+                }
+            }
+            if (i >= s1.length) { // s2 的下标大于等于 s1 的length 时，需要考虑窗口右移 left++;
+                if (hashMap.has(s2[left])) {
+                    var values = hashMap.get(s2[left]);
+                    // 左边移除的元素，在map 中，同时在map 中对应的value 大于等于0 时，相应的s1Len 加 1； 
+                    // 也就是把 这个元素进来时候的操作 （57---64行代码减小了value 和 s1Len）在反向补充一次；
+                    if (values >= 0) {
+                        // values = 0; 将要移除一个，此时 s1Len要 加 1；
+                        // 如果 values 小于0， 那说明，当前 i 位置及其之前有字符 （这个s2[left]）数量，大于s1 内的字符；
+                        s1Len++;
+                    }
+                    hashMap.set(s2[left], ++values);
+                    // 而且，values 最小 只能到 -1；
+                }
+                left++;
+            }
+            if (s1Len === 0) {
+                // 此时 map 内所有value 都为 0；
+                return true;
+            }
+        }
+        return false;
+    };
+
+    var s1 = "ab", s2 = "aaacab";
+    var res = checkInclusion(s1, s2);
+    console.log(res);
+</script>
+
+</html>

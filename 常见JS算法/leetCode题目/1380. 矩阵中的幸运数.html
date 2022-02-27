@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/lucky-numbers-in-a-matrix/" target="_blank">
+        1380. 矩阵中的幸运数
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    var luckyNumbers = function (matrix) {
+        const mapObj = new Map();
+        for (var j = 0; j < matrix[0].length; j++) {
+            var max = matrix[0][j];
+            for (var i = 1; i < matrix.length; i++) {
+                if (matrix[i][j] > max) {
+                    max = matrix[i][j];
+                }
+            }
+            mapObj.set(max, 1);
+        }
+        for (var i = 0; i < matrix.length; i++) {
+            matrix[i].sort((a, b) => {
+                return a - b;
+            })
+            if (mapObj.has(matrix[i][0])) {
+                return [matrix[i][0]]
+            }
+        }
+        return [];
+    };
+    var str =  [[7,8],[1,2]]
+    var res = luckyNumbers(str);
+    console.log(res);
+</script>
+
+</html>

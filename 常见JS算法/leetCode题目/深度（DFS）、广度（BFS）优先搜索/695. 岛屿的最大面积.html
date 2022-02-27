@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>岛屿数量</title>
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/max-area-of-island/" target="_blank">
+        695. 岛屿的最大面积
+    </a>
+    <p class="notice">
+        <br>
+    </p>
+</body>
+<script>
+
+    /**
+     * 深度优先算法;
+     * **/
+    var numIslands = function (grid) {
+        var rNum = grid.length; // 行数量；
+        var lNum = grid[0].length; // 列数量；
+        let directions = [[0, 1], [0, -1], [-1, 0], [1, 0]];
+        var dfs = function (r, l) {
+            if (r < 0 || l < 0 || r >= rNum || l >= lNum || grid[r][l] === 0) {
+                return 0;
+            }
+            grid[r][l] = 0;
+            return directions.reduce((ans,dir) => {
+                return ans + dfs(dir[0] + r, dir[1] + l)
+            },1)
+        }
+        var data = 0;
+        for (var i = 0; i < rNum; i++) {
+            for (var j = 0; j < lNum; j++) {
+                if (grid[i][j] === 1) {
+                    data = Math.max(data,  dfs(i, j));
+                }
+            }
+        }
+        return data;
+    };
+    var grid = [
+        [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0], 
+        [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0], 
+        [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+    ]
+
+
+    var res = numIslands(grid);
+    console.log(res);
+
+</script>
+
+</html>

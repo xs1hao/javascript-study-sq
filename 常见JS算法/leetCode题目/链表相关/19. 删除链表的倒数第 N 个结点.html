@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/" target="_blank">
+        19. 删除链表的倒数第 N 个结点
+    </a>
+
+    <h5>
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+        </pre>
+</body>
+<script>
+    /**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+    /**
+     * 常规的链表两次循环套路
+     * @param {ListNode} head
+     * @param {number} n
+     * @return {ListNode}
+     */
+    var removeNthFromEnd1 = function (head, n) {
+        let len = 0, count = 0, listNode = new ListNode(0, head);
+        let listNode2 = listNode, listNode3 = listNode;
+        while (listNode2.next) {
+            listNode2 = listNode2.next;
+            len++;
+        }
+        //删除第len-n+1个
+        while (count != len - n) {
+            listNode3 = listNode3.next;
+            count++;
+        }
+        listNode3.next = listNode3.next.next;
+        return listNode.next;
+    };
+
+    // 利用栈先入后出的特点；
+    var removeNthFromEnd2 = function (head, n) {
+        let stack = new Array();
+        let newListNode = new ListNode(0, head);
+        let tempNode = newListNode;
+        while (tempNode) { // 不能是tepNode.next，不然最后一个指针不能存入
+            stack.push(tempNode);
+            tempNode = tempNode.next;//最后一个指针赋值的null，但不影响
+        }
+        let tempNum = n;
+        while (tempNum) {
+            stack.pop();
+            tempNum--;
+        }
+        tempNode = stack.pop();
+        tempNode.next = tempNode.next.next;
+        return newListNode.next;
+
+    };
+
+    // 双指针法
+    var removeNthFromEnd3 = function (head, n) {
+        let newListNode = new ListNode(0, head); // 初始化一个节点值为 0 的空节点
+        let frontward = newListNode;
+        let backward = newListNode;
+        let tempNum = 0;
+        while (tempNum != n) {
+            frontward = frontward.next;
+            tempNum++;
+        }
+
+        while (frontward.next) {//frontward指向最后一个结点即可。
+            frontward = frontward.next;
+            backward = backward.next;
+        }
+        backward.next = backward.next.next;
+        return newListNode.next;
+
+    };
+
+
+</script>
+
+</html>
