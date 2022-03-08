@@ -28,7 +28,7 @@
      * dp怎么构造是关键？
      * 
      * **/
-    var minCostClimbingStairs = function (cost) {
+    var minCostClimbingStairs1 = function (cost) {
         const n = cost.length;
         const dp = new Array(n + 1);
         dp[0] = dp[1] = 0;
@@ -43,7 +43,7 @@
      * 优化版本
      * 
      * **/
-    var minCostClimbingStairs = function (cost) {
+    var minCostClimbingStairs2 = function (cost) {
         const n = cost.length;
         let prev = 0, curr = 0;
         for (let i = 2; i <= n; i++) {
@@ -55,7 +55,7 @@
 
     };
     var cost = [10, 15, 20]
-    var res = minCostClimbingStairs(cost);
+    var res = minCostClimbingStairs1(cost);
     console.log(res);
 </script>
 
