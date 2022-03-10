@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Person {
+        constructor(name) {
+            this.name = name;
+        }
+        sayHello() {
+            console.log(`Hello ${this.name}`);
+        }
+        sayByBy = () => {
+            console.log(`ByBy ${this.name}`);
+        }
+        static saySorry() {
+            console.log(`Sorry ${this.name}`);
+        }
+    }
+    const xiaomin = new Person('xiaomin');
+    xiaomin.sayHello(); // Hello xiaomin
+    xiaomin.sayByBy(); // ByBy xiaomin
+    Person.saySorry(); // Sorry Person
+    xiaomin.saySorry(); // Uncaught TypeError: xiaomin.saySorry is not a function
+</script>
+</html>

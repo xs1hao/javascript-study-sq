@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    try {
+        console.log('start');
+        new Promise((resolve, reject) => {
+            console.log('in promise');
+            reject('promise err');
+        }).then((res) => {
+            console.log(res);
+            throw res;
+        },(err) => {
+            console.log(err);
+        })
+        // throw new Error('sb')
+    } catch (err) {
+        console.log(err);
+    } finally {
+        console.log('end');
+    }
+
+    try {
+        console.log('前') //输出    
+        adddlert("Welcome guest!")
+        console.log('后') //未输出
+    } catch (err) {
+        console.log(err); // ReferenceError: adddlert is not defined
+    }
+</script>
+
+</html>
