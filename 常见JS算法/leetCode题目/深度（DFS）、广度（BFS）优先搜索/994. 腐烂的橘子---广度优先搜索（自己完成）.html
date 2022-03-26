@@ -60,8 +60,10 @@
                 res++;
             }
             for (var k = 0; k < len; k++) {
-                var [i, j] = queue.shift();
+                var [i, j] = queue.shift(); // 从数组的前面取；
 
+                // (i,j) 四个方向内还有 1 的（好的橘子），则好的橘子变坏 值改变为 2 ；
+                // 然后继续腐烂（将其加到queue 中）；
                 if (i - 1 >= 0 && grid[i - 1][j] === 1) {
                     grid[i - 1][j] = 2;
                     queue.push([i - 1, j]);
