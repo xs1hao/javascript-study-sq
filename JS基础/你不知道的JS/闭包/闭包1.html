@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function FF1 () {
+        var a = 100;
+        return function () {
+
+            console.log(a);
+        }
+    }
+    var ff1 = FF1();
+
+    var a = 200;
+    ff1(); // 100
+
+    function F1 () {
+        var a = 100;
+        // return function () {
+        //     console.log(a); // 100
+        //     console.log(this.a); // 200
+        // }
+
+        return () => {
+            console.log(a); // 100; 这里的a 不同于 this，this是基于函数的执行环境动态绑定的，而非函数被声明时的环境；
+            console.log(this.a); // 200
+        }
+    }
+
+    var f1 = F1();
+    function F2 (fn) {
+        var a = 200;
+        fn();
+    }
+
+    F2(f1); // 100
+
+    // 上述两个题目的答案都是100，为什么呢？因为此时的 a 是一个自由变量，在父作用域上寻找，我们应该找定义它的地方，而不是执行它的地方。
+</script>
+
+</html>

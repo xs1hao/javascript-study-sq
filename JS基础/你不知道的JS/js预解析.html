@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    console.log(a); //输出undefined
+    var a = 18
+
+    //预解析之后
+    var a;
+    console.log(a); //输出undefined
+    a = 18
+    // -----------------------------------------
+
+    console.log(aa); // 报错  Uncaught ReferenceError: aa is not defined
+
+</script>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    for (var i = 0; i < 3; i++) {
+        // console.log(i); // 0 1 2 
+        setTimeout(() => { // 同步注册回调函数到 异步的 宏任务队列。
+            console.log(i); // 执行此代码时，同步代码for循环已经执行完成 3 3 3
+        }, 0);
+    }
+    console.log(i); // 3
+
+    for (let j = 0; j < 3; j++) {
+        // console.log(j); // 0 1 2 
+        setTimeout(function () {
+            console.log(j);    // 0 1 2  i 是循环体内局部作用域，不受外界影响。
+        }, 0);
+    }
+    console.log(j); // Uncaught ReferenceError: i is not defined
+</script>
+
+</html>

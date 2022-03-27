@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
 
 </body>
@@ -12,13 +14,13 @@
         constructor(name) {
             this.name = name;
         }
-        sayHello() {
+        sayHello () {
             console.log(`Hello ${this.name}`);
         }
         sayByBy = () => {
             console.log(`ByBy ${this.name}`);
         }
-        static saySorry() {
+        static saySorry () {
             console.log(`Sorry ${this.name}`);
         }
     }
@@ -26,6 +28,49 @@
     xiaomin.sayHello(); // Hello xiaomin
     xiaomin.sayByBy(); // ByBy xiaomin
     Person.saySorry(); // Sorry Person
-    xiaomin.saySorry(); // Uncaught TypeError: xiaomin.saySorry is not a function
+    // xiaomin.saySorry(); // Uncaught TypeError: xiaomin.saySorry is not a function
+
+    // ------------------------------------------------------------------------------------
+    var num = 10    // 60； 65
+    var obj = {
+        num: 20
+    }
+    obj.fn = (function (num) {
+        this.num = num * 3
+        num++    // 21
+        return function (n) {
+            this.num += n    // 60 + 5 = 65；20 + 10 =30
+            num++   // 21 + 1 = 22；22 + 1 = 23
+            console.log(num)
+        }
+    })(obj.num)
+    var fn = obj.fn
+    fn(5)   // 22
+    obj.fn(10)   // 23
+    console.log(num, obj.num)    // 65, 30
+    // ------------------------------------------------------------------------------------
+    var a = 5; //var定义的a绑定到了window对象上面
+    let obj = {
+        a: 10,
+        foo: function () {
+            console.log(this.a);
+        }
+    };
+    let bar = obj.foo;
+    obj.foo(); //10 obj调用了foo函数，this就是obj对象，输出10
+    bar(); //5 bar函数是输出当前对象上面的a，为5
+
+    let a = 5; //let定义的a不会绑定到window对象上面
+    let obj = {
+        a: 10,
+        foo: function () {
+            console.log(this.a);
+        }
+    };
+    let bar = obj.foo;
+    obj.foo(); //10 obj调用了foo，this就是obj对象，输出10
+    bar(); //undefined 当前的this是window对象，但是window上面没有a属性，输出undefined 
+
 </script>
+
 </html>
