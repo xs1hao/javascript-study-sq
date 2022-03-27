@@ -16,11 +16,21 @@
         name: '1111',
         say: function() {
             console.log(this.name);
+        },
+        write: () => { // 箭头函数，this均指向了 window；箭头函数只会从自己作用域的上一层继承this;
+            console.log(this.name); // 2222
         }
     }
     var fun = a.say;
     fun(); // 222
     a.say(); // 111
+
+    a.write();
+    var write = a.write;
+    write();
+
+    var res = a.write();
+    console.log(res); // undefined;
 
     var b = {
         name: '333',
@@ -29,8 +39,8 @@
         }
     }
 
-    b.say(a.say); // 错误：333 ==>> 222
+    b.say(a.say); //  222
     b.say = a.say;
-    b.say(); // 错误：1111 ===>> 333
+    b.say(); // 333
 </script>
 </html>
