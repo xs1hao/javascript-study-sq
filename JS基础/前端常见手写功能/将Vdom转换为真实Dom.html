@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .block{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const vdom = {
+        tag: 'DIV',
+        attrs: {
+            id: 'parent'
+        },
+        text: 'parent',
+        children: [
+            {
+                tag: 'SPAN',
+                attrs: {
+                    class: 'block'
+                },
+                children: [
+                    {
+                        tag: 'A',
+                        text: '百度一下',
+                        attrs: {
+                            href: 'https://www.baidu.com/?tn=57095150_8_oem_dg',
+                            target: '_blank'
+                        },
+                        children: [] 
+                    }
+                ]
+            },
+            {
+                tag: 'SPAN',
+                attrs: {
+                    class: 'block'
+                },
+                text: 'in span',
+                children: [
+                    { tag: 'A', children: [] },
+                    { tag: 'A', children: [] }
+                ]
+            }
+        ]
+    }
+    // 真正的渲染函数
+    function _render(vnode) {
+        // 如果是数字类型转化为字符串
+        if (typeof vnode === "number") {
+            vnode = String(vnode);
+        }
+        // 字符串类型直接就是文本节点
+        if (typeof vnode === "string") {
+            return document.createTextNode(vnode);
+        }
+        // 普通DOM
+        const dom = document.createElement(vnode.tag);
+        if (vnode.attrs) {
+            // 遍历属性
+            Object.keys(vnode.attrs).forEach((key) => {
+                const value = vnode.attrs[key];
+                dom.setAttribute(key, value);
+            });
+        }
+        if (vnode.text) {
+            dom.innerHTML = vnode.text;
+        }
+        // 子数组进行递归操作
+        vnode.children.forEach((child) => dom.appendChild(_render(child)));
+        return dom;
+    }
+    const res = _render(vdom);
+    const app = document.getElementById('app');
+    app.appendChild(_render(vdom));
+</script>
+
+</html>

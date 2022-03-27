@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        <br> 创建一个新的空的对象
+        <br> 把这个对象链接到原型对象上
+        <br> 这个对象被绑定为this
+        <br> 如果这个函数不返回任何东西，那么就会默认return this
+
+    </p>
+</body>
+
+</html>
+<script type="text/javascript">
+    function myNew(fun, ...arg) {
+        // 创建一个新对象且将其隐式原型指向构造函数原型
+        /**
+         * (1) const obj = Object.create(null)  创建一个对象；
+         * (2) obj.__proto__ = fun.prototype  将新对象的隐式原型指向构造函数原型；
+         * 
+         * **/
+        let obj = {
+            __proto__: fun.prototype
+        }
+        // 执行构造函数， 改变构造函数的 this指向；
+        fun.apply(obj, arg)
+
+        // 返回该对象
+        return obj;
+    }
+
+    function Person(name, age) {
+        this.name = name;
+        this.age = age
+    }
+
+    let _person = myNew(Person, 'huang', '21')
+    console.log(_person)
+
+</script>

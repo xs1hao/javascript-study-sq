@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件总线 | 发布订阅模式</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    class EventEmitter {
+        constructor() {
+            this.cache = {}
+        }
+        // 监听事件；
+        on(name, fn) {
+            if (this.cache[name]) {
+                this.cache[name].push(fn)
+            } else {
+                this.cache[name] = [fn]
+            }
+        }
+        // 销毁事件；
+        off(name, fn) {
+            const tasks = this.cache[name]
+            if (tasks) {
+                const index = tasks.findIndex((f) => f === fn || f.callback === fn)
+                if (index >= 0) {
+                    tasks.splice(index, 1)
+                }
+            }
+        }
+        // 发送事件；
+        emit(name, once = false) {
+            if (this.cache[name]) {
+                // 创建副本，如果回调函数内继续注册相同事件，会造成死循环
+                const tasks = this.cache[name].slice()
+                for (let fn of tasks) {
+                    fn();
+                }
+                if (once) {
+                    delete this.cache[name]
+                }
+            }
+        }
+    }
+
+    // 测试
+    const eventBus = new EventEmitter()
+    const task1 = () => { console.log('task1'); }
+    const task2 = () => { console.log('task2'); }
+    eventBus.on('task', task1)
+    eventBus.on('task', task2)
+
+    setTimeout(() => {
+        eventBus.emit('task')
+    }, 1000)
+
+</script>
+
+</html>

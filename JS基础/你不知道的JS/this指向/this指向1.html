@@ -11,6 +11,7 @@
     <a href="https://blog.csdn.net/jbj6568839z/article/details/106479511?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164692238216780274158790%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=164692238216780274158790&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-106479511.pc_search_result_control_group&utm_term=this%E6%8C%87%E5%90%91&spm=1018.2226.3001.4187"> this指向详解，思维脑图与代码的结合，让你一篇搞懂this、call、apply。系列</a>
 
     <pre>
+<<<<<<< HEAD
         this 总是（非严格模式下）指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境；
         除了不常用的with和eval的情况，具体到实际应用中，this指向大概可以分为四种：
         作为对象的方法调用；
@@ -21,6 +22,18 @@
         构造器和普通函数的区别在于被调用的方式；
         A,call(B) => 可以理解成在B的作用域内调用了A方法；
     </pre>
+=======
+    this 总是（非严格模式下）指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境；
+    除了不常用的with和eval的情况，具体到实际应用中，this指向大概可以分为四种：
+    作为对象的方法调用；
+    作为普通函数调用；
+    构造器调用；
+    call 或 apply调用；
+    箭头函数不会创建自己的 this，this指向函数上层作用域的this；
+    构造器和普通函数的区别在于被调用的方式；
+    A,call(B) => 可以理解成在B的作用域内调用了A方法；
+</pre>
+>>>>>>> d750ab771f4868169db73488825596473925768b
 </body>
 <script>
     var name = 'window'

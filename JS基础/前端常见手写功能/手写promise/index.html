@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>
+        <p>GitHub上的demo地址</p>
+        <a href="https://github.com/Sunny-lucking/howToBuildMyPromise" target="_blank">手写promise</a>
+        <br>
+        <a style="margin-top: 20px;display: block;" href="https://github.com/jappp/Blog/issues/10" target="_blank"
+            rel="noopener noreferrer">从零开始，一步一步实现一个完整的Promise</a>
+    </h3>
+    <!-- promise.all 中有一个reject后，resolve中不会有结果，错误会在catch中得到-->
+    <!-- <script src="./promise.js"></script>
+    <script>
+        const p1 = new MyPromise((resolve,reject) => {
+            // resolve('hello sqPromise');
+            resolve('hello sqPromise');
+        })
+        const p2 = new MyPromise((resolve,reject) => {
+            // resolve('hello sqPromise');
+            reject('hello reject');
+        })
+        MyPromise.all([p1,p2]).then(res => {
+            console.log(res);
+        }).catch(e => {
+            console.log(e);
+        })
+    </script> -->
+
+    <!-- 同步调用promise -->
+    <script src="./promise1.js"></script>
+    <script>
+        const p = new sqPromise((resolve,reject) => {
+            resolve('hello promise')
+        })
+        p.then(res => {
+            console.log(res);
+        },err => {
+            console.log(err);
+        })
+    </script>
+    <!-- 实现异步的promise -->
+    <!-- <script src="./promise2.js"></script>
+    <script>
+        const p = new sqPromise((resolve,reject) => {
+            setTimeout(() => {
+                resolve('hello sqPromise');
+            }, 2000);
+        })
+        p.then((data) => {
+            console.log('success',data);
+        }, (err) => {
+            console.log('err', err);
+        })
+    </script> -->
+
+    <!-- promise的链式调用 -->
+    <!-- <script src="./promise3.js"></script>
+    <script>
+        const p = new sqPromise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('hello sqPromise');
+            }, 2000);
+        })
+        p.then((data) => {
+            console.log('success', data);
+            return new sqPromise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(2)
+                }, 1000);
+            })
+        }, (err) => {
+            console.log('err', err);
+        })
+            .then(res => {
+                console.log(res)
+                // then回调中也可以return一个值
+                return 3
+            })
+            .then(res => {
+                console.log(res)
+            })
+    </script> -->
+</body>
+
+</html>

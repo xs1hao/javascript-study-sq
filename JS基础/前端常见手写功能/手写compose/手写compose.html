@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        函数调用的扁平化，即把层级嵌套的那种函数调用(一个函数的运行结果当作实参传给下一个函数的这种操作)扁平化，这就是compose函数。
+    </p>
+</body>
+<script>
+
+    function reduxCompose(...funcs) {
+        if (funcs.length === 0) {
+            return arg => arg
+        }
+        if (funcs.length === 1) {
+            return funcs[0]
+        }
+        return funcs.reduce((a, b) => (...args) => a(b(...args)))
+    }
+
+    function lodashCompose(...funcs) {
+        let length = funcs.length
+        let index = length
+        while (index--) {
+            if (typeof funcs[index] !== 'function') {
+                throw new TypeError('Expected a function')
+            }
+        }
+        return function (...args) {
+            let index = 0
+            let result = length ? funcs.reverse()[index].apply(this, args) : args[0]
+            while (++index < length) {
+                result = funcs[index].call(this, result)
+            }
+            return result
+        }
+    }
+
+    const a1 = (a) => {
+        return "f1" + a;
+    };
+    const a2 = (a) => {
+        return "f2" + a;
+    };
+    const a3 = (a) => {
+        return "f3" + a;
+    };
+
+    /**
+     * 如果没有compose调用形式是：
+     * a3(a2(a1(args)));
+     * componse 函数在 redux 中有应用；如上有两种写法。
+     * **/
+
+    console.log(reduxCompose(a1, a2, a3)("xyz")); // f1f2f3xyz
+    console.log(lodashCompose(a1, a2, a3)("xyz")); // f1f2f3xyz
+
+</script>
+
+</html>

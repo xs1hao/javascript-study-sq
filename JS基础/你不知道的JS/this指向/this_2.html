@@ -33,7 +33,7 @@
             };
         }
     };
-    console.log(object.getNameFunc()());
+    console.log(object.getNameFunc()()); // My Object;
 
     function foo() {
         this.baz = "baz";
@@ -41,6 +41,7 @@
     }
     var bar = "bar";
     var baz = new foo(); // new 的过程是创建一个新的 对象 所以 this.bar 也是 undefined
+    foo(); // bar baz; 此时的this 指向 window;
 </script>
 
 </html>

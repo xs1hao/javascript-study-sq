@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流函数</title>
+</head>
+<script src="./index.js"></script>
+
+<body>
+    <div class="wrap" style="height: 3000px;width: 100%; background-color: #ccc;">
+        <p>
+            节流：
+        </p>
+        <p>
+            在持续行动作过程中，隔 interval 触发一次；
+        </p>
+    </div>
+</body>
+<script>
+    const task = () => { console.log('run task') }
+    const throttleTask = throttle(task, 1000)
+    window.addEventListener('scroll', throttleTask)
+</script>
+</html>

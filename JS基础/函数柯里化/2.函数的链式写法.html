@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 先从一个简单点 箭头函数开始；
+
+    // var res = (data1) => (data2) => {
+    //     return data1 + data2;
+    // }
+
+    // 如上这个 res 怎么去调用哩？
+
+    // 1、拆解res 
+
+    //  var res = (data1) => {
+    //      return (data2) => {
+    //          return data11 + data2
+    //      }
+    //  }
+
+    // 继续拆
+
+    var res = (data1) => {
+
+        // return (data2) => {
+        //     return data1 + data2
+        // }
+
+        var test = (num) => {
+            return data1 + num;
+        }
+        return test;
+    }
+
+    // 调用这个函数: 方式 1；
+    const result1 = res(2);
+    console.log(result1);
+    console.log(result1(3)); // 5
+
+    // 调用这个函数: 方式 2；
+    const result = res(2)(5);
+    console.log(result); // 5
+
+    const multiple = (num1) => (num2) => (num3) => {
+        return num1 + num2 - num3;
+    }
+    console.log(multiple(13)(7)(4)); // 16
+
+    /**
+     * 小结：
+     * 闭包: 闭包就是能够读取其他函数内部变量的函数。
+     * 清晰的讲：闭包就是一个函数，这个函数能够访问其他函数的作用域中的变量。
+     * 
+     * 每一个箭头函数 实际上是返回了一个回调闭包函数，它保留了前一个箭头函数的参数；
+     * 有几个箭头函数，就需要调用多少次，才能得到最深层函数的执行结果。
+     * 
+     * **/
+</script>
+
+</html>

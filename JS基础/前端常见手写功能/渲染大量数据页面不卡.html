@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul></ul>
+</body>
+<script>
+    setTimeout(() => {
+        // 插入十万条数据
+        const total = 100000;
+        // 一次插入的数据
+        const once = 20;
+        // 插入数据需要的次数
+        const loopCount = Math.ceil(total / once);
+        let countOfRender = 0;
+        const ul = document.querySelector('ul');
+        // 添加数据的方法
+        function add() {
+            // https://www.cnblogs.com/js0618/p/6379821.html 
+            //createdocumentfragment()方法创建了一虚拟的节点对象，节点对象包含所有属性和方法。
+            //当你想提取文档的一部分，改变，增加，或删除某些内容及插入到文档末尾可以使用createDocumentFragment() 方法。
+            //你也可以使用文档的文档对象来执行这些变化，但要防止文件结构被破坏，createDocumentFragment() 方法可以更安全改变文档的结构及节点。
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < once; i++) {
+                const li = document.createElement('li');
+                li.innerText = Math.floor(Math.random() * total);
+                fragment.appendChild(li);
+            }
+            ul.appendChild(fragment);
+            countOfRender += 1;
+            loop();
+        }
+        function loop() {
+            if (countOfRender < loopCount) {
+                // https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame
+                // window.requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行
+                window.requestAnimationFrame(add);
+            }
+        }
+        loop();
+    }, 0)
+
+</script>
+
+</html>

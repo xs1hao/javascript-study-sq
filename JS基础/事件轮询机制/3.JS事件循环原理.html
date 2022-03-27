@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS事件循环原理</title>
+</head>
+
+<body style="margin-left: 20px;">
+    <h3>
+        JS事件循环原理
+    </h3>
+    <a href="https://segmentfault.com/a/1190000021710953?utm_source=sf-similar-article">JS事件循环原理</a>
+    <div style="display: flex;align-items: center;">
+        <h4>
+            相关概念：
+        </h4>
+        <p>
+            同步任务、异步任务、宏任务、微任务、任务队列、执行栈、js运行机制、Event Loop
+        </p>
+    </div>
+    <p>
+        js异步任务按照准确的划分，应该将任务分为
+        <br> 宏任务: setTimeout、setInterval
+        <br> 微任务: 例如Promise.then方法。注意new Promsie()的时候是同步，立即执行。
+        <br> 注意: 现在有三个队列: 同步队列(也称执行栈)、宏任务队列、微任务队列
+
+        所以针对这种机制，js的事件循环机制应该是这样的
+
+        <br>遇到同步代码，依次推入同步队列并执行
+        <br>当遇到setTimeout、setInterval,会被推到宏任务队列
+        <br>如果遇到.then，会被当作微任务，被推入微任务队列
+        <br>同步队列执行完毕，然后会去微队列取任务，直到微队列清空。然后检查宏队列，去宏队列取任务，并且每一个宏任务执行完毕都会去微队列跑一遍，看看有没<br>有新的微任务，有的话再把微任务清空。这样依次循环
+    </p>
+    <a href="https://blog.csdn.net/weixin_43606158/article/details/91360230" target="_blank">
+        <img src="../../assets/img/20200603150845547.png" alt="JavaScript的Event Loop">
+    </a>
+</body>
+<script>
+    function test() {
+        console.log('start');
+        setTimeout(() => {
+            console.log('children2');
+            Promise.resolve().then(() => {
+                console.log('children2 - 1');
+            })
+        }, 0);
+        setTimeout(() => {
+            console.log('children3');
+            Promise.resolve().then(() => {
+                console.log('children3 - 1');
+            })
+        }, 0);
+        Promise.resolve().then(() => {
+            console.log('children1');
+        })
+        console.log('end');
+    }
+    // test();
+    // start
+    // end
+    // children1
+    // children2
+    // children2 - 1
+    // children3
+    // children3 - 1
+
+    function test2() {
+        async function async1() {
+            console.log('async1 start');
+            await async2();
+            console.log('async1 end');
+        }
+        async function async2() {
+            //async2做出如下更改：
+            new Promise(function (resolve) {
+                console.log('promise1');
+                resolve();
+            }).then(function () {
+                console.log('promise2');
+            });
+        }
+        console.log('script start');
+
+        setTimeout(function () {
+            console.log('setTimeout');
+        }, 0)
+        async1();
+
+        new Promise(function (resolve) {
+            console.log('promise3');
+            resolve();
+        }).then(function () {
+            console.log('promise4');
+        });
+
+        console.log('script end');
+    }
+
+    // test2();
+
+    // script start
+    // async1 start
+    // promise1
+    // promise3
+    // script end
+    // promise2
+    // async1 end
+    // promise4
+    // setTimeout
+
+    function test3() {
+        setTimeout(
+            function () {
+                console.log('定时器开始啦')
+            });
+        new Promise(function (resolve) {
+            console.log('马上执行for循环啦');
+            for (var i = 0; i < 10000; i++) {
+                i == 99 && resolve();
+            }
+        }).then(function () {
+            console.log('执行then函数啦')
+        });
+        console.log('代码执行结束');
+    }
+
+    test3();
+
+    // 马上执行for循环啦
+    // 代码执行结束
+    // 执行then函数啦
+    // 定时器开始啦
+</script>
+
+</html>
