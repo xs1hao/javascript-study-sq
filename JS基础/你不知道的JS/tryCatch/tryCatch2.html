@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    try {
+        console.log('前') //输出    
+        // settimeout 内的error 不会catch 到；
+        setTimeout(()=> {
+            adddlert("Welcome guest!");
+        },0);
+        adddlert("Welcome guest!");
+        console.log('后') // 前面有error , 后面的代码就不会再执行了；未输出
+    } catch (err) {
+        console.log(err); // ReferenceError: adddlert is not defined
+    }
+</script>
+
+</html>
