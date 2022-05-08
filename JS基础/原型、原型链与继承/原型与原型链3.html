@@ -38,6 +38,13 @@
     }
     p1.run(); // 11111111
 
+    Person.prototype.run = ()=> {
+        console.log('DDDDDD');
+    }
+    p1.run(); // DDDDDD
+    p2.run(); // DDDDDD
+
+
     //    --------------------------------------------
     // Person.run = function () {
     //     console.log('123123')

@@ -15,7 +15,7 @@
         new Promise((resolve, reject) => {
             // console.log('in promise');
             // reject('promise reject err');
-            throw new Error('promise error'); // promise 内的 error 只会在promise 的 error 方法内捕获到；
+            throw new Error('promise error'); // promise 内的 then 方法内捕获到；
         }).then((res) => {
             console.log(res);
             throw res;

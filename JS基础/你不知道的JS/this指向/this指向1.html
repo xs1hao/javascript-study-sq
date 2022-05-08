@@ -37,6 +37,7 @@
             }
         },
         show4: function () {
+            // 箭头函数被非箭头函数包含，则this绑定的是最近一层非箭头函数的this，否则this的值则被设置为全局对象
             return () => console.log(this.name)
         }
     }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    'use strict'
+    let greet = {
+        text: 'hello',
+        sayHi: function() {console.log(this.text);},
+        sayBy: function() {console.log('Bye');},
+        set: na => {
+            this.text = na;
+        }
+    }
+
+    greet.set('world');
+    (greet.text === 'hello' ? greet.sayHi : greet.sayBy)(); // Uncaught TypeError: Cannot read properties of undefined (reading 'text')
+    */
+
+    let greet = {
+        text: 'hello',
+        sayHi: function() {console.log(this.text);},
+        sayBy: function() {console.log('Bye');},
+        set: na => {
+            this.text = na;
+        }
+    }
+
+    greet.set('world');
+    greet.text === 'hello' ? greet.sayHi() : greet.sayBy(); // hello
+
+</script>
+
+</html>
