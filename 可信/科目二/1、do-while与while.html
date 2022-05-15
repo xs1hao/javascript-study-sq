@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        do-while和while最大的区别：
+    </p>
+
+    <p>
+        do-while至少能执行 1 次循环体，但是while可能一次都不执行
+    </p>
+
+</body>
+<script>
+    var num1 = 0;
+    do {
+        num1 += 1;
+    } while (num1 > 1 && num1 < 5);
+    console.log(num1); // 1
+
+    var num2 = 0;
+    do {
+        num2 += 1;
+    } while (num2  >= 1 && num2  < 5);
+    console.log(num2 ); // 5
+
+</script>
+
+</html>

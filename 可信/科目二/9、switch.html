@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var name = 'cat';
+    switch (name) {
+        case 'cat':
+            console.log('dog');
+        case 'dog':
+            console.log('cat');
+            break;
+        case 'fish':
+            console.log('fish');
+            break;
+        default:
+            console.log('default');
+    }
+
+    const num = 1;
+    switch(num) {
+        case 1:
+            console.log('The name is: ' + age); // Uncaught ReferenceError: Cannot access 'age' before initialization
+            break;
+        case 2:
+            const age = 'hello';
+            // const address = 2;
+            break;
+        default:
+    }
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var sqName;
+    console.log('this name is: ' + sqName); // this name is: undefined
+    // console.log('this age is: ' + age); // Uncaught ReferenceError: age is not defined
+    console.log('this name is: ' + null); // this name is: null
+    console.log('this name is: ' + true); // this name is: true
+    console.log('this name is: ' + []); // this name is: 
+
+    /*
+        true + '123' === 124 // false
+        true + 123 === 124 // true
+        '0' == false // true
+        null + 1 === 1 // true
+    */
+
+   console.log(1 + 2 + '3' === '33'); // true
+   console.log(3 + '7' - '1'); // 36
+
+    let str = 'HI';
+    str[0] = 'h';
+    str[1] = 'ello';
+    str = str[1] + str[0];
+    console.log(str); // IH
+
+</script>
+
+</html>

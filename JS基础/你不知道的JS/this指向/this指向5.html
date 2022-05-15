@@ -22,9 +22,11 @@
     }
 
     greet.set('world');
+    greet.text === 'hello' ? greet.sayHi() : greet.sayBy(); // hello
     (greet.text === 'hello' ? greet.sayHi : greet.sayBy)(); // Uncaught TypeError: Cannot read properties of undefined (reading 'text')
     */
 
+    // /*
     let greet = {
         text: 'hello',
         sayHi: function() {console.log(this.text);},
@@ -36,7 +38,7 @@
 
     greet.set('world');
     greet.text === 'hello' ? greet.sayHi() : greet.sayBy(); // hello
-
+    // */
 </script>
 
 </html>

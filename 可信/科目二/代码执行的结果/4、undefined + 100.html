@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    /*
+    const employeer = {
+        salary: 1000,
+         add: () => {
+             this.salary += 100; // this === window
+         }
+    }
+    employeer.add();
+    console.log(employeer.salary); /// 1000
+    */
+
+    /*
+    const employeer = {
+        salary: 1000,
+        add: function () {
+            this.salary += 100; // this === employeer
+        }
+    }
+    employeer.add();
+    console.log(employeer.salary); // 1100
+    */
+
+    // /*
+    'use strict'
+    const employeer = {
+        salary: 1000,
+        add: function () {
+            this.salary += 100; 
+        }
+    }
+    var add = employeer.add;
+    add(); // 报错 Uncaught TypeError: Cannot read properties of undefined (reading 'salary')
+    console.log(employeer.salary);
+    // */
+
+
+
+</script>
+
+</html>

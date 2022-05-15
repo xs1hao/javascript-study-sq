@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    let num = 0;
+    function add(index = num++) {
+        console.log(index);
+    }
+    add(); // 0
+    add(); // 1
+    add(); // 2
+
+    let number = 0;
+    function add1(res = ++number) {
+        console.log(res);
+    }
+    add1(); // 1
+    add1(); // 2
+    add1(); // 3
+    */
+
+    /*
+    var a = [];
+    for (var i = 0; i < 10; i++) {
+        a[i] = function () {
+            console.log(i);
+        }
+    }
+    a[6](); // 10
+    */
+
+    /*
+   for (let i = 0; i < 3; i++) {
+    let i = 'abc';
+    console.log(i); // abc abc abc
+   }
+   console.log(i); // Uncaught ReferenceError: i is not defined
+   */
+
+    /*
+   for (var i = 0; i < 3; i++) {
+    console.log(i); // 0 1 2
+
+    setTimeout(() => {
+        console.log(i); // 3 3 3
+    }, 0);
+   }
+   console.log(i); // 3
+    */
+
+    /*
+   for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+        console.log(i); // 0 1 2
+    }, 0);
+   }
+   */
+
+   /*
+   window.x = 0;
+//    var x = 2; // Uncaught SyntaxError: Identifier 'x' has already been declared 
+   let x = 1; // 不报错
+    */
+
+</script>
+
+</html>
