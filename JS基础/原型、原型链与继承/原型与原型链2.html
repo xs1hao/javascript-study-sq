@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>Es6学习</title>
+</head>
+
+<body>
+    <div>
+        <!--输入标题-->
+        <h1> </h1>
+    </div>
+
+</body>
+
+</html>
+<script>
+    class Person {
+        constructor() {
+            this.name = 'xiaoming';
+        }
+        run () {
+            console.log(this.name);
+        }
+    }
+    var p1 = new Person();
+    var p2 = new Person();
+    // p2.prototype.run = function() { // Uncaught TypeError: Cannot set properties of undefined (setting 'run')
+    //     console.log('xiaohong')
+    // }
+
+    p2.__proto__.run = function() {
+        console.log(11111111);
+    }
+    p1.run(); // 11111111
+
+    //    --------------------------------------------
+    // Person.run = function () {
+    //     console.log('123123')
+    // }
+    // p1.run(); // xiaoming
+
+    
+    //    --------------------------------------------
+    // Person.prototype.run = function () {
+    //     console.log('123123')
+    // }
+    // p1.run(); // 123123
+
+
+    function Parent(name) {
+        this.name = name
+        run = function() {
+            console.log(this.name)
+        }
+    }
+
+    var p3 = new Parent('sqsq');
+    var p4 = new Parent('sqsqsq');
+
+    // p4.prototype.run = function() { // Uncaught TypeError: Cannot set properties of undefined (setting 'run')
+    //     console.log('aaaaaa');
+    // }
+
+    p4.__proto__.run = function() {
+        console.log('zzzzzzzzzz');
+    }
+    p3.run(); // zzzzzzzzzz
+
+    Parent.prototype.run = ()=> {
+        console.log('SSSSSSSS');
+    }
+    p3.run(); // SSSSSSSS
+
+
+</script>

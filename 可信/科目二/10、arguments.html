@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    箭头函数没有arguments；
+    什么是剩余函数？
+</body>
+<script>
+    function printNumber (...args) {
+        const argsType = Object.prototype.toString.call(args).slice(8, -1);
+        console.log(argsType); // Array;
+        console.log(typeof args); // object
+
+        const argumentsType = Object.prototype.toString.call(arguments).slice(8, -1);
+
+        console.log(argumentsType); // Arguments;
+        console.log(typeof arguments); // object
+    }
+    printNumber(100);
+
+
+    function appLog() {
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift('your name is');
+        console.log.apply(console, args); // your name is js
+    }
+    appLog('js')
+</script>
+
+</html>

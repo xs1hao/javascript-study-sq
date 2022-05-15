@@ -67,9 +67,9 @@
             console.log(this.a);
         }
     };
-    let bar = obj.foo;
+    let bar1 = obj.foo;
     obj.foo(); //10 obj调用了foo，this就是obj对象，输出10
-    bar(); //undefined 当前的this是window对象，但是window上面没有a属性，输出undefined 
+    bar1(); //undefined 当前的this是window对象，但是window上面没有a属性，输出undefined 
 
 </script>
 

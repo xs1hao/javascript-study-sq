@@ -26,7 +26,7 @@
          * 利用递归实现求最大公约数；
          * **/
         function counterMultiple(max, min) {
-            // return max%min === 0 ? min : counterMultiple(min, max%min); // max % min 最大数与最小数 取余； 
+            // return max % min === 0 ? min : counterMultiple(min, max % min); // max % min 最大数与最小数 取余； 
             return max % min === 0 ? min : arguments.callee(min, max % min); // 另一种写法；
         }
 

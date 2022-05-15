@@ -34,7 +34,7 @@
                 if (nums[i] - 1 === cur) {
                     count++
                 } else {
-                    count = 1;
+                    count = 1; // 如果一个数组，中间有断开，从新从 1 开始计算；
                 }
                 cur = nums[i];
                 res = Math.max(res, count);

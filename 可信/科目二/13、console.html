@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="https://juejin.cn/post/7025399805878730788" target="_blang"> 你需要知道的 19 个 console 实用调试技巧 </a>
+</body>
+<script>
+    let name = "CUGGZ";
+    console.log('My Name is %cCUGGZ', 'color: skyblue; font-size: 30px;')
+    for (i = 0; i < 5; i++) {
+        console.count();
+    }
+
+    const users = [
+        {
+            "first_name": "Harcourt",
+            "last_name": "Huckerbe",
+            "gender": "Male",
+            "city": "Linchen",
+            "birth_country": "China"
+        },
+        {
+            "first_name": "Allyn",
+            "last_name": "McEttigen",
+            "gender": "Male",
+            "city": "Ambelókipoi",
+            "birth_country": "Greece"
+        },
+        {
+            "first_name": "Sandor",
+            "last_name": "Degg",
+            "gender": "Male",
+            "city": "Mthatha",
+            "birth_country": "South Africa"
+        }
+    ]
+
+    console.table(users, ['first_name', 'last_name', 'city']);
+
+    console.log(1 || 2); // ** 1
+    console.log(2 || 1); // ** 2
+    console.log((1 && 2) || 0); // 2
+    console.log(1 && 2 && 3); // 3
+
+
+</script>
+
+</html>

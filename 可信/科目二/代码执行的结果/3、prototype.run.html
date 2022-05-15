@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    /*
+    class Test {
+        x = 1;
+        constructor() {
+            this.x = 2;
+            this.run = function() {
+                console.log(this.x);
+            }
+        }
+        run() {
+            console.log(this.x);
+        }
+    }
+    Test.prototype.run = function() {
+        console.log(3);
+    }
+    let t = new Test();
+    Test.prototype.run = function() {
+        console.log(4);
+    }
+    t.run(); // 2;
+    */
+
+    /*
+    class Test {
+        x = 1;
+        constructor() {
+
+        }
+        run () {
+            console.log(this.x);
+        }
+    }
+    Test.prototype.run = function () {
+        console.log(3);
+    }
+    let t = new Test();
+    Test.prototype.run = function () {
+        console.log(4);
+    }
+    t.run(); // 4;
+    */
+
+    function Person() {};
+    Person.prototype.name = 'xiaoming';
+    let person1 = new Person();
+    let person2 = new Person();
+    person2.name = 'xiaohong';
+
+    console.log(person1.name); // xiaoming
+    console.log(person2.name); // xiaohong
+
+
+</script>
+
+</html>

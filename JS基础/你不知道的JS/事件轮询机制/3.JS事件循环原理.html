@@ -21,8 +21,8 @@
     </div>
     <p>
         js异步任务按照准确的划分，应该将任务分为
-        <br> 宏任务: setTimeout、setInterval
-        <br> 微任务: 例如Promise.then方法。注意new Promsie()的时候是同步，立即执行。
+        <br> 宏任务: script、setTimeout、setInterval、I/O。
+        <br> 微任务: Process.nextTick、Promise、MutationObserve。；例如Promise.then方法。注意new Promsie()的时候是同步，立即执行。
         <br> 注意: 现在有三个队列: 同步队列(也称执行栈)、宏任务队列、微任务队列
 
         所以针对这种机制，js的事件循环机制应该是这样的
