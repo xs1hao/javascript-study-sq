@@ -2,27 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 
 <body>
 
 </body>
 <script>
-    var a = [];
-    for (var i = 0; i < 10; i++) {
-        a[i] = function() {
-            console.log(i)
-        }
+  var a = [];
+  for (var i = 0; i < 10; i++) {
+    a[i] = function () {
+      console.log(i)
     }
-    a[6](); // 10
+  }
+  a[6](); // 10
 
 
-    for (let i = 0; i < 3; i++) {
-        let i = 'asd';
-        console.log(i); // asd asd asd
-    }
+  for (let i = 0; i < 3; i++) {
+    let i = 'asd';
+    console.log(i); // asd asd asd
+  }
+
+  for (var i = 0; i < 3; i++) {
+    setTimeout(() => {
+      console.log(i) // 3 3 3 
+    }, 0);
+  }
+  
+  for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+      console.log(i) // 0 1 2
+    }, 0);
+  }
 </script>
 
 </html>

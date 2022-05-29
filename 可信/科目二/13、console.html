@@ -42,8 +42,18 @@
 
     console.table(users, ['first_name', 'last_name', 'city']);
 
+
+    /**
+     *  || 取首次成立的结果
+     *  && 取最后成立的结果
+    */
+
     console.log(1 || 2); // ** 1
     console.log(2 || 1); // ** 2
+    console.log(1 && 2 && 3); // 3
+    console.log(3 && 2 && 1); // 1 
+
+
     console.log((1 && 2) || 0); // 2
     console.log(1 && 2 && 3); // 3
 

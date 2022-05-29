@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode.cn/problems/maximum-average-subarray-i" target="_blank">
+        643. 子数组最大平均数 I
+    </a>
+
+    <h5>
+        给你一个由 n 个元素组成的整数数组 nums 和一个整数 k 。
+
+        请你找出平均数最大且 长度为 k 的连续子数组，并输出该最大平均数。
+
+        任何误差小于 10-5 的答案都将被视为正确答案。
+
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+
+    </pre>
+</body>
+<script>
+
+    var arr = [1, 12, -5, -6, 50, 3]; var k = 4;
+    var findMaxAverage = function (nums, k) {
+
+        var res = nums.slice(0, k).reduce((a, b) => {
+            return a + b;
+        }, 0);
+        var cur = res;
+
+        for (var l = 1; l < nums.length; l++) {
+            if (l + k > nums.length) {
+                break;
+            }
+            const pre = nums[l-1];
+            const nex = nums[l + k - 1];
+            cur = cur + nex - pre;
+            res = Math.max(res, cur);
+        }
+        return res / k;
+    };
+    var data = findMaxAverage(arr, k);
+    console.log(data);
+</script>
+
+</html>

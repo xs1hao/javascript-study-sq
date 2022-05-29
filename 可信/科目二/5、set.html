@@ -2,36 +2,38 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 
 <body>
-    六种原始类型
-    分别是：
-    
-    number
-    string
-    null
-    undefined
-    boolean
-    symbol
+  六种原始类型
+  分别是：
+
+  number
+  string
+  null
+  undefined
+  boolean
+  symbol
 </body>
 <script>
-    var set = new Set();
-    var arr = [1, 2, 5, 4, 5, 3, 3]
-    arr.forEach((x) => {
-        set.add(x)
-    })
-    for (let i of set.keys()) {
-        console.log(i); // 1 2 5 4 3
-    }
+  
+  //  Set的遍历顺序就是插入顺序。
+  var set = new Set();
+  var arr = [1, 2, 5, 4, 5, 3, 3]
+  arr.forEach((x) => {
+    set.add(x)
+  })
+  for (let i of set.keys()) { // 返回键名的遍历器
+    console.log(i); // 1 2 5 4 3
+  }
 
 
-    for (let i = 0; i < 3; i++) {
-        let i = 'test';
-        console.log(i); // test test test
-    }
+  for (let i = 0; i < 3; i++) {
+    let i = 'test';
+    console.log(i); // test test test
+  }
 </script>
 
 </html>

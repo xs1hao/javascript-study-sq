@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 
 <body>
@@ -11,24 +11,41 @@
 </body>
 <script>
   var testName = 'hanmeimei';
-  (function Employer() {
-    try{
-        throw 'lilei';
-        console.log('这一行代码不会执行...');
-    } catch(testName) {
-        console.log('In catch:',testName); // In catch: lilei
+
+  (function Employer () {
+    try {
+      throw 'lilei';
+      console.log('这一行代码不会执行...');
+    } catch (testName) {
+      console.log('In catch:', testName); // In catch: lilei
     } finally {
-        console.log('总是会执行的代码，try-catch： end'); // 总是会执行的代码，try-catch： end
+      console.log('总是会执行的代码，try-catch： end'); // 总是会执行的代码，try-catch： end
     }
     console.log(testName); // hanmeimei
   })()
 
   let x = 1;
-   try {
-       let x = 2; // 不会报错；
-   } catch (error) {
-       console.log(x);
-   }
+  try {
+    let x = 2; // 不会报错；
+  } catch (error) {
+    console.log(x); // 不会执行
+  }
+
+  try {
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(1)
+      }, 100);
+      setTimeout(() => {
+        resolve(3)
+      }, 200);
+    })
+  } catch (error) {
+    console.log(error);
+  } finally {
+    console.log('finally');
+  }
+
 </script>
 
 </html>
