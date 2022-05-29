@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  /*
+  window.x = 0;
+  let x = 1;
+  class T {
+    x = 2;
+    constructor() {
+      this.x = 3;
+    }
+    run() {
+      console.log(this.x);
+    }
+  }
+  T.prototype.run = () => {
+    console.log(this.x);
+  }
+
+  let t = new T();
+  t.run(); // 0
+  */
+
+  /*
+  window.x = 0;
+  var x = 1;
+  class T {
+    x = 2;
+    constructor() {
+      this.x = 3;
+    }
+    run() {
+      console.log(this.x);
+    }
+  }
+  T.prototype.run = () => {
+    console.log(this.x);
+  }
+
+  let t = new T();
+  t.run(); // 1
+  */
+
+  window.x = 0;
+  var x = 1;
+  class T {
+    x = 2;
+    constructor() {
+      this.x = 3;
+    }
+    run() {
+      console.log(this.x);
+    }
+  }
+
+  let t = new T();
+  t.run(); // 3
+
+
+</script>
+
+</html>

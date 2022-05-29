@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>Es6学习</title>
+</head>
+
+<body>
+    <div>
+        <!--输入标题-->
+        <h1> </h1>
+    </div>
+
+</body>
+
+</html>
+<script>
+    class Person {
+        constructor() {
+            this.name = 'xiaoming';
+            this.run = function() {
+              console.log('wangbadan');
+            }
+        }
+        run () {
+            console.log(this.name);
+        }
+    }
+    var p1 = new Person();
+    var p2 = new Person();
+
+    p2.__proto__.run = function() {
+        console.log(11111111);
+    }
+    p1.run(); // wangbadan
+
+    Person.prototype.run = ()=> {
+        console.log('DDDDDD');
+    }
+    p1.run(); // wangbadan
+    p2.run(); // wangbadan
+
+
+</script>

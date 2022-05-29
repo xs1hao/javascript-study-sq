@@ -29,6 +29,9 @@
     let x = 2; // 不会报错；
   } catch (error) {
     console.log(x); // 不会执行
+  } finally {
+    console.log(x); // 1
+
   }
 
   try {
