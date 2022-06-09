@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+  // typeof
+  console.log(typeof true === 'boolean'); // true
+  console.log(typeof null === 'object'); // true
+  console.log(typeof undefined === 'undefined'); // true
+  console.log(typeof 1 === 'number'); // true
+
+  console.log(typeof 'str' === 'string'); // true
+  console.log(typeof String('aaa') === 'string'); // true
+
+  console.log(typeof new String('aaa') === 'object'); // true
+  
+  let symbole = Symbol([1,2,3]);
+  console.log(typeof symbole === 'symbol'); // true
+
+  console.log(typeof {} === 'object'); // true
+  console.log(typeof [] === 'object'); // true
+
+  var getNmae = function() {};
+  console.log(typeof getNmae === 'function'); // true
+  console.log(typeof function() {} === 'function'); // true
+
+  console.log(typeof new Date() === 'object'); // true
+
+  // instanceof
+  const res1 = new Date() instanceof Object;
+  console.log(res1); // true
+
+  const res2 = String('s') instanceof String;
+  console.log(res1); // true
+
+
+</script>
+
+</html>

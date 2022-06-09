@@ -2,32 +2,45 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 
 <body>
 
 </body>
 <script>
+  /*
+  try {
+    new Promise((resolve, reject) => {
+      throw new Error('promise error'); // // Uncaught (in promise) Error: promise error
+    })
+  } catch (err) {
+    console.log('In catch:', err); 
+  } finally {
+    console.log('In finally'); // 无论 try / catch 的结果如何都会执行。
+  }
+  */
+
+  // /*
     try {
-        // console.log('start');
-        new Promise((resolve, reject) => {
-            // console.log('in promise');
-            // reject('promise reject err');
-            throw new Error('promise error'); // promise 内的 then 方法内捕获到；
-        }).then((res) => {
-            console.log(res);
-            throw res;
+      new Promise((resolve, reject) => {
+          // reject('promise reject err');
+          throw new Error('promise error');
+      }).then(
+        (res) => {
+          console.log(res);
+          throw res;
         },(err) => {
-            console.log('In promise error:',err);
-        })
-        // throw new Error('第一个try 内发出的err')
+          console.log('In promise error:',err); // In promise error: Error: promise error
+      })
+      throw new Error('第一个try 内发出的err')
     } catch (err) {
-        console.log('In catch:',err); // 不能捕获到 promise 内部的 throw error
+        console.log('In catch:',err); // Uncaught (in promise) Error: promise error
     } finally {
         console.log('In finally'); // 无论 try / catch 的结果如何都会执行。
     }
+  // */
 
 </script>
 
