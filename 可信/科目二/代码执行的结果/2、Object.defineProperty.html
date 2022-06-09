@@ -31,15 +31,16 @@
     // /* 
     var emloyee = {};
     Object.defineProperty(emloyee, 'id', {
-        writable: false, // 9527 TypeError
+        // writable: false, // 9527 TypeError
         // writable: true, // 9528 9529
+        configurable: false, // 9527 9527
         value: '9527'
     });
     emloyee.id = '9528';
     console.log(emloyee.id); // 9527
 
     Object.defineProperty(emloyee, 'id', { //报错： Uncaught TypeError: Cannot redefine property: id
-        writable: true
+        writable: true,
     })
 
     emloyee.id = '9529';

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+  .div1 {
+    display: inline;
+    background-color: black;
+    width: 200px;
+    height: 300px;
+  }
+  .div2 {
+    display: inline-block;
+    background-color: #23c6c8;
+    width: 200px;
+    height: 300px;
+  }
+  .div3 {
+    width: 200px;
+    height: 300px;
+  }
+  .div4 {
+    display: inline-block;
+    background-color: red;
+    width: 50px;
+    height: 50px;
+  }
+  .div5 {
+    display: inline-block;
+    background-color: pink;
+    width: 100px;
+    height: 300px;
+  }
+</style>
+<body>
+  <div class="div1">
+    display:inlie 不可以与width height float一起使用
+  </div>
+  <div class="div2">
+    当行内元素实质了float属性后，该行内元素的display属性会被赋予block值，且拥有浮动属性；
+  </div>
+
+  vertical-align只对行内元素、表格单元格元素生效，不能用它垂直对齐块元素；
+  <div class="div3">
+    <div class="div4"></div>
+    <div class="div5"></div>
+  </div>
+</body>
+<script>
+
+</script>
+
+</html>

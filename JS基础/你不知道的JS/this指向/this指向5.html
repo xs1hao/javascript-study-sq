@@ -14,8 +14,12 @@
     'use strict'
     let greet = {
         text: 'hello',
-        sayHi: function() {console.log(this.text);},
-        sayBy: function() {console.log('Bye');},
+        sayHi: function() {
+          console.log(this.text);
+        },
+        sayBy: function() {
+          console.log('Bye');
+        },
         set: na => {
             this.text = na;
         }
@@ -23,6 +27,8 @@
 
     greet.set('world');
     greet.text === 'hello' ? greet.sayHi() : greet.sayBy(); // hello
+
+    // 严格模式中，普通函数中的this则表现不同，表现为undefined。
     (greet.text === 'hello' ? greet.sayHi : greet.sayBy)(); // Uncaught TypeError: Cannot read properties of undefined (reading 'text')
     */
 

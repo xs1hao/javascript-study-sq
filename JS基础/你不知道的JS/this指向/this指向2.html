@@ -36,6 +36,7 @@
 
     // 而在ES5的严格模式下，this被规定为不会指向全局对象，而是undefined ；
     // 'use strict' 严格模式下， 报错， Uncaught TypeError: Cannot read properties of undefined (reading 'name')
+    // 严格模式中，普通函数中的this则表现不同，表现为undefined。
     window.name = 'yuguang';
     var getName = function () {
         var name = '王二小';
