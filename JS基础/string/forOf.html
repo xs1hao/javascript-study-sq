@@ -14,7 +14,8 @@
         定义和用法
     </h3>
     <p>
-        字符串的 forOf方法 循环出来的是 字符串的 字符；
+        字符串的 forOf方法 循环出来的是 字符串的 字符；<br>
+        for of 不能遍历对象
     </p>
     <div>
 
@@ -26,9 +27,18 @@
         let str = 'hello world';
         // 数据处理
         for (let data of str){
-            console.log(data); // 循环的是 字符；
+            console.log(data); // 循环的是 字符；h e l l o '' w o r l d
         } 
-        
+    }
+    var obj = {
+      name: 'sq',
+      age: 12,
+      address: 'xian',
+      school: 'beijing'
+    }
+    // for of 不能遍历对象
+    for (let data of obj){ // forOf.html:38 Uncaught TypeError: obj is not iterable
+      console.log(data);
     }
 </script>
 </html>

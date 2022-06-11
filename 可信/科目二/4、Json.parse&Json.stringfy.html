@@ -2,35 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 
 <body>
 
 </body>
 <script>
-    let obj1 = { name: 'ren', age: 18, gender: 1 }
-    let res1 = JSON.stringify(obj1, ['name', 'age']);
-    console.log(res1); // {"name":"ren","age":18}   少了gender;
-    console.log(typeof res1); // string
+  
+  function replacer (k, v) {
+    if (typeof v === 'string') {
+      return undefined;
+    }
+    return v;
+  }
+  let obj1 = { name: 'ren', age: 18, gender: 1 }
+  let res1 = JSON.stringify(obj1, ['name', 'age']);
+  var res2 = JSON.stringify(obj1, replacer)
+  console.log(res1); // {"name":"ren","age":18}   少了gender;
+  console.log(typeof res1); // string
+  console.log(res2); // "{"age":18,"gender":1}"
 
-    // let res2 = JSON.stringify(obj1, replacer); // Uncaught ReferenceError: replacer is not defined
-    // console.log(res2)
+  // let res2 = JSON.stringify(obj1, replacer); // Uncaught ReferenceError: replacer is not defined
+  // console.log(res2)
 
 
-    var jsonstr = '{"str1":"abc", "str2":"123"}';
-    var jsonobj = JSON.parse(jsonstr, ['str1']);
-    console.log(jsonobj); // {"str1":"abc", "str2":"123"} 不会少 key 
+  var jsonstr = '{"str1":"abc", "str2":"123"}';
+  var jsonobj = JSON.parse(jsonstr, ['str1']);
+  console.log(jsonobj); // {"str1":"abc", "str2":"123"} 不会少 key 
 
-    var res3 = JSON.parse('{"1": 1, "2": 2, "3": {"4": 4, "5": {"6": 6}}}',
-        function (k, v) {
-            console.log(k); // 输出当前属性名，从而得知遍历顺序是从内向外的 1 2 4 6 5 3
-                            // 最后一个属性名会是一个空字符串
-            return v;     // 返回原始属性值，相当于没有传递 revier 参数；
-        }
-    )
-    console.log(res3); // 1 2 4 6 5 3 '';
+  var res3 = JSON.parse('{"1": 1, "2": 2, "3": {"4": 4, "5": {"6": 6}}}',
+    function (k, v) {
+      console.log(k); // 输出当前属性名，从而得知遍历顺序是从内向外的 1 2 4 6 5 3
+      // 最后一个属性名会是一个空字符串
+      return v;     // 返回原始属性值，相当于没有传递 revier 参数；
+    }
+  )
+  console.log(res3); // 1 2 4 6 5 3 '';
 </script>
 
 </html>

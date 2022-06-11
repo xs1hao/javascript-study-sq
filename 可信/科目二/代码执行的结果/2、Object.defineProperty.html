@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 
 <body>
@@ -11,81 +11,132 @@
 </body>
 <script>
 
-    /**
-     * Object.defineProperty
-     * 1.属性所在的对象
-     * 2.属性的名字
-     * 3.一个描述符对象
-     * 
-     * 描述符对象：
-     * 
-     * 1.configurable:表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性，默认值为true。
-     * 2.enumerable：表示能否通过for in循环访问属性，默认值为true
-     * 3.writable：表示能否修改属性的值。默认值为true。
-     * 4.value：包含这个属性的数据值。默认值为undefined。
-     * 
-     * 5.get：在读取属性时调用的函数，默认值是undefined 
-     * 6.set：在写入属性的时候调用的函数，默认值是undefined
-     * **/
+  /**
+   * Object.defineProperty
+   * 1.属性所在的对象
+   * 2.属性的名字
+   * 3.一个描述符对象
+   * 
+   * 描述符对象：
+   * 
+   * 1.configurable:表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性，默认值为true。
+   * 2.enumerable：表示能否通过for in循环访问属性，默认值为true
+   * 3.writable：表示能否修改属性的值。默认值为true。
+   * 4.value：包含这个属性的数据值。默认值为undefined。
+   * 
+   * 5.get：在读取属性时调用的函数，默认值是undefined 
+   * 6.set：在写入属性的时候调用的函数，默认值是undefined
+   * **/
 
-    // /* 
-    var emloyee = {};
-    Object.defineProperty(emloyee, 'id', {
-        // writable: false, // 9527 TypeError
-        // writable: true, // 9528 9529
-        configurable: false, // 9527 9527
-        value: '9527'
-    });
-    emloyee.id = '9528';
-    console.log(emloyee.id); // 9527
+  /* 
+  var emloyee = {};
+  Object.defineProperty(emloyee, 'id', {
+      writable: false, // 9527 TypeError
+      value: '9527'
+  });
+  emloyee.id = '9528';
+  console.log(emloyee.id); // 9527
 
-    Object.defineProperty(emloyee, 'id', { //报错： Uncaught TypeError: Cannot redefine property: id
-        writable: true,
-    })
+  Object.defineProperty(emloyee, 'id', { //报错： Uncaught TypeError: Cannot redefine property: id
+      writable: true,
+  })
 
-    emloyee.id = '9529';
-    console.log(emloyee.id); 
+  emloyee.id = '9529';
+  console.log(emloyee.id); 
+  */
+
+  /*
+  var p1 = {
+      name: "lisi",
+  }
+
+  Object.defineProperty(p1, "name", {
+      configurable: false,
+  })
+  console.log(p1); //{ name: 'lisi' }
+  delete p1.name;
+  console.log(p1); //{ name: 'lisi' }
+
+  p1.name = 'table'
+  console.log(p1); //{ name: 'table' }
+  */
+
+
+  /*
+  var book = {
+      _year: 2004,
+      edition: 1
+  }
+
+  Object.defineProperty(book, "year", {
+      get: function () {
+          return this._year
+      },
+      set: function (newYear) {
+          if (newYear > 2004) {
+              this._year = newYear;
+              this.edition += newYear - 2004
+          }
+      }
+  })
+
+  book.year = 2005;
+  console.log(book.edition); // 2
+  console.log(book._year); //2005
+  */
+
+  /*
+  var emloyee = {};
+  Object.defineProperty(emloyee, 'id', {
+      configurable: true,
+      value: '9527'
+  });
+  emloyee.id = '9528';
+  console.log(emloyee.id); // 9527
+
+  Object.defineProperty(emloyee, 'id', {
+    configurable: false,
+  })
+
+  emloyee.id = '9529';
+  console.log(emloyee.id); // 9527
+  */
+
+
+  /*
+  var emloyee = {};
+  Object.defineProperty(emloyee, 'id', {
+      writable: true,
+      value: '9527'
+  });
+  emloyee.id = '9528';
+  console.log(emloyee.id); // 9528
+
+  Object.defineProperty(emloyee, 'id', {
+    writable: false,
+  })
+
+  emloyee.id = '9529';
+  console.log(emloyee.id); // 9528
+  */
+
+  // /*
+  var emloyee = {};
+  Object.defineProperty(emloyee, 'id', {
+    writable: true,
+    value: '9527'
+  });
+  emloyee.id = '9528';
+  console.log(emloyee.id); // 9528
+
+  Object.defineProperty(emloyee, 'id', {
+    writable: true,
+  })
+
+  emloyee.id = '9529';
+  console.log(emloyee.id); // 9529
     // */
 
-    /*
-    var p1 = {
-        name: "lisi",
-    }
-
-    Object.defineProperty(p1, "name", {
-        configurable: false,
-    })
-    console.log(p1); //{ name: 'lisi' }
-    delete p1.name;
-    console.log(p1); //{ name: 'lisi' }
-
-    p1.name = 'table'
-    console.log(p1); //{ name: 'table' }
-    */
-
-
-    /*
-    var book = {
-        _year: 2004,
-        edition: 1
-    }
-
-    Object.defineProperty(book, "year", {
-        get: function () {
-            return this._year
-        },
-        set: function (newYear) {
-            if (newYear > 2004) {
-                this._year = newYear;
-                this.edition += newYear - 2004
-            }
-        }
-    })
-
-    book.year = 2005;
-    console.log(book.edition); // 2
-    console.log(book._year); //2005
-    */
 
 </script>
 

@@ -42,12 +42,12 @@
 		window.onload = function () {
 			let arr = [1, 2, 3, 4, 5, 5, 2]
 			// 数据处理
-            let res = arr.findIndex((curValue,index,arr) => {
-                console.log(curValue); // 当前循环的 元素
-                console.log(index); // 当前循环元素的 下标
-                console.log(arr); // 当前元素属于的数组对象
-                return curValue > 2; // 元素3 满足条件，找到元素3后，返回元素3的下标，则结束当前的循环。后面的元素不在做处理。
-            })
+      let res = arr.findIndex((curValue,index,arr) => {
+        console.log(curValue); // 当前循环的 元素
+        console.log(index); // 当前循环元素的 下标
+        console.log(arr); // 当前元素属于的数组对象
+        return curValue > 2; // 元素3 满足条件，找到元素3后，返回元素3的下标，则结束当前的循环。后面的元素不在做处理。
+      })
 			let type = Object.prototype.toString.call(res).slice(8, -1)
 			console.log('原数组：', arr)
 			console.log('处理后的结果：', res) // 2

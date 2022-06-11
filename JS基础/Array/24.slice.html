@@ -45,25 +45,23 @@
 			console.log('处理后的结果：', res) // [3,4]
 			let type = Object.prototype.toString.call(res).slice(8, -1)
 			console.log('原数组：', arr) // [1, 2, 3, 4, 5, 6, 7]
-            console.log('得到的结果类型：', type) // Array
-            
-            let res1 = arr.slice(-2,2);
-            console.log('res1:',res1); // []
+      console.log('得到的结果类型：', type) // Array
+      
+      let res1 = arr.slice(-2,2);
+      console.log('res1:',res1); // []
 
-            let res2 = arr.slice(-3,-2);
-            console.log('res2:',res2); // [5] 不包含 倒数第二个  元素；
+      let res2 = arr.slice(-3,-2);
+      console.log('res2:',res2); // [5] 不包含 倒数第二个  元素；
 
-            let res3 = arr.slice(4);
-            console.log('res3:',res3); // [5, 6, 7]
+      let res3 = arr.slice(4);
+      console.log('res3:',res3); // [5, 6, 7]
 
-            // slice 的其他用法
-            let add = function(a,b,c) {
-                let args = Array.prototype.slice.call(arguments); // arguments 是一个 伪数组，我们可以使用 slice 将其转换成一个包含函数参数的数组；
-                console.log(args); // [1,2,3]
-            }
-
-            add(1,2,3);
-
+      // slice 的其他用法
+      let add = function(a,b,c) {
+        let args = Array.prototype.slice.call(arguments); // arguments 是一个 伪数组，我们可以使用 slice 将其转换成一个包含函数参数的数组；
+        console.log(args); // [1,2,3]
+      }
+      add(1,2,3);
 		}
 	</script>
 </html>
