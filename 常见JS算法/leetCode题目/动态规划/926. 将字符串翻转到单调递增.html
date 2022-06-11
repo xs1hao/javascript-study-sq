@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+    <a href="https://leetcode.cn/problems/flip-string-to-monotone-increasing/" target="_blank">
+      926. 将字符串翻转到单调递增
+    </a>
+
+    <h5>
+      如果一个二进制字符串，是以一些 0（可能没有 0）后面跟着一些 1（也可能没有 1）的形式组成的，那么该字符串是 单调递增 的。
+      给你一个二进制字符串 s，你可以将任何 0 翻转为 1 或者将 1 翻转为 0 。
+      返回使 s 单调递增的最小翻转次数。
+    </h5>
+
+    <p class="notice">
+        <br>
+    </p>
+
+    <pre class="code">
+      示例 1：
+      输入：s = "00110"
+      输出：1
+      解释：翻转最后一位得到 00111.
+
+      示例 2：
+      输入：s = "010110"
+      输出：2
+      解释：翻转得到 011111，或者是 000111。
+    </pre>
+</body>
+<script>
+  var minFlipsMonoIncr = function(s) {
+    let zoros = 0, ones = 0, res = 0;
+    const arr = s.split('');
+    const index = arr.findIndex(o => o === '1');
+    const arrs = arr.slice(index);
+    for (var str of arrs) {
+      let dp0New = zoros, dp1New = Math.min(zoros, ones);
+      if (str == '1') {
+        dp0New++
+      } else {
+        dp1New++
+      }
+      zoros = dp0New;
+      ones = dp1New;
+    }
+    return Math.min(zoros,ones)
+  };
+  const data = minFlipsMonoIncr('0101100011');
+  console.log(data);
+</script>
+
+</html>
