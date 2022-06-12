@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+  <a href="https://leetcode.cn/problems/find-and-replace-pattern/" target="_blank">
+    890. 查找和替换模式
+  </a>
+
+  <h5>
+    你有一个单词列表 words 和一个模式  pattern，你想知道 words 中的哪些单词与模式匹配。
+
+    如果存在字母的排列 p ，使得将模式中的每个字母 x 替换为 p(x) 之后，我们就得到了所需的单词，那么单词与模式是匹配的。
+    <br>
+    （回想一下，字母的排列是从字母到字母的双射：每个字母映射到另一个字母，没有两个字母映射到同一个字母。）
+
+    返回 words 中与给定模式匹配的单词列表。
+
+    你可以按任何顺序返回答案。
+
+  </h5>
+
+  <p class="notice">
+    <br>
+  </p>
+
+  <pre class="code">
+
+      示例：
+      
+      输入：words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
+      输出：["mee","aqq"]
+      解释：
+      "mee" 与模式匹配，因为存在排列 {a -> m, b -> e, ...}。
+      "ccc" 与模式不匹配，因为 {a -> c, b -> c, ...} 不是排列。
+      因为 a 和 b 映射到同一个字母。
+    </pre>
+</body>
+<script>
+
+  //  通过测试用例：44 / 47
+  var findAndReplacePattern = function (words, pattern) {
+    var res = [];
+    const patSize = [...new Set(pattern)].length;
+    for (var i = 0; i < words.length; i++) {
+      const curWord = words[i];
+      const curSize = [...new Set(curWord)].length;
+      // 本身长度与去重的长度相等，在考虑模式是否一样
+      if (curWord.length === pattern.length && curSize === patSize) {
+        var arr = pattern.split('');
+        for (var j = 0; j < arr.length; j++) {
+          if (!arr[j + 1]) {
+            res.push(curWord);
+            break;
+          }
+          if (arr[j] === arr[j + 1]) {
+            const bool = curWord[j] === curWord[j + 1];
+            if (!bool) {
+              break
+            }
+          } else {
+            const bool = curWord[j] !== curWord[j + 1];
+            if (!bool) {
+              break
+            }
+          }
+        }
+      }
+    }
+    return res;
+  };
+
+  // 需要考虑对应位置映射关系--官方正解。
+  var findAndReplacePattern1 = function (words, pattern) {
+    const ans = [];
+    for (const word of words) {
+      if (match(word, pattern) && match(pattern, word)) {
+        ans.push(word);
+      }
+    }
+    return ans;
+  };
+
+  const match = (word, pattern) => {
+    const map = new Map();
+    for (let i = 0; i < word.length; ++i) {
+      const x = word[i], y = pattern[i];
+      if (!map.has(x)) {
+        map.set(x, y);
+      } else if (map.get(x) !== y) { // word 中的同一字母必须映射到 pattern 中的同一字母上
+        return false;
+      }
+    }
+    return true;
+  }
+  var words = ["ktittgzawn", "dgphvfjniv", "gceqobzmis", "alrztxdlah", "jijuevoioe", "mawiizpkub", "onwpmnujos", "zszkptjgzj", "zwfvzhrucv", "isyaphcszn"];
+  var pattern = "zdqmjnczma";
+  const data1 = findAndReplacePattern1(words, pattern);
+  console.log(data1); // []
+</script>
+
+</html>
