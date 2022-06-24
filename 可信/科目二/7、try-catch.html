@@ -49,6 +49,16 @@
     console.log('finally');
   }
 
+  try {
+    new Promise((resolve, reject) => {
+      throw new Error('aaaaaaa'); // Uncaught (in promise) Error: aaaaaaa
+    })
+  } catch (error) {
+    console.log(error); // 不会捕获到错误；
+  } finally {
+    console.log('finally---aaaaa');
+  }
+
 </script>
 
 </html>

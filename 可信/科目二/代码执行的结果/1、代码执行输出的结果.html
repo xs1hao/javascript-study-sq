@@ -2,40 +2,41 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 
 <body>
 
 </body>
 <script>
-    /*
-    var x = 4;
-    function outside () {
-        let x = 5;
-        function insidex (x) {
-            return x * 2;
-        }
-        return insidex;
+  /*
+  var x = 4;
+  function outside () {
+    let x = 5;
+    function insidex (x) {
+      // var x = 5; // return 10
+      return x * 2;
     }
-    console.log(outside()(10)); // 20;
-    */
-   
-    
-    /*
-    (function() {
-        var b = (a = 3);
-    })();
-    console.log(a); // 3
-    console.log(b); // 报错 Uncaught ReferenceError: b is not defined
-    */
+    return insidex;
+  }
+  console.log(outside()(10)); // 20;
+  */
 
-    (function() {
-        var b = a = 3;
-    })();
-    console.log(a);  // 3
-    console.log(b); // 报错 Uncaught ReferenceError: b is not defined
+
+  /*
+  (function() {
+      var b = (a = 3);
+  })();
+  console.log(a); // 3
+  console.log(b); // 报错 Uncaught ReferenceError: b is not defined
+  */
+
+  (function () {
+    var b = a = 3;
+  })();
+  console.log(a);  // 3
+  console.log(b); // 报错 Uncaught ReferenceError: b is not defined
 
 </script>
 
