@@ -67,7 +67,7 @@
         const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
 
         while (queue.length) {
-            const cell = queue.shift();
+            const cell = queue.shift(); // 先进先出；
             const currRow = cell[0], currCol = cell[1];
             for (const dir of dirs) {
                 const nextRow = currRow + dir[0], nextCol = currCol + dir[1];
