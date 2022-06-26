@@ -30,7 +30,7 @@
     Person.saySorry(); // Sorry Person
     // xiaomin.saySorry(); // Uncaught TypeError: xiaomin.saySorry is not a function
 
-    // ------------------------------------------------------------------------------------
+    /*
     var num = 10    // 60； 65
     var obj = {
         num: 20
@@ -48,18 +48,26 @@
     fn(5)   // 22
     obj.fn(10)   // 23
     console.log(num, obj.num)    // 65, 30
-    // ------------------------------------------------------------------------------------
+    */
+
+    // /*
     var a = 5; //var定义的a绑定到了window对象上面
     let obj = {
         a: 10,
         foo: function () {
             console.log(this.a);
+        },
+        log: () => {
+          console.log(this.a);
         }
     };
     let bar = obj.foo;
-    obj.foo(); //10 obj调用了foo函数，this就是obj对象，输出10
-    bar(); //5 bar函数是输出当前对象上面的a，为5
+    obj.foo(); // 10 obj调用了foo函数，this就是obj对象，输出10
+    obj.log(); // 5  
+    bar(); // 5 bar函数是 window 对象上面的a，为5
+    // */
 
+    /*
     let a = 5; //let定义的a不会绑定到window对象上面
     let obj = {
         a: 10,
@@ -70,7 +78,7 @@
     let bar1 = obj.foo;
     obj.foo(); //10 obj调用了foo，this就是obj对象，输出10
     bar1(); //undefined 当前的this是window对象，但是window上面没有a属性，输出undefined 
-
+    */
 </script>
 
 </html>

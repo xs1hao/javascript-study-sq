@@ -10,8 +10,8 @@
 
 </body>
 <script>
-  var testName = 'hanmeimei';
 
+  var testName = 'hanmeimei';
   (function Employer () {
     try {
       throw 'lilei';
@@ -44,9 +44,9 @@
       }, 200);
     })
   } catch (error) {
-    console.log(error);
+    console.log(error); // 不会执行
   } finally {
-    console.log('finally');
+    console.log('finally'); // finally
   }
 
   try {

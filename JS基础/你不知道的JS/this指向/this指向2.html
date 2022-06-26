@@ -10,7 +10,7 @@
 
 </body>
 <script>
-    // 'use strict'
+    'use strict'
     var obj = {
         a: 'yuguang',
         getName: function () {
@@ -21,6 +21,7 @@
 
     // obj.getName(); // true yuguang
 
+    /*
     window.name = '老王'
     var obj = {
         name: 'yuguang',
@@ -31,22 +32,32 @@
     obj.getName(); // yuyang
 
     // 当函数不作为对象的属性被调用，而是以普通函数的方式，this总是指向全局对象（在浏览器中，通常是Window对象）
+    
     var getNew = obj.getName;
     getNew(); // 老王
+    */
 
-    // 而在ES5的严格模式下，this被规定为不会指向全局对象，而是undefined ；
-    // 'use strict' 严格模式下， 报错， Uncaught TypeError: Cannot read properties of undefined (reading 'name')
-    // 严格模式中，普通函数中的this则表现不同，表现为undefined。
+    /**
+     * 
+     * 而在ES5的严格模式下，this被规定为不会指向全局对象，而是undefined ；
+     * 'use strict' 严格模式下， 报错， Uncaught TypeError: Cannot read properties of undefined (reading 'name')
+     * 严格模式中，普通函数中的this则表现不同，表现为undefined。
+     * 
+     * **/
+
+    /*
+    'use strict'
     window.name = 'yuguang';
     var getName = function () {
         var name = '王二小';
         console.log(name); // 王二小
-        console.log(this.name);
+        console.log(this.name); // 严格模式下 报错； Uncaught TypeError: Cannot read properties of undefined (reading 'name')
     };
 
     getName(); // yuguang； 
+    */
 
-
+    /*
     function F1 () {
         var a = 100;
         return function () {
@@ -56,7 +67,8 @@
 
     var f1 = F1();
     var a = 200;
-    f1();
+    f1(); // 100
+    */
 </script>
 
 </html>

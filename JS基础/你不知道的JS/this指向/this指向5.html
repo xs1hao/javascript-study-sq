@@ -24,12 +24,11 @@
             this.text = na;
         }
     }
-
     greet.set('world');
     greet.text === 'hello' ? greet.sayHi() : greet.sayBy(); // hello
 
     // 严格模式中，普通函数中的this则表现不同，表现为undefined。
-    (greet.text === 'hello' ? greet.sayHi : greet.sayBy)(); // Uncaught TypeError: Cannot read properties of undefined (reading 'text')
+    (greet.text === 'hello' ? greet.sayHi : greet.sayBy)(); // 最为普通函数调用，this指向window，严格模式下 window 为undefined， 所以报错； Uncaught TypeError: Cannot read properties of undefined (reading 'text')
     */
 
     // /*
@@ -43,7 +42,7 @@
     }
 
     greet.set('world');
-    greet.text === 'hello' ? greet.sayHi() : greet.sayBy(); // hello
+    greet.text === 'hello' ? greet.sayHi() : greet.sayBy(); // 最为对象属性调用，this 指向对象，打印 hello
     // */
 </script>
 
