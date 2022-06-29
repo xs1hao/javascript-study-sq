@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+  var res = [...[...' ...']];
+  var len = [...[...' ...']].length
+  console.log(res); //  [' ', '.', '.', '.']
+  console.log(len); // 4
+
+  const atom = {
+    value: 1,
+    addValue (value) {
+      return atom.value + value;
+    }
+  }
+  // 不会报错；
+  var data = atom.addValue(2);
+  console.log(data); // 3
+
+  /**
+   * 帕斯卡命名：
+   * 有两个或者两个以上的单词连接而成，每个单词首字母大写；
+   * 
+   * 什么情况下使用帕斯卡命名？ 
+   * A、导出函数；
+   * B、导出单例；
+   * C、导出函数库；
+   * D、倒出空对象；
+   * 
+   * **/
+  /*
+  var x = 4;
+  function outside() {
+    var x = 5;
+    return function inside(x) {
+      return x * 2;
+    }
+  }
+  console.log(outside()(10)); // 20
+  */
+
+  //  变形：
+  /*
+  var x = 4;
+  function outside () {
+    var x = 5;
+    return function inside (x) {
+      var x = 5;
+      return x * 2;
+    }
+  }
+  console.log(outside()(10)); // 10
+  */
+
+</script>
+
+</html>

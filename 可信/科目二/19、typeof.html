@@ -11,7 +11,7 @@
 </body>
 <script>
 
-  // typeof
+  // typeof 虽然可以判断原始数据类型（null 除外），但是无法判断引用数据类型（function 除外）
   console.log(typeof true === 'boolean'); // true
   console.log(typeof null === 'object'); // true
   console.log(typeof undefined === 'undefined'); // true
@@ -34,14 +34,15 @@
 
   console.log(typeof new Date() === 'object'); // true
 
-  // instanceof
+  // instanceof 可以准确判断引用数据类型，但是不能正确判断原始数据类型
   const res1 = new Date() instanceof Object;
   console.log(res1); // true
 
   const res2 = String('s') instanceof String;
-  console.log(res1); // true
+  console.log(res2); // false
 
-
+  const res3 = 'aaa' instanceof String;
+  console.log(res3); // false
 </script>
 
 </html>
