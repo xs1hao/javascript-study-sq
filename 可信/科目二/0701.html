@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  /*
+  var bar = 1;
+  var a = {
+    bar: 2,
+    foo: () => {
+      console.log(this.bar);
+    }
+  }
+  a.foo.call(a); // 1
+  */
+
+  'use strict'
+  var foo = 1;
+  var a = {
+    foo: 2,
+    bar: function () {
+      setTimeout(function(){
+        var foo = 4;
+        console.log(this.foo)
+      }, 0);
+    }
+  }
+  a.bar(); // 1
+</script>
+
+</html>
