@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+  <a href="https://leetcode.cn/problems/exclusive-time-of-functions/" target="_blank">
+    636. 函数的独占时间
+  </a>
+
+  <h5>
+
+  </h5>
+
+  <p class="notice">
+    <br>
+  </p>
+
+  <pre class="code">
+    示例 2：
+
+    输入：n = 1, logs = ["0:start:0","0:start:2","0:end:5","0:start:6","0:end:6","0:end:7"]
+    输出：[8]
+    解释：
+    函数 0 在时间戳 0 的起始开始执行，执行 2 个单位时间，并递归调用它自身。
+    函数 0（递归调用）在时间戳 2 的起始开始执行，执行 4 个单位时间。
+    函数 0（初始调用）恢复执行，并立刻再次调用它自身。
+    函数 0（第二次递归调用）在时间戳 6 的起始开始执行，执行 1 个单位时间。
+    函数 0（初始调用）在时间戳 7 的起始恢复执行，执行 1 个单位时间。
+    所以函数 0 总共执行 2 + 4 + 1 + 1 = 8 个单位时间。
+
+    示例 3：
+
+    输入：n = 2, logs = ["0:start:0","0:start:2","0:end:5","1:start:6","1:end:6","0:end:7"]
+    输出：[7,1]
+    解释：
+    函数 0 在时间戳 0 的起始开始执行，执行 2 个单位时间，并递归调用它自身。
+    函数 0（递归调用）在时间戳 2 的起始开始执行，执行 4 个单位时间。
+    函数 0（初始调用）恢复执行，并立刻调用函数 1 。
+    函数 1在时间戳 6 的起始开始执行，执行 1 个单位时间，于时间戳 6 的末尾结束执行。
+    函数 0（初始调用）在时间戳 7 的起始恢复执行，执行 1 个单位时间，于时间戳 7 的末尾结束执行。
+    所以函数 0 总共执行 2 + 4 + 1 = 7 个单位时间，函数 1 总共执行 1 个单位时间。 
+    示例 4：
+
+    输入：n = 2, logs = ["0:start:0","0:start:2","0:end:5","1:start:7","1:end:7","0:end:8"]
+    输出：[8,1]
+    </pre>
+</body>
+<script>
+  var n = 8, logs = [
+    "0:start:0",
+    "1:start:5",
+    "2:start:6",
+    "3:start:9",
+    "4:start:11",
+    "5:start:12",
+    "6:start:14",
+    "7:start:15",
+    "1:start:24",
+    "1:end:29",
+    "7:end:34",
+    "6:end:37",
+    "5:end:39",
+    "4:end:40",
+    "3:end:45",
+    "0:start:49",
+    "0:end:54",
+    "5:start:55",
+    "5:end:59",
+    "4:start:63",
+    "4:end:66",
+    "2:start:69",
+    "2:end:70",
+    "2:start:74",
+    "6:start:78",
+    "0:start:79",
+    "0:end:80",
+    "6:end:85",
+    "1:start:89",
+    "1:end:93",
+    "2:end:96",
+    "2:end:100",
+    "1:end:102",
+    "2:start:105",
+    "2:end:109",
+    "0:end:114"]
+  var n = 2, logs = ["0:start:0", "0:start:2", "0:end:5", "1:start:6", "1:end:6", "0:end:7"];
+
+  var exclusiveTime = function (n, logs) {
+    var funs = [];
+    var obj = {};
+    logs = logs.map(val => val.split(':'));
+    var first = logs[0];
+    obj[first[0]] = 0;
+    funs.push(first[0]);
+    for (var i = 1; i < logs.length; i++) {
+      var item = logs[i]; // [5, start, 0]; 
+      if (item[1] === 'start') {
+        funs.push(item[0]);
+        const key = funs.length >= 2 ? funs[funs.length - 2] : item[0];
+        var mins = logs[i][2] - logs[i - 1][2];
+        const tag = logs[i - 1][0] === 'start' ? 0 : -1;
+        obj[key] = obj[key] ? obj[key] + mins + tag : mins + tag;
+      } else {
+        funs.pop(); // 删除最后一个函数；
+        const tag = logs[i - 1][0] === 'end' ? 0 : 1;
+        var mins = logs[i][2] - logs[i - 1][2] + tag;
+        // 结束，应该是结束的已有的函数； obj[item[0]]应该是必须存在的；
+        obj[item[0]] = obj[item[0]] ? obj[item[0]] + mins : mins;
+      }
+    }
+    return Object.values(obj);
+  };
+
+  // 官方解法
+  var exclusiveTime1 = function (n, logs) {
+    const stack = []; // {idx, 开始运行的时间}
+    const res = new Array(n).fill(0);
+    for (const log of logs) {
+      const idx = parseInt(log.substring(0, log.indexOf(':')));
+      const type = log.substring(log.indexOf(':') + 1, log.lastIndexOf(':'));
+      const timestamp = parseInt(log.substring(log.lastIndexOf(':') + 1));
+      if ("start" === type) {
+        if (stack.length) {
+          res[stack[stack.length - 1][0]] += timestamp - stack[stack.length - 1][1];
+          stack[stack.length - 1][1] = timestamp;
+        }
+        stack.push([idx, timestamp]);
+      } else {
+        const t = stack.pop();
+        res[t[0]] += timestamp - t[1] + 1;
+        if (stack.length) {
+          stack[stack.length - 1][1] = timestamp + 1;
+        }
+      }
+    }
+    return res;
+  };
+
+  var data = exclusiveTime(n, logs);
+  console.log(data);
+
+</script>
+
+</html>

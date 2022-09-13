@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+  <a href="" target="_blank">
+
+  </a>
+
+  <h5>
+
+  </h5>
+
+  <p class="notice">
+    <br>
+  </p>
+
+  <pre class="code">
+
+    </pre>
+</body>
+<script>
+
+  var sentence = "this problem is an easy problem", searchWord = "pro"
+  var isPrefixOfWord = function(sentence, searchWord) {
+    var arr = sentence.split(' ');
+    for (let i = 0; i < arr.length; i++) {
+      if (!arr[i].includes(searchWord)) {
+        continue;
+      }
+      const len = searchWord.length;
+      const str = arr[i].substring(0,len);
+      if (str === searchWord) {
+        return i + 1;
+      }
+    }
+    return -1;
+  };
+  var dataa = isPrefixOfWord(sentence,searchWord);
+  console.log(dataa);
+</script>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+  <a href="" target="_blank">
+
+  </a>
+
+  <h5>
+
+  </h5>
+
+  <p class="notice">
+    <br>
+  </p>
+
+  <pre class="code">
+
+    </pre>
+</body>
+<script>
+  var grid = [[0,0,1,1],[1,0,1,0],[1,1,0,0]]
+  // 每一行的二进制数最大，即保证首行和首列都是 1 ；
+  /**
+   * @param {number[][]} grid
+   * @return {number}
+   */
+  var matrixScore = function (grid) {
+    function getRes() {
+      var num = 0;
+      grid.forEach(element => {
+        const str = element.join('');
+        num += parseInt(str, 2)
+      });
+      return num;
+    }
+    for (var i = 0; i < grid.length; i++) {
+      const item = grid[i];
+      if (item[0] === 1) {
+        continue;
+      }
+      item.forEach((o, index) => {
+        item[index] = o === 1 ? 0 : 1;
+      });
+    }
+    // 列转化--如果该列 0 的数目多于 1 的数目，就翻转该列，其他的列则保持不变。
+    for (var j = 1; j < grid[0].length; j++) { // 列, 从第二列开始反转；
+      let num = 0;
+      for (var i = 0; i < grid.length; i++) { // 行
+        if (grid[i][j] === 1) {
+          num++;
+        }
+      }
+      if (num < grid.length/2) {
+        for (var i = 0; i < grid.length; i++) {
+          grid[i][j] = grid[i][j] === 1 ? 0 : 1;
+        }
+      }
+    }
+    return getRes();
+  };
+  var dataa = matrixScore(grid);
+  console.log(dataa);
+</script>
+
+</html>
