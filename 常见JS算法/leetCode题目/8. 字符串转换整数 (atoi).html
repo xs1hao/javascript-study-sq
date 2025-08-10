@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+  <a href="https://leetcode.cn/problems/string-to-integer-atoi/description/" target="_blank">
+    8. 字符串转换整数 (atoi)
+  </a>
+
+  <h5>
+
+  </h5>
+
+  <p class="notice">
+    <br>
+  </p>
+
+  <pre class="code">
+
+    </pre>
+</body>
+<script>
+
+  var str = " -042asd12";
+
+  /**
+ * 官方解法
+ */
+  var myAtoi = function (str) {
+    const number = parseInt(str, 10);
+
+    if (isNaN(number)) {
+      return 0;
+    } else if (number < Math.pow(-2, 31) || number > Math.pow(2, 31) - 1) {
+      return number < Math.pow(-2, 31) ? Math.pow(-2, 31) : Math.pow(2, 31) - 1;
+    } else {
+      return number;
+    }
+  };
+  // 自己的解法--又丑又长
+  var getData = function (str) {
+    let res = '0';
+    let s = str.replace(/^\s+/, '');
+    if (!s.length) {
+      return res;
+    }
+    if (s.startsWith('-')) {
+      res = '-0';
+      s = s.replace('-', '');
+    }
+    var arr = s.split('');
+    for (var i = 0; i < arr.length; i++) {
+      if (!/\d/.test(arr[i])) {
+        break;
+      }
+      res += arr[i];
+    }
+    const result = res - '0';
+    if (result < Math.pow(-2, 31)) {
+      return Math.pow(-2, 31);
+    }
+
+    if (Math.pow(2, 31) < result) {
+      return Math.pow(2, 31);
+    }
+    return result;
+
+  }
+
+  var dataa = getData(str);
+  console.log(dataa);
+</script>
+
+</html>

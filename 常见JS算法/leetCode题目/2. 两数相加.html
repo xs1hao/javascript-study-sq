@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="../../../commo/commo.css">
+</head>
+
+<body>
+  <a href="https://leetcode.cn/problems/add-two-numbers/description/" target="_blank">
+    2. 两数相加
+  </a>
+
+  <h5>
+
+  </h5>
+
+  <p class="notice">
+    <br>
+  </p>
+
+  <pre class="code">
+
+    </pre>
+</body>
+<script>
+
+  var l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9];
+
+  var addTwoNumbers = function (l1, l2) {
+    var m = l1.length, n = l2.length;
+    var len = Math.max(m, n);
+    var arr = new Array(len + 1).fill(0);
+    for (var i = 0; i < len; i++) {
+      var a = l1[i] || 0;
+      var b = l2[i] || 0;
+      arr[i] += a + b;
+      if (arr[i] >= 10) {
+        arr[i] -= 10;
+        arr[i + 1] += 1;
+      }
+    }
+    return arr;
+  };
+
+
+  var data = addTwoNumbers(l1, l2);
+  console.log(data);
+</script>
+
+</html>
